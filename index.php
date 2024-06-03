@@ -51,6 +51,7 @@
         <a href="index.php?mod=18">REPO</a>
         <a href="index.php?mod=19">RESE</a>
         <a href="index.php?mod=20">VENT</a>
+        <a href="index.php?mod=21">CVAL</a>
     </div>
 
     <div class="content">
@@ -66,6 +67,9 @@
                     break;
                 case '3':
                     include 'modulo3.php';
+                    break;
+                case '21':
+                    include 'mcomentariosValoraciones(CVAL)/indexCVAL.php';
                     break;
                 default:
                     echo "<h2>Bienvenido a la página principal</h2>";
