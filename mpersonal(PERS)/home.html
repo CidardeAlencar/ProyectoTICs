@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Personal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;        
+    }
+
+        h1 {
+            text-align: center;
+            color: orange;
+        }
+
+        .btn {
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .btn:hover {
+            background-color: darkorange;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestión de Personal</h1>
+        <a href="add_employee.php" class="btn">Añadir Empleado</a>
+        <a href="add_academic_record.php" class="btn">Añadir Registro Académico</a>
+        <a href="edit_employee.php" class="btn">Editar Empleado</a>
+        <a href="change_status.php" class="btn">Cambiar Estado</a>
+        <a href="list_employees.php" class="btn">Lista de Empleados</a>
+        <a href="home.html " class="btn">Regresar</a>
+    </div>
+</body>
+</html>
