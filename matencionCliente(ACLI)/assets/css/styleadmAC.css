@@ -1,0 +1,105 @@
+.users-table {
+    margin: 0 auto;
+    width: 80%;
+    margin-bottom: 50px;
+  }
+  
+  .users-table table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .users-table th,
+  .users-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .users-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .id-columna,
+  .accion-columna {
+    width: 10%;
+  }
+  
+  .pregunta,
+  .respuesta {
+    width: 40%;
+  }
+  
+  .users-table tr:first-child th {
+    font-weight: bold;
+  }
+  
+  .users-table tr:not(:first-child) th,
+  .users-table tr:not(:first-child) td {
+    font-weight: normal; 
+  }
+  
+
+
+/* Estilos para updateadmAC.php */
+/* General styles for the form container */
+.users-form {
+    width: 50%; /* Adjust width as needed */
+    margin: 50px auto; /* Center the form */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f2f2f2; /* Light gray background */
+  }
+  
+  /* Heading */
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: black /* Orange from previous styles */
+  }
+  
+  /* Label and input styles */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333; /* Dark gray from previous styles */
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  /* Textarea with specific styling to prevent overflow */
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    height: 150px; /* Adjust height as needed */
+    resize: vertical;
+    /* Added styles to prevent overflow: */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    box-sizing: border-box; /* Ensure padding and border don't affect width */
+  }
+  
+  /* Submit button styles */
+  input[type="submit"] {
+    background-color: #ff5a00; /* Orange from previous styles */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #e64a00; /* Darker orange on hover */
+  }
+  
