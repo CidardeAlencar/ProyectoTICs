@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,12 @@
         body {
             font-family: Arial, sans-serif;
         }
+
         .navbar {
             overflow: hidden;
             background-color: #333;
         }
+
         .navbar a {
             float: left;
             display: block;
@@ -20,15 +23,18 @@
             padding: 14px 16px;
             text-decoration: none;
         }
+
         .navbar a:hover {
             background-color: #ddd;
             color: black;
         }
+
         .content {
             padding: 20px;
         }
     </style>
 </head>
+
 <body>
     <div class="navbar">
         <a href="index.php?mod=1">EM</a>
@@ -67,6 +73,9 @@
                 case '3':
                     include 'modulo3.php';
                     break;
+                case '7':
+                    include 'mcompras(COMP)/indexCOMP.php';
+                    break;
                 default:
                     echo "<h2>Bienvenido a la página principal</h2>";
                     echo "<p>Selecciona su acronimo del módulo del menú para hacer pruebas.</p>";
@@ -78,4 +87,5 @@
         ?>
     </div>
 </body>
+
 </html>
