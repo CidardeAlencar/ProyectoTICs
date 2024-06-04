@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font-family -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <!-- For favicon png -->
+    <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
+    <!-- font-awesome.min.css -->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <!-- animate.css -->
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <!-- owl.carousel.css -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <!-- bootstrap.min.css -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- style.css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- responsive.css -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- Estilos nativos -->
+    <link rel="stylesheet" href="./search.css">
+    <title>Productos EMI</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="input_search">
+                <input type="text" id="searchInput" placeholder="Buscar productos...">
+                <button id="searchButton">Buscar</button>
+            </div>
+            <a href="./index.html" class="back_menu">Volver ↩️</a>
+        </nav>
+    </header>
+    <hr>
+    <section>
+        <div class="search_options">
+            <span data-filter="category">Por categoría</span>
+            <span data-filter="best_selling">Más vendidos</span>
+            <span data-filter="offers">Ofertas</span>
+            <span data-filter="decorated">Decorados</span>
+        </div>
+    </section>
+    <section class="container" id="productsContainer">
+        <div class="new-arrivals-content">
+            <div class="row" id="productsRow">
+                <!-- Aquí se mostrarán los productos -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const searchInput = document.getElementById("searchInput");
+            const searchButton = document.getElementById("searchButton");
+            const productsRow = document.getElementById("productsRow");
+            const filterOptions = document.querySelectorAll(".search_options span");
+
+            function displayProducts(products) {
+                productsRow.innerHTML = "";
+                products.forEach(product => {
+                    const productHTML = `
+                        <div class="col-md-3 col-sm-4 product" data-category="${product.categoria}">
+                            <div class="single-new-arrival">
+                                <div class="single-new-arrival-bg">
+                                    <img src="${product.imagen}" alt="new-arrivals images">
+                                    <div class="single-new-arrival-bg-overlay"></div>
+                                    <div class="sale bg-1">
+                                        <p>sale</p>
+                                    </div>
+                                    <div class="new-arrival-cart">
+                                        <p>
+                                            <span class="lnr lnr-cart"></span>
+                                            <a href="#">add <span>to </span> cart</a>
+                                        </p>
+                                        <p class="arrival-review pull-right">
+                                            <span class="lnr lnr-heart"></span>
+                                            <span class="lnr lnr-frame-expand"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <h4><a href="#">${product.nombre}</a></h4>
+                                <p class="arrival-product-price">$${product.precio}</p>
+                            </div>
+                        </div>
+                    `;
+                    productsRow.insertAdjacentHTML("beforeend", productHTML);
+                });
+            }
+
+            function fetchProducts(keyword) {
+                fetch(`buscar.php?search=${keyword}`)
+                    .then(response => response.json())
+                    .then(data => displayProducts(data))
+                    .catch(error => console.error('Error:', error));
+            }
+
+            searchButton.addEventListener("click", () => {
+                const keyword = searchInput.value.toLowerCase();
+                fetchProducts(keyword);
+            });
+
+            searchInput.addEventListener("keypress", (event) => {
+                if (event.key === "Enter") {
+                    const keyword = searchInput.value.toLowerCase();
+                    fetchProducts(keyword);
+                }
+            });
+
+            filterOptions.forEach(option => {
+                option.addEventListener("click", () => {
+                    const keyword = option.dataset.filter.toLowerCase();
+                    fetchProducts(keyword);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
