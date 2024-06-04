@@ -17,29 +17,29 @@
 		<link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
        
         <!--font-awesome.min.css-->
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/font-awesome.min.css">
 
         <!--linear icon css-->
-		<link rel="stylesheet" href="assets/css/linearicons.css">
+		<link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/linearicons.css">
 
 		<!--animate.css-->
-        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/animate.css">
 
         <!--owl.carousel.css-->
-        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-		<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/owl.theme.default.min.css">
 		
         <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/bootstrap.min.css">
 		
 		<!-- bootsnav -->
-		<link rel="stylesheet" href="assets/css/bootsnav.css" >	
+		<link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/bootsnav.css" >	
         
         <!--style.css-->
-        <link rel="stylesheet" href="assets/css/styleAC.css">
+        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/styleAC.css">
         
         <!--responsive.css-->
-        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/responsive.css">
 
     </head>
 
@@ -56,7 +56,7 @@
 									<div class="row">
 										<div class="col-md-4 col-sm-12">
 											<div class="single-inner-populer-product-img">
-												<img src="assets/images/images.jpg" alt="populer-products images">
+												<img src="matencionCliente(ACLI)/assets/images/images.jpg" alt="populer-products images">
 											</div>
 										</div>
 										<div class="col-md-8 col-sm-12">
@@ -68,14 +68,14 @@
                                                     No dude en hacer cualquier pregunta que tenga.
                                                     Estamos aquí para ayudarlo a comprender nuestros productos.
 												</p>
-                                                <form action="insertAC.php" method = "POST">
+                                                <form action="matencionCliente(ACLI)/insertAC.php" method = "POST">
                                                     <div class="populer-products-price">
                                                         <input type="text" id="mensaje-usuario" name = "pregunta" placeholder="Escribe tu mensaje...">
                                                     </div>
                                                     </div>
-                                                            <div id="ventana-emergente" style="display: none;">
-                                                            <div id="ventana-emergente-contenido">¡Su mensaje ha sido enviado!</div>
-                                                        </div>
+                                                        <div id="ventana-emergente" style="display: none;">
+                                                        <div id="ventana-emergente-contenido">¡Su mensaje ha sido enviado!</div>
+                                                    </div>
                                                     <button type="submit" class="btn-cart welcome-add-cart populer-products-btn" onclick="mostrarVentanaEmergente();">
                                                         Enviar
                                                     </button>

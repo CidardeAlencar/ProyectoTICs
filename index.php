@@ -40,24 +40,25 @@
         <a href="index.php?mod=1">EM</a>
         <a href="index.php?mod=2">ATEN</a>
         <a href="index.php?mod=3">ACLI</a>
-        <a href="index.php?mod=4">BUSQ</a>
-        <a href="index.php?mod=5">CARR</a>
-        <a href="index.php?mod=6">CATE</a>
-        <a href="index.php?mod=7">COMP</a>
-        <a href="index.php?mod=8">CONT</a>
-        <a href="index.php?mod=9">DESC</a>
-        <a href="index.php?mod=10">EPRO</a>
-        <a href="index.php?mod=11">FIDE</a>
-        <a href="index.php?mod=12">GUSU</a>
-        <a href="index.php?mod=13">PERS</a>
-        <a href="index.php?mod=14">PROD</a>
-        <a href="index.php?mod=15">PROM</a>
-        <a href="index.php?mod=16">PROV</a>
-        <a href="index.php?mod=17">RECL</a>
-        <a href="index.php?mod=18">REPO</a>
-        <a href="index.php?mod=19">RESE</a>
-        <a href="index.php?mod=20">VENT</a>
-        <a href="index.php?mod=21">CVAL</a>
+        <a href="index.php?mod=4">ACLIADM</a>
+        <a href="index.php?mod=5">BUSQ</a>
+        <a href="index.php?mod=6">CARR</a>
+        <a href="index.php?mod=7">CATE</a>
+        <a href="index.php?mod=8">COMP</a>
+        <a href="index.php?mod=9">CONT</a>
+        <a href="index.php?mod=10">DESC</a>
+        <a href="index.php?mod=11">EPRO</a>
+        <a href="index.php?mod=12">FIDE</a>
+        <a href="index.php?mod=13">GUSU</a>
+        <a href="index.php?mod=14">PERS</a>
+        <a href="index.php?mod=15">PROD</a>
+        <a href="index.php?mod=16">PROM</a>
+        <a href="index.php?mod=17">PROV</a>
+        <a href="index.php?mod=18">RECL</a>
+        <a href="index.php?mod=19">REPO</a>
+        <a href="index.php?mod=20">RESE</a>
+        <a href="index.php?mod=21">VENT</a>
+        <a href="index.php?mod=22">CVAL</a>
     </div>
 
     <div class="content">
@@ -72,27 +73,30 @@
                     include 'matencionCliente(ACLI)/indexAC.php';
                     break;
                 case '4':
+                    include 'matencionCliente(ACLI)/indexadmAC.php';
+                    break;
+                case '5':
                     include 'mbusqueda(BUSQ)/indexBUSQ.php';
                     break;
-                case '7':
+                case '8':
                     include 'mcompras(COMP)/indexCOMP.php';
                     break;
-                case '9':
+                case '10':
                     include 'mdescuentos(DESC)/indexDESC.php';
                     break;
-                case '12':
+                case '13':
                     include 'mgestionUsuarios(GUSU)/user.php';
                     break;
-                case '13':
+                case '14':
                     include 'mpersonal(PERS)/list_employeesPERS.php';
                     break;
-                case '14':
+                case '15':
                     include 'mproductos(PROD)/indexPROD.php';
                     break;
-                case '16':
+                case '17':
                     include 'mproveedores(PROV)/indexPROV.php';
                     break;
-                case '21':
+                case '22':
                     include 'mcomentariosValoraciones(CVAL)/indexCVAL.php';
                      break;
                 default:

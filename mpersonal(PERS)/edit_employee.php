@@ -80,12 +80,12 @@
 <body>
 <div class="container">
         <h1>Gestión de Personal</h1>
-        <a href="add_employee.php" class="btn">Añadir Empleado</a>
-        <a href="add_academic_record.php" class="btn">Añadir Registro Académico</a>
-        <a href="edit_employee.php" class="btn">Editar Empleado</a>
-        <a href="change_status.php" class="btn">Cambiar Estado</a>
-        <a href="list_employees.php" class="btn">Lista de Empleados</a>
-        <a href="home.html " class="btn">Regresar</a>
+        <a href="mpersonal(PERS)/add_employee.php" class="btn">Añadir Empleado</a>
+        <a href="mpersonal(PERS)/add_academic_record.php" class="btn">Añadir Registro Académico</a>
+        <a href="mpersonal(PERS)/edit_employee.php" class="btn">Editar Empleado</a>
+        <a href="mpersonal(PERS)/change_status.php" class="btn">Cambiar Estado</a>
+        <a href="mpersonal(PERS)/list_employees.php" class="btn">Lista de Empleados</a>
+        <a href="../index.php" class="btn">Regresar</a>
     </div>
     <div class="container">
         <h1>Editar Empleado</h1>
@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ci'])) {
             <option value="Almacén" <?php if (isset($row['departamento']) && $row['departamento'] == 'Almacén') echo 'selected'; ?>>Almacén</option>
         </select>
         <input type="submit" value="Actualizar Empleado">
-        <a href="home.html" class="btn btn-primary">Regresar</a>
+        <a href="../index.php" class="btn btn-primary">Regresar</a>
 
     </form>
 </div>

@@ -7,7 +7,7 @@ if (isset($_GET['eliminar'])) {
     $consulta = "DELETE FROM user WHERE id = '$id'";
     mysqli_query($conexion, $consulta);
     mysqli_close($conexion);
-    echo '<script>window.location.href = "./user.php";</script>';
+    echo '<script>window.location.href = "../index.php";</script>';
     exit();
 }
 ?>
@@ -93,7 +93,7 @@ button{
                     <input type="hidden" name="eliminar" value="<?php echo $_GET['id']; ?>">
                     <button type="submit">Sí, Eliminar</button>
                 </form>
-                <button onclick="window.location.href='./user.php'">Cancelar</button>
+                <button onclick="window.location.href='../index.php'">Cancelar</button>
             </div>
         </div>
     </div>
