@@ -134,11 +134,11 @@ $conn->close();
 
 <div class="container">
         <h1>Gestión de Personal</h1>
-        <a href="mpersonal(PERS)/add_employee.php" class="btn">Añadir Empleado</a>
-        <a href="mpersonal(PERS)/add_academic_record.php" class="btn">Añadir Registro Académico</a>
-        <a href="mpersonal(PERS)/edit_employee.php" class="btn">Editar Empleado</a>
-        <a href="mpersonal(PERS)/change_status.php" class="btn">Cambiar Estado</a>
-        <a href="mpersonal(PERS)/list_employees.php" class="btn">Lista de Empleados</a>
+        <a href="add_employee.php" class="btn">Añadir Empleado</a>
+        <a href="add_academic_record.php" class="btn">Añadir Registro Académico</a>
+        <a href="edit_employee.php" class="btn">Editar Empleado</a>
+        <a href="change_status.php" class="btn">Cambiar Estado</a>
+        <a href="list_employees.php" class="btn">Lista de Empleados</a>
         <a href="../index.php" class="btn">Regresar</a>
     </div>
     <div class="container">

@@ -9,18 +9,18 @@
     <!-- For favicon png -->
     <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
     <!-- font-awesome.min.css -->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
     <!-- animate.css -->
-    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="../assets/css/animate.css">
     <!-- owl.carousel.css -->
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../assets/css/owl.theme.default.min.css">
     <!-- bootstrap.min.css -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <!-- style.css -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <!-- responsive.css -->
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
     <!-- Estilos nativos -->
     <link rel="stylesheet" href="./search.css">
     <title>Productos EMI</title>
@@ -32,7 +32,7 @@
                 <input type="text" id="searchInput" placeholder="Buscar productos...">
                 <button id="searchButton">Buscar</button>
             </div>
-            <a href="./index.html" class="back_menu">Volver ↩️</a>
+            <a href="./index.php" class="back_menu">Volver ↩️</a>
         </nav>
     </header>
     <hr>
@@ -90,7 +90,7 @@
                     productsRow.insertAdjacentHTML("beforeend", productHTML);
                 });
             }
-
+            //buscar.php no hay
             function fetchProducts(keyword) {
                 fetch(`buscar.php?search=${keyword}`)
                     .then(response => response.json())

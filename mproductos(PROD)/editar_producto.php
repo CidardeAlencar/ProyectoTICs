@@ -43,7 +43,7 @@ if (isset($_POST['enviar'])) {
                             WHERE id_producto = $idProducto";
 
     if (mysqli_query($conexion, $consultaActualizacion)) {
-        echo '<script>alert("Producto actualizado exitosamente"); window.location.href = "productos.php";</script>';
+        echo '<script>alert("Producto actualizado exitosamente"); window.location.href = "../index.php";</script>';
     } else {
         echo '<script>alert("Error al actualizar el producto");</script>';
     }
@@ -160,7 +160,8 @@ if (isset($_POST['enviar'])) {
     <main>
         <div class="container">
             <h2>Editar producto</h2>
-            <form action="editar.php?id=<?php echo $idProducto; ?>" method="post">
+            <!-- no existe el archivo editar.php se corrigio a editra_producto.php -->
+            <form action="editar_producto.php?id=<?php echo $idProducto; ?>" method="post">
                 <table border="0" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
                     <tr>
                         <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">

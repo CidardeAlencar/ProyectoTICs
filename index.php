@@ -76,7 +76,7 @@
                     include 'matencionCliente(ACLI)/indexadmAC.php';
                     break;
                 case '5':
-                    include 'mbusqueda(BUSQ)/indexBUSQ.php';
+                    include 'mbusqueda(BUSQ)/ServerBUSQ.html';
                     break;
                 case '8':
                     include 'mcompras(COMP)/indexCOMP.php';
@@ -88,7 +88,7 @@
                     include 'mgestionUsuarios(GUSU)/user.php';
                     break;
                 case '14':
-                    include 'mpersonal(PERS)/list_employeesPERS.php';
+                    include 'mpersonal(PERS)/list_employees.php';
                     break;
                 case '15':
                     include 'mproductos(PROD)/indexPROD.php';
@@ -100,8 +100,9 @@
                     include 'mcomentariosValoraciones(CVAL)/indexCVAL.php';
                      break;
                 default:
-                    echo "<h2>Bienvenido a la página principal</h2>";
-                    echo "<p>Selecciona su acronimo del módulo del menú para hacer pruebas.</p>";
+                    include 'index.html';
+                    // echo "<h2>Bienvenido a la página principal</h2>";
+                    // echo "<p>Selecciona su acronimo del módulo del menú para hacer pruebas.</p>";
             }
         } else {
             echo "<h2>Bienvenido a la página principal</h2>";
