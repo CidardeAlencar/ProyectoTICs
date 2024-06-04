@@ -57,6 +57,7 @@
         <a href="index.php?mod=18">REPO</a>
         <a href="index.php?mod=19">RESE</a>
         <a href="index.php?mod=20">VENT</a>
+        <a href="index.php?mod=21">CVAL</a>
     </div>
 
     <div class="content">
@@ -76,6 +77,9 @@
                 case '7':
                     include 'mcompras(COMP)/indexCOMP.php';
                     break;
+                case '21':
+                    include 'mcomentariosValoraciones(CVAL)/indexCVAL.php';
+                     break;
                 default:
                     echo "<h2>Bienvenido a la página principal</h2>";
                     echo "<p>Selecciona su acronimo del módulo del menú para hacer pruebas.</p>";
