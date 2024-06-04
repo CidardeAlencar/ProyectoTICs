@@ -68,14 +68,29 @@
                 case '1':
                     include 'ejemploModulo(EM)/indexEM.php';
                     break;
-                case '2':
-                    include 'modulo2.php';
-                    break;
                 case '3':
-                    include 'modulo3.php';
+                    include 'matencionCliente(ACLI)/indexAC.php';
+                    break;
+                case '4':
+                    include 'mbusqueda(BUSQ)/indexBUSQ.php';
                     break;
                 case '7':
                     include 'mcompras(COMP)/indexCOMP.php';
+                    break;
+                case '9':
+                    include 'mdescuentos(DESC)/indexDESC.php';
+                    break;
+                case '12':
+                    include 'mgestionUsuarios(GUSU)/user.php';
+                    break;
+                case '13':
+                    include 'mpersonal(PERS)/list_employeesPERS.php';
+                    break;
+                case '14':
+                    include 'mproductos(PROD)/indexPROD.php';
+                    break;
+                case '16':
+                    include 'mproveedores(PROV)/indexPROV.php';
                     break;
                 case '21':
                     include 'mcomentariosValoraciones(CVAL)/indexCVAL.php';
