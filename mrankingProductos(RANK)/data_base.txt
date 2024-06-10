@@ -1,0 +1,15 @@
+-- Crear tabla producto
+CREATE TABLE producto (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    descripcion TEXT,
+    precio DECIMAL(10, 2)
+);
+
+-- Crear tabla preferencias
+CREATE TABLE preferencias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    producto_id INT,
+    preferencia VARCHAR(50),
+    FOREIGN KEY (producto_id) REFERENCES producto(id)
+);
