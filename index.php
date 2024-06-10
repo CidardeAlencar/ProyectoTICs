@@ -76,7 +76,7 @@
                     include 'matencionCliente(ACLI)/indexadmAC.php';
                     break;
                 case '5':
-                    include 'mbusqueda(BUSQ)/ServerBUSQ.html';
+                    include 'mbusqueda(BUSQ)/indexBUSQ.php';
                     break;
                 case '8':
                     include 'mcompras(COMP)/indexCOMP.php';
