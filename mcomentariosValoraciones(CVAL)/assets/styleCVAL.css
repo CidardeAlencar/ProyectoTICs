@@ -1,0 +1,154 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.comments-ratings-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 30%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.comments-ratings-form form input {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.comments-ratings-form form input[type=text],
+.comments-ratings-form form input[type=password],
+.comments-ratings-form form input[type=email] {
+    padding: 8px;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    outline: none;
+    transition: .3s;
+}
+
+.comments-ratings-form form input[type=text]:focus,
+.comments-ratings-form form input[type=password]:focus,
+.comments-ratings-form form input[type=password]:focus {
+    border-color: dodgerBlue;
+    box-shadow: 0 0 6px 0 dodgerBlue;
+}
+
+.comments-ratings-form form input[type=submit] {
+    border: none;
+    padding: 12px 50px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    border: 2px solid #60a100;
+}
+
+.comments-ratings-form form input[type=submit]:hover {
+    background-color: #60a100;
+    color: white;
+}
+
+.comments-ratings-table table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.comments-ratings-table table th,
+.comments-ratings-table table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.comments-ratings-table table th {
+    background-color: #f8f8f8;
+}
+
+.comments-ratings-table--edit,
+.comments-ratings-table--delete {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 8px;
+    border-radius: 4px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.comments-ratings-table--edit {
+    background-color: #009688;
+}
+
+.comments-ratings-table--delete {
+    background-color: #b11e1e;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.users-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 30%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.users-form input,
+.users-form textarea {
+    padding: 8px;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    outline: none;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.users-form input:focus,
+.users-form textarea:focus {
+    border-color: dodgerBlue;
+    box-shadow: 0 0 6px 0 dodgerBlue;
+}
+
+.users-form input[type=submit] {
+    border: none;
+    padding: 12px 50px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    border: 2px solid #60a100;
+}
+
+.users-form input[type=submit]:hover {
+    background-color: #60a100;
+    color: white;
+}

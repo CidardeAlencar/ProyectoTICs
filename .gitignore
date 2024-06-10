@@ -1,0 +1,6 @@
+/vendor/
+composer.lock
+/mysql
+/.env
+/docker-compose.yml
+/Dockerfile
