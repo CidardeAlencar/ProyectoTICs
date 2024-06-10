@@ -16,17 +16,3 @@ CREATE TABLE IF NOT EXISTS `descuentos` (
   FOREIGN KEY (`createdBy`) REFERENCES `users`(`id`),
   FOREIGN KEY (`updatedBy`) REFERENCES `users`(`id`)
 );
-
-UPDATE
-  descuentos
-SET 
--- all
-  productId = 1,
-  name = 'Descuento de prueba',
-  description = 'Descuento de prueba',
-  percentage = 10.00,
-  fechaInicio = '2021-01-01',
-  fechaFin = '2021-12-31',
-  updatedBy = 1
-WHERE
-  id = 1;
