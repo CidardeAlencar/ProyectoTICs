@@ -160,7 +160,7 @@ if (isset($_POST['enviar'])) {
     <main>
         <div class="container">
             <h2>Editar producto</h2>
-            <form action="editar.php?id=<?php echo $idProducto; ?>" method="post">
+            <form action="editar_producto.php?id=<?php echo $idProducto; ?>" method="post">
                 <table border="0" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
                     <tr>
                         <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">

@@ -15,7 +15,7 @@ if ($resultado && mysqli_num_rows($resultado) == 1) {
     $nombre = $row['nombre'];
 
     echo '<br><h2>¿Seguro que desea eliminar el producto "' . $nombre . '"?</h2><br>';
-    echo '<form action="eliminar.php?id=' . $idProducto . '" method="post">';
+    echo '<form action="eliminar_producto.php?id=' . $idProducto . '" method="post">';
     echo '<div class="button-container">';
         echo '<button type="submit" name="eliminar">Eliminar</button>';
         echo '<button type="button" onclick="window.location.href=\'./productos.php\'">Cancelar</button>';
@@ -182,9 +182,6 @@ textarea {
     margin-bottom: 20px;
 }
 
-.eliminar form {
-    /* No style needed here (removed) */
-}
 
 .button-container {
     display: flex;
