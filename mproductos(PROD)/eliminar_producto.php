@@ -182,9 +182,6 @@ textarea {
     margin-bottom: 20px;
 }
 
-.eliminar form {
-    /* No style needed here (removed) */
-}
 
 .button-container {
     display: flex;

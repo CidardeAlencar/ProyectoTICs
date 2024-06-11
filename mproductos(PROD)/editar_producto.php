@@ -160,7 +160,6 @@ if (isset($_POST['enviar'])) {
     <main>
         <div class="container">
             <h2>Editar producto</h2>
-            <!-- no existe el archivo editar.php se corrigio a editra_producto.php -->
             <form action="editar_producto.php?id=<?php echo $idProducto; ?>" method="post">
                 <table border="0" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
                     <tr>
