@@ -43,7 +43,7 @@ if (isset($_POST['enviar'])) {
                             WHERE id_producto = $idProducto";
 
     if (mysqli_query($conexion, $consultaActualizacion)) {
-        echo '<script>alert("Producto actualizado exitosamente"); window.location.href = "productos.php";</script>';
+        echo '<script>alert("Producto actualizado exitosamente"); window.location.href = "../index.php";</script>';
     } else {
         echo '<script>alert("Error al actualizar el producto");</script>';
     }

@@ -139,7 +139,7 @@ $conn->close();
         <a href="edit_employee.php" class="btn">Editar Empleado</a>
         <a href="change_status.php" class="btn">Cambiar Estado</a>
         <a href="list_employees.php" class="btn">Lista de Empleados</a>
-        <a href="home.html " class="btn">Regresar</a>
+        <a href="../index.php" class="btn">Regresar</a>
     </div>
     <div class="container">
         <h1>Cambiar Estado</h1>
@@ -154,7 +154,7 @@ $conn->close();
     <input type="submit" value="Actualizar Estado">
 </form>
 
-<a href="home.html" class="btn btn-primary">Regresar</a>
+<a href="../index.php" class="btn btn-primary">Regresar</a>
     </div>
 </body>
 </html>

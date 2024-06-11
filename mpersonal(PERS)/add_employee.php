@@ -85,7 +85,7 @@
         <a href="edit_employee.php" class="btn">Editar Empleado</a>
         <a href="change_status.php" class="btn">Cambiar Estado</a>
         <a href="list_employees.php" class="btn">Lista de Empleados</a>
-        <a href="home.html " class="btn">Regresar</a>
+        <a href="../index.php" class="btn">Regresar</a>
     </div>
     <div class="container">
         <h1>Añadir Empleado</h1>
@@ -133,7 +133,7 @@
                 <option value="Almacén">Almacén</option>
             </select>
             <input type="submit" value="Añadir Empleado">
-            <a href="home.html" class="btn btn-primary">Regresar</a>
+            <a href="../index.php" class="btn btn-primary">Regresar</a>
         </form>
     </div>
 </body>

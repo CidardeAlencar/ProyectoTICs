@@ -148,8 +148,8 @@ $resultado = mysqli_query($conexion, $consulta);
                                 <td>$categoria</td>
                                 <td>$estado</td>
                                 <td>
-                                    <a href='editar_producto.php?id=$idProducto'>Editar</a> | 
-                                    <a href='eliminar_producto.php?id=$idProducto'>Eliminar</a>
+                                    <a href='mproductos(PROD)/editar_producto.php?id=$idProducto'>Editar</a> | 
+                                    <a href='mproductos(PROD)/eliminar_producto.php?id=$idProducto'>Eliminar</a>
                                 </td>
                             </tr>";
                         }
@@ -160,7 +160,7 @@ $resultado = mysqli_query($conexion, $consulta);
                 </tbody>
             </table>
 
-            <a href="crear_producto.php">Crear nuevo producto</a>
+            <a href="mproductos(PROD)/crear_producto.php">Crear nuevo producto</a>
         </div>
     </main>
 </body>
