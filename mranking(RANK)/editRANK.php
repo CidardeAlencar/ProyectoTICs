@@ -1,38 +1,38 @@
 
 <?php
-include('../connection.php');
+sinclude('../connection.php');
 include('../firebase.php');
 
 $con = connection();
 $database = getFirebaseDatabase();
 
 $id = $_POST['id'];
-$name = $_POST['name'];
-$lastname = $_POST['lastname'];
-$username = isset($row['username']) ? $row['username'] : '';
-$password = isset($row['password']) ? $row['password'] : '';
-$email = isset($row['email']) ? $row['email'] : '';
+$user_id = $_POST['user_id'];
+$name = $_POST['nombre'];
+$lastname = isset($row['apellido']) ? $row['apellido'] : '';
+$favorites = isset($row['favoritos']) ? $row['favoritos'] : '';
+$state = isset($row['estado']) ? $row['estado'] : '';
 
 
 // Actualizar en MySQL
-$sql = "UPDATE users SET name='$name', lastname='$lastname' WHERE id='$id'";
+$sql = "UPDATE user_preferences SET user_id='$user_id', favoritos='$favorites' WHERE id='$id'";
 
 $query = mysqli_query($con, $sql);
 
 // Actualizar en Firebase
-$usersRef = $database->getReference('users');
-$query = $usersRef->orderByChild('email')->equalTo($email)->getSnapshot();
+$usersRef = $database->getReference('user_preferences');
+$query = $usersRef->orderByChild('nombre')->equalTo($name)->getSnapshot();
 
 if ($query->exists()) {
     foreach ($query->getValue() as $firebaseKey => $firebaseUser) {
         // Verifica si el ID coincide para evitar actualizar usuarios incorrectos
         if ($firebaseUser['id'] == $id) {
             $usersRef->getChild($firebaseKey)->update([
-                'name' => $name,
-                'lastname' => $lastname,
-                'username' => $username,
-                'password' => $password,
-                'email' => $email
+                
+                'nombre' => $name,
+                'apellido' => $lastname,
+                'favoritos' => $favorites,
+                'estado' => $state
             ]);
         }
     }
