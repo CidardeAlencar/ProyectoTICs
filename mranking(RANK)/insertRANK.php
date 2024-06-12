@@ -1,35 +1,20 @@
-
 <?php
 include('../connection.php');
-include('../firebase.php');
 
 $con = connection();
-$database = getFirebaseDatabase();
 
-$id = null;
+$user_id = $_POST['user_id'];
 $name = $_POST['name'];
 $lastname = $_POST['lastname'];
-$username = $_POST['username'];
-$password = $_POST['password'];
-$email = $_POST['email'];
+$favorites = $_POST['favorites']; // Puedes obtener los favoritos del formulario
+$state = 'activo'; // Puedes establecer el estado predeterminado como 'activo'
 
 // Guardar en MySQL
-$sql = "INSERT INTO users VALUES('$id','$name','$lastname','$username','$password','$email')";
+$sql = "INSERT INTO user_preferences (user_id, nombre, apellido, favoritos, estado) VALUES ('$user_id', '$name', '$lastname', '$favorites', '$state')";
 $query = mysqli_query($con, $sql);
-
-// Guardar en Firebase
-$newUser = $database->getReference('users')->push([
-    'name' => $name,
-    'lastname' => $lastname,
-    'username' => $username,
-    'password' => $password,
-    'email' => $email
-]);
 
 if($query){
     header("Location: indexRANK.php");
-    exit; 
+    exit;
 }
 ?>
-
-
