@@ -28,7 +28,7 @@ if (isset($_GET['id_preg'])) {
 </head>
 <body>
     <div class = "users-form">
-        <form action="edit_user.php" method="POST">
+        <form action="matencionCliente(ACLI)/edit_user.php" method="POST">
             <h1>Añadir respuesta</h1>
             <p>Pregunta: <?= $row['pregunta'] ?></p> <label for="respuesta">Respuesta:</label>
             <textarea id="respuesta" name="respuesta" rows="5"><?= $row['respuesta'] ?></textarea> 

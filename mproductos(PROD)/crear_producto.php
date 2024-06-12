@@ -12,7 +12,7 @@ if (isset($_POST['enviar'])) {
     $consulta = "INSERT INTO productos (nombre, descripcion, precio, categoria, estado, imagen_principal) VALUES ('$nombre', '$descripcion', $precio, '$categoria', '$estado', '$imagenPrincipal')";
 
     if (mysqli_query($conexion, $consulta)) {
-        echo '<script>alert("Producto creado exitosamente"); window.location.href = "productos.php";</script>';
+        echo '<script>alert("Producto creado exitosamente"); window.location.href = "../index.php";</script>';
     } else {
         echo '<script>alert("Error al crear el producto");</script>';
     }

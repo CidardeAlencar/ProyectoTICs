@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
     <title>Home</title>
-    <?php include './inc/linkPROV.php'; ?>
+    <?php include 'mproveedores(PROV)/inc/linkPROV.php'; ?>
 </head>
 
 <body id="container-page-index">
-    <?php include './inc/navbarPROV.php'; ?>
+    <?php include 'mproveedores(PROV)/inc/navbarPROV.php'; ?>
     
     <!-- Sección de proveedores -->
     <section class="providers-section">
@@ -34,7 +34,7 @@
                 // Iterar sobre los resultados y mostrar cada proveedor
                 while($row = $result->fetch_assoc()) {
                     echo "<div class='provider-card'>";
-                    echo "<img src='{$row['Imagen']}' alt='{$row['NombreProveedor']}'>";
+                    echo "<img src='mproveedores(PROV)/{$row['Imagen']}' alt='{$row['NombreProveedor']}'>";
                     echo "<div class='provider-details'>";
                     echo "<h2>{$row['NombreProveedor']}</h2>";
                     echo "<p>Dirección: {$row['Direccion']}</p>";
@@ -50,6 +50,6 @@
         </div>
     </section>
 
-    <?php include './inc/footerPROV.php'; ?>
+    <?php include 'mproveedores(PROV)//inc/footerPROV.php'; ?>
 </body>
 </html>
