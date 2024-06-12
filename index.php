@@ -54,11 +54,14 @@
         <a href="index.php?mod=15">PROD</a>
         <a href="index.php?mod=16">PROM</a>
         <a href="index.php?mod=17">PROV</a>
-        <a href="index.php?mod=18">RECL</a>
-        <a href="index.php?mod=19">REPO</a>
-        <a href="index.php?mod=20">RESE</a>
-        <a href="index.php?mod=21">VENT</a>
-        <a href="index.php?mod=22">CVAL</a>
+        <a href="index.php?mod=18">RANK</a>
+        <a href="index.php?mod=19">RECL</a>
+        <a href="index.php?mod=20">REPO</a>
+        <a href="index.php?mod=21">RESE</a>
+        <a href="index.php?mod=22">VENT</a>
+        <a href="index.php?mod=23">CVAL</a>
+        <a href="index.php?mod=24">LCAR</a>
+        <a href="index.php?mod=25">LPAR</a>
     </div>
 
     <div class="content">
@@ -78,8 +81,14 @@
                 case '5':
                     include 'mbusqueda(BUSQ)/indexBUSQ.php';
                     break;
+                case '7':
+                    include 'mcategorizacion(CATE)/indexCATE.php';
+                    break;
                 case '8':
                     include 'mcompras(COMP)/indexCOMP.php';
+                    break;
+                case '9':
+                    include 'mcontratos(CONT)/index.php';
                     break;
                 case '10':
                     include 'mdescuentos(DESC)/indexDESC.php';
@@ -93,15 +102,30 @@
                 case '15':
                     include 'mproductos(PROD)/indexPROD.php';
                     break;
+                case '16':
+                    include 'mpromociones(PROM)/indexPROM.php';
+                    break;
                 case '17':
                     include 'mproveedores(PROV)/indexPROV.php';
                     break;
+                case '18':
+                    include 'mrankingProductos(RANK)/indexRANK.php';
+                    break;
                 case '22':
+                    include 'mventas(VENT)/Ventas/indexVENT.php';
+                        break;
+                case '23':
                     include 'mcomentariosValoraciones(CVAL)/indexCVAL.php';
                      break;
+                case '24':
+                include 'mlogincardozo(LCAR)/index.php';
+                    break;
+                case '25':
+                include 'mLoginParedes(LPAR)/index.php';
+                    break;
                 default:
-                    include 'index.html';
-                    // echo "<h2>Bienvenido a la página principal</h2>";
+                    // include 'index.html';
+                    echo "<h2>NO SE REALIZO EL MODULO</h2>";
                     // echo "<p>Selecciona su acronimo del módulo del menú para hacer pruebas.</p>";
             }
         } else {

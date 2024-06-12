@@ -508,8 +508,8 @@ $resultado = mysqli_query($conexion, $consulta);
 								echo "<td>" . $row['FechaAgregado'] . "</td>";
 								echo "<td>" . $row['Estado'] . "</td>";
 								echo '<td>';
-								echo '<a href="editar_venta.php?id=' . $row['VentaID'] . '">Editar</a> | ';
-								echo '<a href="eliminar_venta.php?id=' . $row['VentaID'] . '">Inabilitar</a>';
+								echo '<a href="mventas(VENT)/Ventas/editar_venta.php?id=' . $row['VentaID'] . '">Editar</a> | ';
+								echo '<a href="mventas(VENT)/Ventas/eliminar_venta.php?id=' . $row['VentaID'] . '">Inabilitar</a>';
 								echo '</td>';
 								echo "</tr>";
 							}
@@ -520,7 +520,7 @@ $resultado = mysqli_query($conexion, $consulta);
 					</tbody>
 				</table>
 				<div class="button-container">
-					<button onclick="window.location.href='crear_venta.php'">Crear Nueva Venta</button>
+					<button onclick="window.location.href='mventas(VENT)/Ventas/crear_venta.php'">Crear Nueva Venta</button>
 				</div>
 
 			</div>

@@ -2,10 +2,10 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="mLoginParedes(LPAR)/styles.css">
     <script>
         function refreshCaptcha() {
-            document.getElementById('captcha_image').src = 'captcha.php?' + Math.random();
+            document.getElementById('captcha_image').src = 'mLoginParedes(LPAR)/captcha.php?' + Math.random();
         }
 
         setInterval(refreshCaptcha, 60000); // Recargar CAPTCHA cada 60 segundos
@@ -21,7 +21,7 @@
             unset($_SESSION['error_message']);
         }
         ?>
-        <form action="login.php" method="post">
+        <form action="mLoginParedes(LPAR)/login.php" method="post">
             <label for="username">Usuario:</label>
             <input type="text" id="username" name="username" required>
             <br>
@@ -31,7 +31,7 @@
             <label for="captcha">Ingrese el código de la imagen:</label>
             <input type="text" id="captcha" name="captcha" required>
             <br>
-            <img id="captcha_image" src="captcha.php" alt="CAPTCHA Image">
+            <img id="captcha_image" src="mLoginParedes(LPAR)/captcha.php" alt="CAPTCHA Image">
             <br>
             <input type="submit" value="Login">
         </form>

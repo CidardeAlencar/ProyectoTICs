@@ -1,0 +1,207 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background: white;
+  margin: 0;
+  padding: 0;
+}
+
+.title-compras {
+  font-size: 30px;
+  font-weight: bold;
+  color: #e99c2e;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.App {
+  text-align: center;
+  padding: 15px;
+}
+
+.button-container {
+  margin-bottom: 20px;
+}
+
+.save-button {
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #e99c2e;
+  border: 1px solid #e99c2e;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.toggle-button:hover {
+  background-color: white;
+  color: #616060;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.taskcompra {
+  background: white;
+  padding: 20px;
+  width: 300px; /* Ajustar ancho según sea necesario */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.5s ease;
+}
+
+.taskcompra:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.taskcompra h2 {
+  color: #e99c2e;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #616060;
+  font-weight: bold;
+}
+
+.input-group select,
+.input-group input {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.calendar-button {
+  font-size: 16px;
+  padding: 8px 10px;
+  margin-top: 5px;
+  background-color: #e99c2e;
+  border: 1px solid #e99c2e;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.calendar-button:hover {
+  background-color: white;
+  color: #616060;
+}
+
+.toggle-button.selected {
+  background-color: white;
+  color: #616060;
+}
+
+.image-container {
+  width: 220px;
+  height: 220px;
+  overflow: hidden;
+  margin: 10px auto;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+  
+/* Tabla de datos */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+caption {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background-color: #f9f9f9;
+    color: #616060;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #ddd;
+}
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .taskcompra, .task, .payment-container {
+      width: 100%;
+      max-width: 400px;
+    }
+  
+    .payment-container input[type="date"] {
+      width: calc(100% - 20px);
+    }
+  
+    .confirm-button {
+      width: 90%;
+    }
+  
+    .qr-code {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .title-compras {
+      font-size: 24px;
+    }
+  
+    .taskcompra, .task, .payment-container {
+      width: 100%;
+      max-width: 300px;
+    }
+  
+    .confirm-button {
+      width: 100%;
+    }
+  
+    .qr-code img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+    }
+  
+    .taskcompra img,
+    .task img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+    }
+  }
+  
