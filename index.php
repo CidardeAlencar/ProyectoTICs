@@ -72,7 +72,7 @@
                     include 'modulo2.php';
                     break;
                 case '3':
-                    include 'modulo3.php';
+                    include 'matencionCliente(ACLI)/indexACLI.php';
                     break;
                 case '7':
                     include 'mcompras(COMP)/indexCOMP.php';
