@@ -38,7 +38,7 @@ $query = mysqli_query($con, $sql);
 
     <div class = "users-form"> 
 
-        <form action="insert_user.php" method = "POST"> 
+        <form action="insertRANK.php" method = "POST"> 
 
             <h1>Crear Usuario</h1> 
 
@@ -112,9 +112,9 @@ $query = mysqli_query($con, $sql);
 
  
 
-                    <th><a href="update.php?id=<?= $row['id'] ?>" class = "users-table--edit">Editar</a></th> 
+                    <th><a href="updateRANK.php?id=<?= $row['id'] ?>" class = "users-table--edit">Editar</a></th> 
 
-                    <th><a href="delete_user.php?id=<?= $row['id'] ?>" class = "users-table--delete">Eliminar</a></th> 
+                    <th><a href="deleteRANK.php?id=<?= $row['id'] ?>" class = "users-table--delete">Eliminar</a></th> 
 
                 </tr> 
 
