@@ -17,7 +17,7 @@
                     <div>
                         <nav>
                             <ul>
-                                <li><a href="guardarCATE.php">Añadir</a></li>
+                                <li><a href="mcategorizacion(CATE)/guardarCATE.php">Añadir</a></li>
                                 <li><a href="buscarCATE.php">Buscar</a></li>
                                 <li><a href="editar.php">Editar</a></li>
                                 <li><a href="eliminar.php">Estado</a></li>

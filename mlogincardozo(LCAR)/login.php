@@ -1,7 +1,7 @@
 <?php
 session_start();
-require 'config.php';  // Incluye tu archivo de configuración de base de datos
-require 'send_email.php'; // Incluye el archivo de envío de email
+require 'mlogincardozo(LCAR)/config.php';  // Incluye tu archivo de configuración de base de datos
+require 'mlogincardozo(LCAR)/send_email.php'; // Incluye el archivo de envío de email
 
 $error = '';
 
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (sendVerificationEmail($email, $subject, $message)) {
                 // Almacena temporalmente el ID del usuario en la sesión y redirige a la página de verificación
                 $_SESSION['user_id'] = $id;
-                header("Location: verify.php");
+                header("Location: mlogincardozo(LCAR)/verify.php");
                 exit();
             } else {
                 $error = "Error al enviar el correo electrónico.";
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if ($error): ?>
             <div class="error-message"><?php echo $error; ?></div>
         <?php endif; ?>
-        <form method="post" action="login.php">
+        <form method="post" action="mlogincardozo(LCAR)/login.php">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 

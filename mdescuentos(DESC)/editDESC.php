@@ -9,7 +9,7 @@ $descuentoId = $_GET[ 'id' ] ?? '';
 
 if ( $descuentoId === '' ) {
   // TODO: Cambiar direccion segun su proyecto
-  header( 'Location: /mdescuentos(DESC)/updateDESC.php' );
+  header( 'Location: mdescuentos(DESC)/updateDESC.php' );
   exit;
 }
 
@@ -83,7 +83,7 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] === 'POST' ) {
 
       $updateStmt->execute();
       // TODO: Cambiar direccion segun su proyecto
-      header( 'Location: /mdescuentos(DESC)/viewDESC.php' );
+      header( 'Location: mdescuentos(DESC)/viewDESC.php' );
     } catch ( Exception $e ) {
       $errorMessage = 'Ocurrió un error al crear el descuento' . $e->getMessage();
     }
@@ -128,7 +128,7 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] === 'POST' ) {
             <li>
               <!-- TODO: Cambiar direccion segun su proyecto -->
               <a
-                href="/mdescuentos(DESC)/viewDESC.php"
+                href="mdescuentos(DESC)/viewDESC.php"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
@@ -140,7 +140,7 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] === 'POST' ) {
             <li>
               <!-- TODO: Cambiar direccion segun su proyecto -->
               <a
-                href="/mdescuentos(DESC)/insertDESC.php"
+                href="mdescuentos(DESC)/insertDESC.php"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
@@ -154,7 +154,7 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] === 'POST' ) {
             <li>
               <!-- TODO: Cambiar direccion segun su proyecto -->
               <a
-                href="/mdescuentos(DESC)/updateDESC.php"
+                href="mdescuentos(DESC)/updateDESC.php"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -167,7 +167,7 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] === 'POST' ) {
             <li>
               <!-- TODO: Cambiar direccion segun su proyecto -->
               <a
-                href="/mdescuentos(DESC)/deleteDESC.php"
+                href="mdescuentos(DESC)/deleteDESC.php"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">

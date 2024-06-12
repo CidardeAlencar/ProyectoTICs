@@ -87,7 +87,7 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
             <li>
               <!-- TODO: Cambiar direccion segun su proyecto -->
               <a
-                href="/mdescuentos(DESC)/viewDESC.php"
+                href="mdescuentos(DESC)/viewDESC.php"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 style="display: flex;"
               >
@@ -100,7 +100,7 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
             <li>
               <!-- TODO: Cambiar direccion segun su proyecto -->
               <a
-                href="/mdescuentos(DESC)/insertDESC.php"
+                href="mdescuentos(DESC)/insertDESC.php"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 style="display: flex;"
               >
@@ -115,7 +115,7 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
             <li>
               <!-- TODO: Cambiar direccion segun su proyecto -->
               <a
-                href="/mdescuentos(DESC)/updateDESC.php"
+                href="mdescuentos(DESC)/updateDESC.php"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 style="display: flex;"
               >
@@ -129,7 +129,7 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
             <li>
               <!-- TODO: Cambiar direccion segun su proyecto -->
               <a
-                href="/mdescuentos(DESC)/deleteDESC.php"
+                href="mdescuentos(DESC)/deleteDESC.php"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 style="display: flex;"
               >

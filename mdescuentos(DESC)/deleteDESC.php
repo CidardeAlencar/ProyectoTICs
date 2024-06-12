@@ -22,7 +22,7 @@ if ( $id !== '' ) {
   $currentDiscount = $currentDiscountStmt->get_result()->fetch_assoc();
 
   if ( !$currentDiscount ) {
-    header( 'Location: /mdescuentos(DESC)/viewDESC.php' );
+    header( 'Location: mdescuentos(DESC)/viewDESC.php' );
     exit;
   }
 
@@ -38,7 +38,7 @@ if ( $id !== '' ) {
   $updateDiscountStmt->bind_param( 'ii', $newStatus, $id );
   $updateDiscountStmt->execute();
 
-  header( 'Location: /mdescuentos(DESC)/viewDESC.php' );
+  header( 'Location: mdescuentos(DESC)/viewDESC.php' );
   exit;
 }
 
@@ -103,7 +103,7 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
             <li>
               <!-- TODO: Cambiar direccion segun su proyecto -->
               <a
-                href="/mdescuentos(DESC)/viewDESC.php"
+                href="mdescuentos(DESC)/viewDESC.php"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
@@ -115,7 +115,7 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
             <li>
               <!-- TODO: Cambiar direccion segun su proyecto -->
               <a
-                href="/mdescuentos(DESC)/insertDESC.php"
+                href="mdescuentos(DESC)/insertDESC.php"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
@@ -129,7 +129,7 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
             <li>
               <!-- TODO: Cambiar direccion segun su proyecto -->
               <a
-                href="/mdescuentos(DESC)/updateDESC.php"
+                href="mdescuentos(DESC)/updateDESC.php"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -142,7 +142,7 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
             <li>
               <!-- TODO: Cambiar direccion segun su proyecto -->
               <a
-                href="/mdescuentos(DESC)/deleteDESC.php"
+                href="mdescuentos(DESC)/deleteDESC.php"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
@@ -230,7 +230,7 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
                           <?= $discountProduct[ 'name' ] ?>
                           <!-- TODO: Cambiar direccion segun su proyecto -->
                           <a
-                            href="/mdescuentos(DESC)/deleteDESC.php?id=<?= $discountProduct[ 'id' ] ?>"
+                            href="mdescuentos(DESC)/deleteDESC.php?id=<?= $discountProduct[ 'id' ] ?>"
                             class="absolute inset-0 hover:bg-gray-100 hover:bg-opacity-50 dark:hover:bg-gray-800 dark:hover:bg-opacity-50" aria-hidden="true"
                           ></a>
                         </td>

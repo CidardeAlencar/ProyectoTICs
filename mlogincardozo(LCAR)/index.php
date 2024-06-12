@@ -2,12 +2,12 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="mLogincardozo(LCAR)/styles.css">
 </head>
 <body>
     <div class="container">
         <h2>Login</h2>
-        <form method="post" action="login.php">
+        <form method="post" action="mlogincardozo(LCAR)/login.php">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 

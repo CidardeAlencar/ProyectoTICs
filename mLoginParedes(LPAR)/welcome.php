@@ -16,7 +16,7 @@ if (!isset($_SESSION['login_user'])) {
 <body>
     <div class="container">
         <h2>Bienvenido, <?php echo $_SESSION['login_user']; ?>!</h2>
-        <a href="logout.php" class="logout-btn">Cerrar sesión</a>
+        <a href="mLoginParedes(LPAR)/logout.php" class="logout-btn">Cerrar sesión</a>
     </div>
 </body>
 </html>
