@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pago-form'])) {
     $nombreTitular = $_POST['cardHolderName'];
     $fechaVencimiento = $_POST['expiryMonth'];
     $metodoPago = "Tarjeta";
-
+    //CIFRADO PARA EL NUMERO DE  TARJETA
     $numeroTarjetaCifrado = hash('sha256', $numeroTarjeta);
 
     $sqlPago = "INSERT INTO compra (numero_tarjeta, nombre_titular, fecha_vencimiento, pago, metodo_pago) 
@@ -39,7 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pago-form'])) {
     }
 }
 
-$sql = "SELECT nombre, contacto, telefono FROM proveedores LIMIT 1";
+// Seleccionar el proveedor de los productos
+$sql = "SELECT nombre, contacto, telefono FROM proveedores ORDER BY RAND() LIMIT 1";
 $query = mysqli_query($con, $sql);
 $supplier = mysqli_fetch_assoc($query);
 ?>

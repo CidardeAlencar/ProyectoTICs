@@ -152,7 +152,7 @@ body {
   color: #616060;
 }
 
-/* Responsive Styles */
+/* VISTAS REPSONSIVAS */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
