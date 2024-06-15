@@ -1,4 +1,3 @@
-<!-- ALEJANDRO JAVIER REYES GUILLEN A24516-X -->
 <?php
 include('connection.php');
 
@@ -13,9 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cliente-form'])) {
     $queryCliente = mysqli_query($con, $sqlCliente);
 
     if ($queryCliente) {
-        echo '<script>alert("Cliente guardado correctamente.");</script>';
+        echo '<script>document.addEventListener("DOMContentLoaded", function() { showModal("Cliente guardado correctamente ✅"); });</script>';
     } else {
-        echo '<script>alert("Error al guardar el cliente: ' . mysqli_error($con) . '");</script>';
+        echo '<script>document.addEventListener("DOMContentLoaded", function() { showModal("Error al guardar el cliente ❌ : ' . mysqli_error($con) . '"); });</script>';
     }
 }
 
@@ -25,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pago-form'])) {
     $nombreTitular = $_POST['cardHolderName'];
     $fechaVencimiento = $_POST['expiryMonth'];
     $metodoPago = "Tarjeta";
-    //CIFRADO PARA EL NUMERO DE  TARJETA
+    //CIFRADO PARA EL NUMERO DE TARJETA
     $numeroTarjetaCifrado = hash('sha256', $numeroTarjeta);
 
     $sqlPago = "INSERT INTO compra (numero_tarjeta, nombre_titular, fecha_vencimiento, pago, metodo_pago) 
@@ -33,9 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pago-form'])) {
     $queryPago = mysqli_query($con, $sqlPago);
 
     if ($queryPago) {
-        echo '<script>alert("Pago realizado correctamente.");</script>';
+        echo '<script>document.addEventListener("DOMContentLoaded", function() { showModal("Pago realizado correctamente ✅"); });</script>';
     } else {
-        echo '<script>alert("Error al procesar el pago: ' . mysqli_error($con) . '");</script>';
+        echo '<script>document.addEventListener("DOMContentLoaded", function() { showModal("Error al procesar el pago ❌ : ' . mysqli_error($con) . '"); });</script>';
     }
 }
 
@@ -53,6 +52,82 @@ $supplier = mysqli_fetch_assoc($query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compras</title>
     <link rel="stylesheet" href="mcompras(COMP)/assets/styles/styleCOMP.css">
+    <style>
+        /* Estilos para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 5;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .modal-content .success-message {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .modal-content .error-message {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #333;
+            text-decoration: none;
+        }
+
+        /* Estilos para los elementos dentro de cart-items */
+        #cart-items {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        #cart-items li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+        #cart-items li:first-child {
+            margin-top: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -65,8 +140,9 @@ $supplier = mysqli_fetch_assoc($query);
                 <ul id="cart-items">
                     <li>Producto 1 - $100</li>
                     <li>Producto 2 - $150</li>
+                    <li>Producto 3 - $200</li>
+                    <li>Producto 4 - $100</li>
                 </ul>
-                <button class="confirm-button" id="confirm-order-btn">Confirmar Orden</button>
             </div>
 
             <div class="task">
@@ -89,11 +165,11 @@ $supplier = mysqli_fetch_assoc($query);
                 <form id="customer-form" method="post">
                     <div>
                         <label>Nombre del Cliente</label>
-                        <input type="text" name="name" id="customer-name">
+                        <input type="text" name="name" id="customer-name" required>
                     </div>
                     <div>
                         <label>Email del Cliente</label>
-                        <input type="email" name="email" id="customer-email">
+                        <input type="email" name="email" id="customer-email" required>
                     </div>
                     <button class="confirm-button" type="submit" name="cliente-form">Guardar Cliente</button>
                 </form>
@@ -108,17 +184,17 @@ $supplier = mysqli_fetch_assoc($query);
                             <div class="expiry-date">
                                 <div class="form-group">
                                     <label>Número de Tarjeta</label>
-                                    <input type="text" name="cardNumber" id="card-number">
+                                    <input type="text" name="cardNumber" id="card-number" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Nombre del Titular</label>
-                                    <input type="text" name="cardHolderName" id="card-holder-name">
+                                    <input type="text" name="cardHolderName" id="card-holder-name" required>
                                 </div>
                             </div>
                             <div class="expiry-date">
                                 <div class="form-group">
                                     <label>Fecha de Vencimiento</label>
-                                    <input type="date" name="expiryMonth" id="expiry-month">
+                                    <input type="date" name="expiryMonth" id="expiry-month" required>
                                 </div>
                             </div>
                         </div>
@@ -132,7 +208,32 @@ $supplier = mysqli_fetch_assoc($query);
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+
     <script src="./comprasCOMP.js"></script>
+    <script>
+        function showModal(message) {
+            document.getElementById('modal-message').innerText = message;
+            document.getElementById('successModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('successModal')) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 
 </html>
