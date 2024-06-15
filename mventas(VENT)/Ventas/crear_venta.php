@@ -1,17 +1,17 @@
 <?php
 include 'connection.php';
 
-if (isset($_POST['enviar'])) {
-    $nombre = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
-    $precio = $_POST['precio'];
-    $cantidad = $_POST['cantidad'];
-    $fechaAgregado = date('Y-m-d');
-    $estado = 'activo';
+if (isset($_POST['e_1'])) {
+    $n_2 = $_POST['n_2'];
+    $d_3 = $_POST['d_3'];
+    $p_4 = $_POST['p_4'];
+    $c_5 = $_POST['c_5'];
+    $f_6 = date('Y-m-d');
+    $e_7 = 'activo';
 
-    $consulta = "INSERT INTO ventas (Nombre, Descripcion, Precio, Cantidad, FechaAgregado,Estado) VALUES ('$nombre', '$descripcion', $precio, $cantidad, '$fechaAgregado','$estado')";
+    $sql_8 = "INSERT INTO ventas (Nombre, Descripcion, Precio, Cantidad, FechaAgregado,Estado) VALUES ('$n_2', '$d_3', $p_4, $c_5, '$f_6','$e_7')";
 
-    if (mysqli_query($conexion, $consulta)) {
+    if (mysqli_query($conn, $sql_8)) {
         echo '<script>alert("venta creada exitosamente"); window.location.href = "indexVENT.php";</script>';
     } else {
         echo '<script>alert("Error al crear el venta");</script>';
@@ -21,55 +21,52 @@ if (isset($_POST['enviar'])) {
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Venta</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
     <main>
         <div class="container">
             <h2>Formulario de creación de venta</h2>
             <form method="POST">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <label for="n_2">Nombre:</label>
+                <input type="text" id="n_2" name="n_2" required>
 
-                <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
+                <label for="d_3">Descripción:</label>
+                <textarea id="d_3" name="d_3" rows="5" required></textarea>
 
-                <label for="precio">Precio:</label>
-                <input type="number" id="precio" name="precio" step="0.01" required>
+                <label for="p_4">Precio:</label>
+                <input type="number" id="p_4" name="p_4" step="0.01" required>
 
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" id="cantidad" name="cantidad" required>
+                <label for="c_5">Cantidad:</label>
+                <input type="number" id="c_5" name="c_5" required>
 
-                <button type="submit" name="enviar">Crear Venta</button>
-                <button type="button" name="atras" onclick="window.history.back();">Atrás</button>
+                <button type="submit" name="e_1">Crear Venta</button>
+                <button type="button" name="b_6" onclick="window.history.back();">Atrás</button>
             </form>
         </div>
     </main>
 </body>
-
 <style>
     /* Estilos generales */
-    button[name="enviar"] {
+    button[name="e_1"] {
         background-color: orange;
         color: white;
     }
 
-    button[name="enviar"]:hover {
+    button[name="e_1"]:hover {
         background-color: darkorange;
     }
 
-    button[name="atras"] {
+    button[name="b_6"] {
         background-color: blue;
         color: white;
     }
 
-    button[name="atras"]:hover {
+    button[name="b_6"]:hover {
         background-color: darkblue;
     }
 
@@ -196,71 +193,66 @@ if (isset($_POST['enviar'])) {
         }
     }
 </style>
-
 </html>
 
 <?php
 include 'connection.php';
 
-if (isset($_POST['enviar'])) {
-    $nombre = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
-    $precio = $_POST['precio'];
-    $categoria = $_POST['categoria'];
-    $estado = $_POST['estado'];
-    $imagenPrincipal = $_POST['imagenPrincipal'];
+if (isset($_POST['e_1'])) {
+    $n_2 = $_POST['n_2'];
+    $d_3 = $_POST['d_3'];
+    $p_4 = $_POST['p_4'];
+    $cat_5 = $_POST['cat_5'];
+    $e_7 = $_POST['e_7'];
+    $img_8 = $_POST['img_8'];
 
-    $consulta = "INSERT INTO ventas (nombre, descripcion, precio, categoria, estado, imagen_principal) VALUES ('$nombre', '$descripcion', $precio, '$categoria', '$estado', '$imagenPrincipal')";
+    $sql_9 = "INSERT INTO ventas (nombre, descripcion, precio, categoria, estado, imagen_principal) VALUES ('$n_2', '$d_3', $p_4, '$cat_5', '$e_7', '$img_8')";
 
-    if (mysqli_query($conexion, $consulta)) {
+    if (mysqli_query($conn, $sql_9)) {
         echo '<script>alert("venta creado exitosamente"); window.location.href = "ventas.php";</script>';
     } else {
         echo '<script>alert("Error al crear el venta");</script>';
     }
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear venta</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
     <main>
         <div class="container">
             <h2>Formulario de creación de venta</h2>
             <form method="POST">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <label for="n_2">Nombre:</label>
+                <input type="text" id="n_2" name="n_2" required>
 
-                <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
+                <label for="d_3">Descripción:</label>
+                <textarea id="d_3" name="d_3" rows="5" required></textarea>
 
-                <label for="precio">Precio:</label>
-                <input type="number" id="precio" name="precio" step="0.01" required>
+                <label for="p_4">Precio:</label>
+                <input type="number" id="p_4" name="p_4" step="0.01" required>
 
-                <label for="categoria">Categoría:</label>
-                <input type="text" id="categoria" name="categoria" required>
+                <label for="cat_5">Categoría:</label>
+                <input type="text" id="cat_5" name="cat_5" required>
 
-                <label for="estado">Estado:</label>
-                <select id="estado" name="estado" required>
+                <label for="e_7">Estado:</label>
+                <select id="e_7" name="e_7" required>
                     <option value="activo">Activo</option>
                     <option value="inactivo">Inactivo</option>
                 </select>
 
-                <label for="imagenPrincipal">Imagen principal:</label>
-                <input type="file" id="imagenPrincipal" name="imagenPrincipal">
+                <label for="img_8">Imagen principal:</label>
+                <input type="file" id="img_8" name="img_8">
 
-                <button type="submit" name="enviar">Crear venta</button>
+                <button type="submit" name="e_1">Crear venta</button>
             </form>
         </div>
     </main>
 </body>
-
 </html>

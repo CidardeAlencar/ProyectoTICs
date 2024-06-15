@@ -1,74 +1,69 @@
 <?php
 include('connection.php');
 
-$con = connection();
+$j9kd_3kj = connection();
 
-// Procesar la información de la oferta
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save-offer'])) {
-    $tipo = $_POST['offer-select-1'];
-    $producto = $_POST['offer-select-2'];
-    $descripcion = $_POST['offer-input-1'];
-    $fechaInicio = $_POST['offer-date-1'];
-    $fechaFin = $_POST['offer-date-2'];
+    $t3a2_kj = $_POST['offer-select-1'];
+    $p4lp_kj = $_POST['offer-select-2'];
+    $d9ds_kj = $_POST['offer-input-1'];
+    $f1j3_kj = $_POST['offer-date-1'];
+    $f2j3_kj = $_POST['offer-date-2'];
 
-    $sqlOffer = "INSERT INTO descuentos (tipo, producto, descripcion, fecha_inicio, fecha_fin) 
-                VALUES ('$tipo', '$producto', '$descripcion', '$fechaInicio', '$fechaFin')";
-    $queryOffer = mysqli_query($con, $sqlOffer);
+    $s4d1_kj = "INSERT INTO descuentos (tipo, producto, descripcion, fecha_inicio, fecha_fin) 
+                VALUES ('$t3a2_kj', '$p4lp_kj', '$d9ds_kj', '$f1j3_kj', '$f2j3_kj')";
+    $q1r2_kj = mysqli_query($j9kd_3kj, $s4d1_kj);
 
-    if ($queryOffer) {
+    if ($q1r2_kj) {
         echo '<script>alert("Oferta guardada correctamente.");</script>';
     } else {
-        echo '<script>alert("Error al guardar la oferta: ' . mysqli_error($con) . '");</script>';
+        echo '<script>alert("Error al guardar la oferta: ' . mysqli_error($j9kd_3kj) . '");</script>';
     }
 }
 
-// Procesar la información de la promoción
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save-promo'])) {
-    $tipo = $_POST['promo-select-1'];
-    $descripcion = $_POST['promo-input-1'];
-    $fechaInicio = $_POST['promo-date-1'];
-    $fechaFin = $_POST['promo-date-2'];
+    $t4b3_kj = $_POST['promo-select-1'];
+    $d4cc_kj = $_POST['promo-input-1'];
+    $f5f1_kj = $_POST['promo-date-1'];
+    $f5f2_kj = $_POST['promo-date-2'];
 
-    $sqlPromotion = "INSERT INTO descuentos (tipo, descripcion, fecha_inicio, fecha_fin) 
-                    VALUES ('$tipo', '$descripcion', '$fechaInicio', '$fechaFin')";
-    $queryPromotion = mysqli_query($con, $sqlPromotion);
+    $s5f4_kj = "INSERT INTO descuentos (tipo, descripcion, fecha_inicio, fecha_fin) 
+                    VALUES ('$t4b3_kj', '$d4cc_kj', '$f5f1_kj', '$f5f2_kj')";
+    $q5r3_kj = mysqli_query($j9kd_3kj, $s5f4_kj);
 
-    if ($queryPromotion) {
+    if ($q5r3_kj) {
         echo '<script>alert("Promoción guardada correctamente.");</script>';
     } else {
-        echo '<script>alert("Error al guardar la promoción: ' . mysqli_error($con) . '");</script>';
+        echo '<script>alert("Error al guardar la promoción: ' . mysqli_error($j9kd_3kj) . '");</script>';
     }
 }
 
-// Procesar la información del descuento
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save-discount'])) {
-    $tipo = $_POST['discount-select-1'];
-    $producto = $_POST['discount-select-2'];
-    $descripcion = $_POST['discount-input-1'];
-    $fechaInicio = $_POST['discount-date-1'];
-    $fechaFin = $_POST['discount-date-2'];
+    $t7a4_kj = $_POST['discount-select-1'];
+    $p7lp_kj = $_POST['discount-select-2'];
+    $d7ds_kj = $_POST['discount-input-1'];
+    $f7j3_kj = $_POST['discount-date-1'];
+    $f8j3_kj = $_POST['discount-date-2'];
 
-    $sqlDiscount = "INSERT INTO descuentos (tipo, producto, descripcion, fecha_inicio, fecha_fin) 
-                    VALUES ('$tipo', '$producto', '$descripcion', '$fechaInicio', '$fechaFin')";
-    $queryDiscount = mysqli_query($con, $sqlDiscount);
+    $s7d1_kj = "INSERT INTO descuentos (tipo, producto, descripcion, fecha_inicio, fecha_fin) 
+                    VALUES ('$t7a4_kj', '$p7lp_kj', '$d7ds_kj', '$f7j3_kj', '$f8j3_kj')";
+    $q7r2_kj = mysqli_query($j9kd_3kj, $s7d1_kj);
 
-    if ($queryDiscount) {
+    if ($q7r2_kj) {
         echo '<script>alert("Descuento guardado correctamente.");</script>';
     } else {
-        echo '<script>alert("Error al guardar el descuento: ' . mysqli_error($con) . '");</script>';
+        echo '<script>alert("Error al guardar el descuento: ' . mysqli_error($j9kd_3kj) . '");</script>';
     }
 }
 
-// Después de procesar los datos, recuperar todos los descuentos y mostrarlos en la tabla
-$sqlDescuentos = "SELECT * FROM descuentos";
-$resultDescuentos = mysqli_query($con, $sqlDescuentos);
-$descuento = [];
-while ($row = mysqli_fetch_assoc($resultDescuentos)) {
-    $descuento[] = $row;
+$s1l8_kj = "SELECT * FROM descuentos";
+$r3k2_kj = mysqli_query($j9kd_3kj, $s1l8_kj);
+$d8cu_kj = [];
+while ($rw8k_kj = mysqli_fetch_assoc($r3k2_kj)) {
+    $d8cu_kj[] = $rw8k_kj;
 }
 ?>
-    <!-- Módulo de Promociones, Ofertas y Descuentos -->
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -213,14 +208,14 @@ while ($row = mysqli_fetch_assoc($resultDescuentos)) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($descuento as $promociones): ?>
+                    <?php foreach ($d8cu_kj as $p5ro_kj): ?>
                         <tr>
-                            <td><?php echo $descuento['id']; ?></td>
-                            <td><?php echo $descuento['tipo']; ?></td>
-                            <td><?php echo $descuento['producto']; ?></td>
-                            <td><?php echo $descuento['descripcion']; ?></td>
-                            <td><?php echo $descuento['fecha_inicio']; ?></td>
-                            <td><?php echo $descuento['fecha_fin']; ?></td>
+                            <td><?php echo $p5ro_kj['id']; ?></td>
+                            <td><?php echo $p5ro_kj['tipo']; ?></td>
+                            <td><?php echo $p5ro_kj['producto']; ?></td>
+                            <td><?php echo $p5ro_kj['descripcion']; ?></td>
+                            <td><?php echo $p5ro_kj['fecha_inicio']; ?></td>
+                            <td><?php echo $p5ro_kj['fecha_fin']; ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

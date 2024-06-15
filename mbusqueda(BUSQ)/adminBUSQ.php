@@ -5,51 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/styleBUSQ.css">
-    <title>Vista Administrador</title>
+    <title>Vista Admin</title>
 </head>
 <body>
     <section>
+        <!-- Selección de búsqueda -->
         <div class="busq_pro">
             <span>Buscar por: </span>
             <select id="searchType">
-                <option value="administrador">Administrador</option>
                 <option value="ci">CI</option>
-                <option value="cargo">Cargo/rol</option>
-                <option value="activos">Activos</option>
-                <option value="inactivos">Inactivos</option>
+                <option value="rol">Rol</option>
+                <option value="status">Estado</option>
             </select>
             <input type="text" id="searchInput">
             <button type="button" class="btn-busq" onclick="search()">Buscar</button>
-            <button type="button" class="btn-back"><a href="../index.php?mod=5">Volver</a></button>
+            <button type="button" class="btn-back"><a href="../index.php?mod=6">Volver</a></button>
         </div>
     </section>
 
-    <section id="resultsSection" class="result_adm">
-        <!-- AQUI VA LA TABLA CON LOS DATOS DE LOS ADMINISTRADORES -->
+    <section id="resultsSection" class="result_sec">
+        <!-- AQUI VAN LOS RESULTADOS DE LA BUSQUEDA -->
     </section>
 
     <script>
-        function search() {
-            var searchType = document.getElementById("searchType").value;
-            var searchInput = document.getElementById("searchInput").value;
+        // JavaScript para realizar la búsqueda
+        var obf_faqBtn = document.getElementById("faqBtn");
+        var obf_faqModal = document.getElementById("faqModal");
+        var obf_closeBtn = document.getElementsByClassName("close")[0];
 
-            if (searchType === "activos" || searchType === "inactivos") {
-                fetchResults(`searchType=${searchType}`);
-            } else {
-                fetchResults(`searchType=${searchType}&searchInput=${searchInput}`);
+        obf_faqBtn.onclick = function() {
+            obf_faqModal.style.display = "block";
+        }
+
+        obf_closeBtn.onclick = function() {
+            obf_faqModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == obf_faqModal) {
+                obf_faqModal.style.display = "none";
             }
         }
-        function fetchResults(params = '') {
-            fetch(`fun_adminBUSQ.php?${params}`)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById("resultsSection").innerHTML = data;
-                })
-                .catch(error => console.error('Error:', error));
+
+        function obf_search() {
+            // Aquí iría el código para realizar la búsqueda
         }
-        document.addEventListener("DOMContentLoaded", function() {
-            fetchResults();
-        });
     </script>
 </body>
 </html>

@@ -13,23 +13,21 @@
             padding: 0;
         }
 
-        .container {
-            
+        .cntnr {
             max-width: 1100px;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                  
-    }
+        }
 
         h1 {
             text-align: center;
             color: orange;
         }
 
-        label {
+        lbl {
             display: block;
             margin-bottom: 5px;
         }
@@ -77,7 +75,7 @@
             background-color: darkorange;
         }
 
-        .notification {
+        .ntfctn {
             display: none;
             background-color: #4CAF50; /* Green */
             color: white;
@@ -92,11 +90,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .notification.error {
+        .ntfctn.err {
             background-color: #f44336; /* Red */
         }
 
-        .notification.show {
+        .ntfctn.shw {
             display: block;
         }
     </style>
@@ -132,29 +130,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-<div class="container">
-        <h1>Gestión de Personal</h1>
-        <a href="add_employee.php" class="btn">Añadir Empleado</a>
-        <a href="add_academic_record.php" class="btn">Añadir Registro Académico</a>
-        <a href="edit_employee.php" class="btn">Editar Empleado</a>
-        <a href="change_status.php" class="btn">Cambiar Estado</a>
-        <a href="list_employees.php" class="btn">Lista de Empleados</a>
-        <a href="../index.php" class="btn">Regresar</a>
-    </div>
-    <div class="container">
-        <h1>Cambiar Estado</h1>
-        <form method="post" action="change_status.php">
-    <label for="ci">CI:</label>
-    <input type="text" name="ci" required><br>
-    <label for="nuevo_estado">Nuevo Estado:</label>
-    <select name="nuevo_estado" required>
-        <option value="1">Activo</option>
-        <option value="0">Inactivo</option>
-    </select><br>
-    <input type="submit" value="Actualizar Estado">
-</form>
-
-<a href="../index.php" class="btn btn-primary">Regresar</a>
-    </div>
+<div class="cntnr">
+    <h1>Gestión de Personal</h1>
+    <a href="add_employee.php" class="btn">Añadir Empleado</a>
+    <a href="add_academic_record.php" class="btn">Añadir Registro Académico</a>
+    <a href="edit_employee.php" class="btn">Editar Empleado</a>
+    <a href="change_status.php" class="btn">Cambiar Estado</a>
+    <a href="list_employees.php" class="btn">Lista de Empleados</a>
+    <a href="../index.php" class="btn">Regresar</a>
+</div>
+<div class="cntnr">
+    <h1>Cambiar Estado</h1>
+    <form method="post" action="change_status.php">
+        <lbl for="ci">CI:</lbl>
+        <input type="text" name="ci" required><br>
+        <lbl for="nuevo_estado">Nuevo Estado:</lbl>
+        <select name="nuevo_estado" required>
+            <option value="1">Activo</option>
+            <option value="0">Inactivo</option>
+        </select><br>
+        <input type="submit" value="Actualizar Estado">
+    </form>
+    <a href="../index.php" class="btn btn-primary">Regresar</a>
+</div>
 </body>
 </html>

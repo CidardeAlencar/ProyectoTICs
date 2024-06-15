@@ -2,7 +2,7 @@
 include 'connection.php';
 
 // Consulta para obtener todos los ventas
-$consulta = "SELECT 
+$Wzk = "SELECT 
 				VentaID, 
 				Nombre, 
 				Descripcion, 
@@ -11,7 +11,7 @@ $consulta = "SELECT
 				FechaAgregado,
 				Estado
 			FROM ventas";
-$resultado = mysqli_query($conexion, $consulta);
+$VFv = mysqli_query($conexion, $Wzk);
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -433,7 +433,7 @@ $resultado = mysqli_query($conexion, $consulta);
 										</div>
 									</div>
 									<div class="col-md-8 col-sm-12">
-										<div class="single-inner-populer-product-txt">
+											<div class="single-inner-populer-product-txt">
 											<h2>
 												<a href="#">
 													latest designed stool <span>and</span> chair
@@ -497,8 +497,8 @@ $resultado = mysqli_query($conexion, $consulta);
 					</thead>
 					<tbody>
 						<?php
-						if ($resultado && mysqli_num_rows($resultado) > 0) {
-							while ($row = mysqli_fetch_assoc($resultado)) {
+						if ($VFv && mysqli_num_rows($VFv) > 0) {
+							while ($row = mysqli_fetch_assoc($VFv)) {
 								echo "<tr>";
 								echo "<td>" . $row['VentaID'] . "</td>";
 								echo "<td>" . $row['Nombre'] . "</td>";

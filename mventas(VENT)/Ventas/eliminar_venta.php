@@ -2,13 +2,13 @@
 include 'connection.php';
 
 // Obtener el ID del venta a eliminar desde la URL
-$idventa = $_GET['id'];
+$Uvi = $_GET['id'];
 
 // Si se confirma la eliminación (se envía el formulario con el botón "Eliminar"), se elimina el venta
-if (isset($_POST['eliminar'])) {
-    $consultaEliminar = "UPDATE ventas SET estado = 'inactivo' WHERE VentaID = $idventa";
+if (isset($_POST['eFk'])) {
+    $liFm = "UPDATE ventas SET estado = 'inactivo' WHERE VentaID = $Uvi";
 
-    if (mysqli_query($conexion, $consultaEliminar)) {
+    if (mysqli_query($conexion, $liFm)) {
         echo '<script>alert("venta eliminada exitosamente"); window.location.href = "./indexVENT.php";</script>';
     } else {
         echo '<script>alert("Error al eliminar el venta"); window.location.href = "./indexVENT.php";</script>';
@@ -16,11 +16,11 @@ if (isset($_POST['eliminar'])) {
 }
 
 // Consulta para obtener los datos del venta a eliminar
-$consulta = "SELECT * FROM ventas WHERE VentaID = $idventa";
-$resultado = mysqli_query($conexion, $consulta);
+$YbP = "SELECT * FROM ventas WHERE VentaID = $Uvi";
+$YWt = mysqli_query($conexion, $YbP);
 
 // Si se encontró el venta, se muestra el mensaje de confirmación
-if ($resultado && mysqli_num_rows($resultado) == 1) {
+if ($YWt && mysqli_num_rows($YWt) == 1) {
     // ...
 } else {
     // Si no se encontró el venta, se muestra un mensaje de error
@@ -226,9 +226,9 @@ if ($resultado && mysqli_num_rows($resultado) == 1) {
                     </div>
                     <div class="card-body">
                         <p class="lead text-center">¿Seguro que desea inabilitar la venta?</p>
-                        <form action="eliminar_venta.php?id=<?php echo $idventa; ?>" method="post">
+                        <form action="eliminar_venta.php?id=<?php echo $Uvi; ?>" method="post">
                             <div class="text-center">
-                                <button type="submit" name="eliminar" class="btn btn-danger mr-2"><i class="fas fa-check"></i> Inabilitar</button>
+                                <button type="submit" name="eFk" class="btn btn-danger mr-2"><i class="fas fa-check"></i> Inabilitar</button>
                                 <button type="button" name="atras" onclick="window.history.back();" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Atrás</button>
                             </div>
                         </form>

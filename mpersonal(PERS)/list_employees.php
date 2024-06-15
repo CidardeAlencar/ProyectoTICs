@@ -13,16 +13,14 @@
             padding: 0;
         }
 
-        .container {
-            
+        .cnt {
             max-width: 1100px;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                   
-    }
+        }
 
         h1 {
             text-align: center;
@@ -84,7 +82,7 @@
     </style>
 </head>
 <body>
-<div class="container">
+<div class="cnt">
         <h1>Gestión de Personal</h1>
         <a href="mpersonal(PERS)/add_employee.php" class="btn">Añadir Empleado</a>
         <a href="mpersonal(PERS)/add_academic_record.php" class="btn">Añadir Registro Académico</a>
@@ -93,7 +91,7 @@
         <a href="mpersonal(PERS)/list_employees.php" class="btn">Lista de Empleados</a>
         <a href="../index.php" class="btn">Regresar</a>
     </div>
-    <div class="container">
+    <div class="cnt">
         <h1>Lista de Empleados</h1>
         <form method="get" action="">
             <label for="search">Buscar:</label>
@@ -115,22 +113,18 @@
             <?php
             include 'db.php';
 
-            // Inicializar la condición WHERE
-            $where = "";
+            $w = "";
 
-            // Verificar si se ha enviado una consulta de búsqueda
             if (isset($_GET['search']) && !empty($_GET['search'])) {
-                $search = $_GET['search'];
-                // Construir la condición WHERE
-                $where = "WHERE nombre LIKE '%$search%' OR apellido LIKE '%$search%' OR correo LIKE '%$search%' OR ci = '$search'";
+                $s = $_GET['search'];
+                $w = "WHERE nombre LIKE '%$s%' OR apellido LIKE '%$s%' OR correo LIKE '%$s%' OR ci = '$s'";
             }
 
-            // Consulta SQL con la condición WHERE
-            $sql = "SELECT empleados.*, registros_academicos.grado, registros_academicos.institucion FROM empleados LEFT JOIN registros_academicos ON empleados.id_empleado = registros_academicos.id_empleado $where";
-            $result = $conn->query($sql);
+            $q = "SELECT empleados.*, registros_academicos.grado, registros_academicos.institucion FROM empleados LEFT JOIN registros_academicos ON empleados.id_empleado = registros_academicos.id_empleado $w";
+            $r = $conn->query($q);
 
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
+            if ($r->num_rows > 0) {
+                while($row = $r->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row["ci"] . "</td>";
                     echo "<td>" . $row["nombre"] . "</td>";

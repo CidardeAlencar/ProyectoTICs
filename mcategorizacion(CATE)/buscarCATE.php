@@ -1,18 +1,16 @@
-=
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluación</title>
-    <link rel="stylesheet" href="../mcategorizacion(CATE)/assets/styles/styleCATE.css">
+    <title>obf_Evaluación</title>
+    <link rel="stylesheet" href="../mcategorizacion(CATE)/assets/styles/obf_styleCATE.css">
     <style>
-        /* Estilos específicos para dispositivos móviles */
+        /* obf_Estilos específicos para dispositivos móviles */
         @media (max-width: 600px) {
             body {
                 font-size: 14px;
-                /* Reducimos el tamaño de fuente para dispositivos móviles */
+                /* obf_Reducimos el tamaño de fuente para dispositivos móviles */
             }
 
             table {
@@ -47,7 +45,7 @@
 
             input[type="number"] {
                 width: calc(100% - 20px);
-                /* Restamos el padding de la tabla */
+                /* obf_Restamos el padding de la tabla */
                 padding: 5px;
                 font-size: 1em;
                 border: 1px solid #ccc;
@@ -59,12 +57,10 @@
         }
     </style>
 </head>
-
 <body>
-    <div class="App">
-        <h1 class="title-compras">EVALUACIÓN</h1>
-        <h1 class="title-compras">DE DESEMPEÑO</h1>
+    <div class="obf_App">
+        <h1 class="obf_title-compras">obf_EVALUACIÓN</h1>
+        <h1 class="obf_title-compras">obf_DE DESEMPEÑO</h1>
     </div>
 </body>
-
 </html>

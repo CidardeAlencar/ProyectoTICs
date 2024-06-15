@@ -2,35 +2,35 @@
 session_start();
 require 'config.php';
 
-$error = '';
+$error_mensaje = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $code = $_POST['code'];
-    $user_id = $_SESSION['user_id'];
+    $codigo_verificacion = $_POST['codigo'];
+    $id_usuario = $_SESSION['id_usuario'];
 
     // Verifica el código y la expiración
-    $stmt = $conn->prepare("SELECT 2fa_code, 2fa_expires FROM empleados WHERE id = ?");
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $stmt->bind_result($stored_code, $expires);
-    $stmt->fetch();
-    $stmt->close();  // Cierra el statement actual para evitar el error de sincronización
+    $consulta = $conn->prepare("SELECT 2fa_code, 2fa_expires FROM empleados WHERE id = ?");
+    $consulta->bind_param("i", $id_usuario);
+    $consulta->execute();
+    $consulta->bind_result($codigo_almacenado, $expiracion);
+    $consulta->fetch();
+    $consulta->close();  // Cierra el statement actual para evitar el error de sincronización
 
-    if ($code == $stored_code && new DateTime() < new DateTime($expires)) {
+    if ($codigo_verificacion == $codigo_almacenado && new DateTime() < new DateTime($expiracion)) {
         // Código correcto y no expirado
-        $_SESSION['loggedin'] = true;
-        $_SESSION['user_id'] = $user_id;
+        $_SESSION['logueado'] = true;
+        $_SESSION['id_usuario'] = $id_usuario;
 
         // Limpia el código de verificación
-        $stmt = $conn->prepare("UPDATE empleados SET 2fa_code = NULL, 2fa_expires = NULL WHERE id = ?");
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $stmt->close();
+        $consulta = $conn->prepare("UPDATE empleados SET 2fa_code = NULL, 2fa_expires = NULL WHERE id = ?");
+        $consulta->bind_param("i", $id_usuario);
+        $consulta->execute();
+        $consulta->close();
 
-        header("Location: welcome.php");
+        header("Location: bienvenido.php");
         exit();
     } else {
-        $error = "Código de verificación incorrecto o expirado.";
+        $error_mensaje = "Código de verificación incorrecto o expirado.";
     }
 }
 ?>
@@ -42,14 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="contenedor">
         <h2>Verificación de Dos Factores</h2>
-        <?php if ($error): ?>
-            <div class="error-message"><?php echo $error; ?></div>
+        <?php if ($error_mensaje): ?>
+            <div class="mensaje-error"><?php echo $error_mensaje; ?></div>
         <?php endif; ?>
-        <form method="post" action="verify.php">
-            <label for="code">Código de Verificación:</label>
-            <input type="text" id="code" name="code" required>
+        <form method="post" action="verificar.php">
+            <label for="codigo">Código de Verificación:</label>
+            <input type="text" id="codigo" name="codigo" required>
             <input type="submit" value="Verificar">
         </form>
     </div>

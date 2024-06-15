@@ -36,4 +36,3 @@ imagestring($image, 5, 35, 15, $captcha_code, $text_color);
 
 imagepng($image);
 imagedestroy($image);
-?>

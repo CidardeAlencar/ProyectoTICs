@@ -1,52 +1,51 @@
 <?php
 include('connection.php');
 
-$con = connection();
+$obf_con = connection();
 
 // Procesar la información del cliente
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cliente-form'])) {
-    $nombreCliente = $_POST['name'];
-    $emailCliente = $_POST['email'];
+    $obf_nombreCliente = $_POST['name'];
+    $obf_emailCliente = $_POST['email'];
 
-    $sqlCliente = "INSERT INTO clientes (nombre, email) VALUES ('$nombreCliente', '$emailCliente')";
-    $queryCliente = mysqli_query($con, $sqlCliente);
+    $obf_sqlCliente = "INSERT INTO clientes (nombre, email) VALUES ('$obf_nombreCliente', '$obf_emailCliente')";
+    $obf_queryCliente = mysqli_query($obf_con, $obf_sqlCliente);
 
-    if ($queryCliente) {
-        echo '<script>document.addEventListener("DOMContentLoaded", function() { showModal("Cliente guardado correctamente ✅"); });</script>';
+    if ($obf_queryCliente) {
+        echo '<script>document.addEventListener("DOMContentLoaded", function() { obf_showModal("Cliente guardado correctamente ✅"); });</script>';
     } else {
-        echo '<script>document.addEventListener("DOMContentLoaded", function() { showModal("Error al guardar el cliente ❌ : ' . mysqli_error($con) . '"); });</script>';
+        echo '<script>document.addEventListener("DOMContentLoaded", function() { obf_showModal("Error al guardar el cliente ❌ : ' . mysqli_error($obf_con) . '"); });</script>';
     }
 }
 
 // Procesar la información de pago
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pago-form'])) {
-    $numeroTarjeta = $_POST['cardNumber'];
-    $nombreTitular = $_POST['cardHolderName'];
-    $fechaVencimiento = $_POST['expiryMonth'];
-    $metodoPago = "Tarjeta";
+    $obf_numeroTarjeta = $_POST['cardNumber'];
+    $obf_nombreTitular = $_POST['cardHolderName'];
+    $obf_fechaVencimiento = $_POST['expiryMonth'];
+    $obf_metodoPago = "Tarjeta";
     //CIFRADO PARA EL NUMERO DE TARJETA
-    $numeroTarjetaCifrado = hash('sha256', $numeroTarjeta);
+    $obf_numeroTarjetaCifrado = hash('sha256', $obf_numeroTarjeta);
 
-    $sqlPago = "INSERT INTO compra (numero_tarjeta, nombre_titular, fecha_vencimiento, pago, metodo_pago) 
-                VALUES ('$numeroTarjetaCifrado', '$nombreTitular', '$fechaVencimiento', true, '$metodoPago')";
-    $queryPago = mysqli_query($con, $sqlPago);
+    $obf_sqlPago = "INSERT INTO compra (numero_tarjeta, nombre_titular, fecha_vencimiento, pago, metodo_pago) 
+                VALUES ('$obf_numeroTarjetaCifrado', '$obf_nombreTitular', '$obf_fechaVencimiento', true, '$obf_metodoPago')";
+    $obf_queryPago = mysqli_query($obf_con, $obf_sqlPago);
 
-    if ($queryPago) {
-        echo '<script>document.addEventListener("DOMContentLoaded", function() { showModal("Pago realizado correctamente ✅"); });</script>';
+    if ($obf_queryPago) {
+        echo '<script>document.addEventListener("DOMContentLoaded", function() { obf_showModal("Pago realizado correctamente ✅"); });</script>';
     } else {
-        echo '<script>document.addEventListener("DOMContentLoaded", function() { showModal("Error al procesar el pago ❌ : ' . mysqli_error($con) . '"); });</script>';
+        echo '<script>document.addEventListener("DOMContentLoaded", function() { obf_showModal("Error al procesar el pago ❌ : ' . mysqli_error($obf_con) . '"); });</script>';
     }
 }
 
 // Seleccionar el proveedor de los productos
-$sql = "SELECT nombre, contacto, telefono FROM proveedores ORDER BY RAND() LIMIT 1";
-$query = mysqli_query($con, $sql);
-$supplier = mysqli_fetch_assoc($query);
+$obf_sql = "SELECT nombre, contacto, telefono FROM proveedores ORDER BY RAND() LIMIT 1";
+$obf_query = mysqli_query($obf_con, $obf_sql);
+$obf_supplier = mysqli_fetch_assoc($obf_query);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,7 +53,7 @@ $supplier = mysqli_fetch_assoc($query);
     <link rel="stylesheet" href="mcompras(COMP)/assets/styles/styleCOMP.css">
     <style>
         /* Estilos para el modal */
-        .modal {
+        .obf_modal {
             display: none;
             position: fixed;
             z-index: 5;
@@ -66,7 +65,7 @@ $supplier = mysqli_fetch_assoc($query);
             background-color: rgba(0, 0, 0, 0.6);
         }
 
-        .modal-content {
+        .obf_modal-content {
             background-color: #fefefe;
             margin: 10% auto;
             padding: 20px;
@@ -78,24 +77,24 @@ $supplier = mysqli_fetch_assoc($query);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
-        .modal-content p {
+        .obf_modal-content p {
             font-size: 18px;
             color: #333;
             margin-bottom: 15px;
             line-height: 1.6;
         }
 
-        .modal-content .success-message {
+        .obf_modal-content .obf_success-message {
             color: #4CAF50;
             font-weight: bold;
         }
 
-        .modal-content .error-message {
+        .obf_modal-content .obf_error-message {
             color: #f44336;
             font-weight: bold;
         }
 
-        .close-button {
+        .obf_close-button {
             color: #aaa;
             float: right;
             font-size: 28px;
@@ -103,20 +102,20 @@ $supplier = mysqli_fetch_assoc($query);
             cursor: pointer;
         }
 
-        .close-button:hover,
-        .close-button:focus {
+        .obf_close-button:hover,
+        .obf_close-button:focus {
             color: #333;
             text-decoration: none;
         }
 
         /* Estilos para los elementos dentro de cart-items */
-        #cart-items {
+        #obf_cart-items {
             list-style-type: none;
             padding: 0;
             margin-top: 10px;
         }
 
-        #cart-items li {
+        #obf_cart-items li {
             background-color: #f9f9f9;
             padding: 10px;
             border: 1px solid #ddd;
@@ -124,20 +123,19 @@ $supplier = mysqli_fetch_assoc($query);
             border-radius: 5px;
         }
 
-        #cart-items li:first-child {
+        #obf_cart-items li:first-child {
             margin-top: 0;
         }
     </style>
 </head>
-
 <body>
-    <div class="App">
-        <h1 class="title-compras">COMPRAS</h1>
-        <div class="container">
-            <div class="taskcompra">
+    <div class="obf_App">
+        <h1 class="obf_title-compras">COMPRAS</h1>
+        <div class="obf_container">
+            <div class="obf_taskcompra">
                 <img src="mcompras(COMP)/assets/images/carrito.png" alt="Carrito de compras">
                 <h2>Orden de Compra</h2>
-                <ul id="cart-items">
+                <ul id="obf_cart-items">
                     <li>Producto 1 - $100</li>
                     <li>Producto 2 - $150</li>
                     <li>Producto 3 - $200</li>
@@ -145,95 +143,94 @@ $supplier = mysqli_fetch_assoc($query);
                 </ul>
             </div>
 
-            <div class="task">
+            <div class="obf_task">
                 <h2>Información del Proveedor</h2>
-                <form id="supplier-form">
+                <form id="obf_supplier-form">
                     <div>
                         <label>Nombre del Proveedor</label>
-                        <input type="text" name="name" id="supplier-name" value="<?php echo htmlspecialchars($supplier['nombre']); ?>" disabled>
+                        <input type="text" name="name" id="obf_supplier-name" value="<?php echo htmlspecialchars($obf_supplier['nombre']); ?>" disabled>
                     </div>
                     <div>
                         <label>Contacto del Proveedor</label>
-                        <input type="text" name="contact" id="supplier-contact" value="<?php echo htmlspecialchars($supplier['contacto']); ?>" disabled>
+                        <input type="text" name="contact" id="obf_supplier-contact" value="<?php echo htmlspecialchars($obf_supplier['contacto']); ?>" disabled>
                     </div>
                     <div>
                         <label>Teléfono</label>
-                        <input type="text" name="telefono" id="supplier-telefono" value="<?php echo htmlspecialchars($supplier['telefono']); ?>" disabled>
+                        <input type="text" name="telefono" id="obf_supplier-telefono" value="<?php echo htmlspecialchars($obf_supplier['telefono']); ?>" disabled>
                     </div>
                 </form>
                 <h2>Información del Cliente</h2>
-                <form id="customer-form" method="post">
+                <form id="obf_customer-form" method="post">
                     <div>
                         <label>Nombre del Cliente</label>
-                        <input type="text" name="name" id="customer-name" required>
+                        <input type="text" name="name" id="obf_customer-name" required>
                     </div>
                     <div>
                         <label>Email del Cliente</label>
-                        <input type="email" name="email" id="customer-email" required>
+                        <input type="email" name="email" id="obf_customer-email" required>
                     </div>
-                    <button class="confirm-button" type="submit" name="cliente-form">Guardar Cliente</button>
+                    <button class="obf_confirm-button" type="submit" name="cliente-form">Guardar Cliente</button>
                 </form>
             </div>
 
-            <div class="payment-container">
+            <div class="obf_payment-container">
                 <h2>Detalles de Pago</h2>
-                <form id="payment-form" class="payment-form" method="post">
-                    <div class="form-container">
-                        <div class="card-payment">
+                <form id="obf_payment-form" class="obf_payment-form" method="post">
+                    <div class="obf_form-container">
+                        <div class="obf_card-payment">
                             <h3>Información de la Tarjeta</h3>
-                            <div class="expiry-date">
-                                <div class="form-group">
+                            <div class="obf_expiry-date">
+                                <div class="obf_form-group">
                                     <label>Número de Tarjeta</label>
-                                    <input type="text" name="cardNumber" id="card-number" required>
+                                    <input type="text" name="cardNumber" id="obf_card-number" required>
                                 </div>
-                                <div class="form-group">
+                                <div class="obf_form-group">
                                     <label>Nombre del Titular</label>
-                                    <input type="text" name="cardHolderName" id="card-holder-name" required>
+                                    <input type="text" name="cardHolderName" id="obf_card-holder-name" required>
                                 </div>
                             </div>
-                            <div class="expiry-date">
-                                <div class="form-group">
+                            <div class="obf_expiry-date">
+                                <div class="obf_form-group">
                                     <label>Fecha de Vencimiento</label>
-                                    <input type="date" name="expiryMonth" id="expiry-month" required>
+                                    <input type="date" name="expiryMonth" id="obf_expiry-month" required>
                                 </div>
                             </div>
                         </div>
-                        <div class="qr-code">
+                        <div class="obf_qr-code">
                             <img src="mcompras(COMP)/assets/images/pagos.png" alt="Métodos de pago">
                             <img src="mcompras(COMP)/assets/images/qe.png" alt="Código QR">
                         </div>
                     </div>
-                    <button class="confirm-button" type="submit" name="pago-form">Confirmar y Pagar</button>
+                    <button class="obf_confirm-button" type="submit" name="pago-form">Confirmar y Pagar</button>
                 </form>
             </div>
         </div>
     </div>
 
     <!-- Modal -->
-    <div id="successModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <p id="modal-message"></p>
+    <div id="obf_successModal" class="obf_modal">
+        <div class="obf_modal-content">
+            <span class="obf_close-button" onclick="obf_closeModal()">&times;</span>
+            <p id="obf_modal-message"></p>
         </div>
     </div>
 
     <script src="./comprasCOMP.js"></script>
     <script>
-        function showModal(message) {
-            document.getElementById('modal-message').innerText = message;
-            document.getElementById('successModal').style.display = 'block';
+        function obf_showModal(obf_message) {
+            document.getElementById('obf_modal-message').innerText = obf_message;
+            document.getElementById('obf_successModal').style.display = 'block';
         }
 
-        function closeModal() {
-            document.getElementById('successModal').style.display = 'none';
+        function obf_closeModal() {
+            document.getElementById('obf_successModal').style.display = 'none';
         }
 
         window.onclick = function(event) {
-            if (event.target == document.getElementById('successModal')) {
-                closeModal();
+            if (event.target == document.getElementById('obf_successModal')) {
+                obf_closeModal();
             }
         }
     </script>
 </body>
-
 </html>

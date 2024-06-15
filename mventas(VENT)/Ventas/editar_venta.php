@@ -1,14 +1,11 @@
 <?php
 include 'connection.php';
 
-// Obtener el ID del venta a editar desde la URL
 $idventa = $_GET['id'];
 
-// Consulta para obtener los datos del venta a editar
 $consulta = "SELECT * FROM ventas WHERE VentaID = $idventa";
 $resultado = mysqli_query($conexion, $consulta);
 
-// Si se encontró el venta, se muestran sus datos en el formulario
 if ($resultado && mysqli_num_rows($resultado) == 1) {
     $row = mysqli_fetch_assoc($resultado);
 
@@ -17,21 +14,19 @@ if ($resultado && mysqli_num_rows($resultado) == 1) {
     $precio = $row['Precio'];
     $cantidad = $row['Cantidad'];
     $fechaAgregado = $row['FechaAgregado'];
-    $estado = $row['Estado']; // Asegúrate de que tu tabla tiene una columna 'Estado'
+    $estado = $row['Estado'];
 } else {
-    // Si no se encontró el venta, se muestra un mensaje de error
     echo '<p>venta no encontrado.</p>';
     exit();
 }
 
-// Si se envía el formulario, se actualiza la información del venta
 if (isset($_POST['enviar'])) {
     $nombreActualizado = $_POST['nombre'];
     $descripcionActualizada = $_POST['descripcion'];
     $precioActualizado = $_POST['precio'];
     $cantidadActualizada = $_POST['cantidad'];
     $fechaAgregadoActualizada = $_POST['fecha_agregado'];
-    $estadoActualizado = $_POST['estado']; // Recoge el estado actualizado del formulario
+    $estadoActualizado = $_POST['estado'];
 
     $consultaActualizacion = "UPDATE ventas SET 
                                 nombre = '$nombreActualizado', 
@@ -60,7 +55,6 @@ if (isset($_POST['enviar'])) {
     <link rel="stylesheet" href="style.css">
 </head>
 <style>
-    /* Estilos CSS generales (igual que antes, pero sin header y footer) */
     button[name="atras"] {
         background-color: blue;
         color: white;
@@ -88,7 +82,6 @@ if (isset($_POST['enviar'])) {
         background-color: #fff;
         padding: 30px;
         border-radius: 10px;
-
         width: 80%;
         max-width: 800px;
         margin: 0 auto;
@@ -103,11 +96,9 @@ if (isset($_POST['enviar'])) {
         width: 100%;
         border-collapse: collapse;
         margin: 20px 0;
-
     }
 
-    th,
-    td {
+    th, td {
         padding: 8px;
         text-align: left;
         border-bottom: 1px solid #ddd;
@@ -149,7 +140,6 @@ if (isset($_POST['enviar'])) {
         }
     }
 </style>
-
 
 <body>
     <main>

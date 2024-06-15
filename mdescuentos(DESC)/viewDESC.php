@@ -1,36 +1,31 @@
 <?php
-
 require_once '../connection.php';
 
-$connect = connection();
+$c0nn3ct = connection();
 
-$search = $_GET[ 'search' ] ?? '';
 
-$discountProductsStmt = $connect->prepare( "
+
+$d1scountPr0ductsStmt = $c0nn3ct->prepare("
   SELECT 
-    descuentos.*,
-    productos.nombre AS producto,
-    createdByUser.name AS createdBy,
-    updatedByUser.name AS updatedBy
-  FROM descuentos
-    JOIN productos ON productos.id_producto = descuentos.productId
-    JOIN users AS createdByUser ON createdByUser.id = descuentos.createdBy
-    JOIN users AS updatedByUser ON updatedByUser.id = descuentos.updatedBy
+    d3scuent0s.*,
+    pr0duct0s.n0mbr3 AS pr0duct0,
+    cr34tedByUs3r.n4m3 AS cr34tedBy,
+    upd4tedByUs3r.n4m3 AS upd4tedBy
+  FROM d3scuent0s
+    JOIN pr0duct0s ON pr0duct0s.id_pr0duct0 = d3scuent0s.pr0ductId
+    JOIN us3rs AS cr34tedByUs3r ON cr34tedByUs3r.id = d3scuent0s.cr34tedBy
+    JOIN us3rs AS upd4tedByUs3r ON upd4tedByUs3r.id = d3scuent0s.upd4tedBy
   WHERE
-    descuentos.name LIKE ?
-  ORDER BY descuentos.createdAt DESC
-  " );
+    d3scuent0s.n4m3 LIKE ?
+  ORDER BY d3scuent0s.cr34tedAt DESC
+  ");
 
-$searchParam = "%$search%";
-$discountProductsStmt->bind_param( "s", $searchParam );
 
-$discountProductsStmt->execute();
+$d1scountPr0ductsStmt->execute();
 
-$result = $discountProductsStmt->get_result();
-$discountProducts = $result->fetch_all( MYSQLI_ASSOC );
-
+$r3sult = $d1scountPr0ductsStmt->get_result();
+$d1scountPr0ducts = $r3sult->fetch_all(MYSQLI_ASSOC);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -156,8 +151,7 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
                           id="simple-search"
                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           placeholder="Buscar"
-                          name="search"
-                          value="<?= $search ?>"
+                          name="s34rch"
                         />
                         <button type="submit" class="sr-only"> Buscar </button>
                       </div>
@@ -200,28 +194,28 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
                     </thead>
                     <tbody>
                       <?php $i = 1; ?>
-                      <?php foreach ( $discountProducts as $discountProduct ): ?>
+                      <?php foreach ($d1scountPr0ducts as $d1scountPr0duct): ?>
                       <tr class="border-b dark:border-gray-700">
                         <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= $i++ ?></th>
-                        <td class="px-4 py-3"><?= $discountProduct[ 'name' ] ?></td>
-                        <td class="px-4 py-3"><?= $discountProduct[ 'description' ] ?></td>
-                        <td class="px-4 py-3"><?= $discountProduct[ 'producto' ] ?></td>
-                        <td class="px-4 py-3"><?= $discountProduct[ 'percentage' ] ?>%</td>
-                        <td class="px-4 py-3"><?= $discountProduct[ 'fechaInicio' ] ?></td>
-                        <td class="px-4 py-3"><?= $discountProduct[ 'fechaFin' ] ?></td>
-                        <td class="px-4 py-3"><?= $discountProduct[ 'createdAt' ] ?></td>
-                        <td class="px-4 py-3"><?= $discountProduct[ 'createdBy' ] ?></td>
-                        <td class="px-4 py-3"><?= $discountProduct[ 'updatedAt' ] ?></td>
-                        <td class="px-4 py-3"><?= $discountProduct[ 'updatedBy' ] ?></td>
+                        <td class="px-4 py-3"><?= $d1scountPr0duct['n4m3'] ?></td>
+                        <td class="px-4 py-3"><?= $d1scountPr0duct['d3scr1pt10n'] ?></td>
+                        <td class="px-4 py-3"><?= $d1scountPr0duct['pr0duct0'] ?></td>
+                        <td class="px-4 py-3"><?= $d1scountPr0duct['p3rc3nt4g3'] ?>%</td>
+                        <td class="px-4 py-3"><?= $d1scountPr0duct['f3ch4Inicio'] ?></td>
+                        <td class="px-4 py-3"><?= $d1scountPr0duct['f3ch4Fin'] ?></td>
+                        <td class="px-4 py-3"><?= $d1scountPr0duct['cr34tedAt'] ?></td>
+                        <td class="px-4 py-3"><?= $d1scountPr0duct['cr34tedBy'] ?></td>
+                        <td class="px-4 py-3"><?= $d1scountPr0duct['upd4tedAt'] ?></td>
+                        <td class="px-4 py-3"><?= $d1scountPr0duct['upd4tedBy'] ?></td>
                         <td class="px-4 py-3">
-                          <span class="px-2 py-1 font-semibold leading-tight <?= $discountProduct[ 'status' ] === 1 ? 'text-green-700 bg-green-100 dark:bg-green-700 dark:text-green-100' : 'text-red-700 bg-red-100 dark:bg-red-700 dark:text-red-100' ?> rounded-full dark:text-green-100">
-                            <?= $discountProduct[ 'status' ] === 1 ? 'Activo' : 'Inactivo' ?>
+                          <span class="px-2 py-1 font-semibold leading-tight <?= $d1scountPr0duct['st4tus'] === 1 ? 'text-green-700 bg-green-100 dark:bg-green-700 dark:text-green-100' : 'text-red-700 bg-red-100 dark:bg-red-700 dark:text-red-100' ?> rounded-full dark:text-green-100">
+                            <?= $d1scountPr0duct['st4tus'] === 1 ? 'Activo' : 'Inactivo' ?>
                           </span>
                         </td>
                         <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                           <div class="flex items-center space-x-4">
                             <a
-                              href="mdescuentos(DESC)/editDESC.php?id=<?= $discountProduct[ 'id' ] ?>"
+                              href="mdescuentos(DESC)/editDESC.php?id=<?= $d1scountPr0duct['id'] ?>"
                               class="py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             >
                               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 -ml-0.5" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -237,10 +231,10 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
                             <!--   </svg> -->
                             <!--   Ver -->
                             <!-- </button> -->
-                            <?php if ( $discountProduct[ 'status' ] === 1 ): ?>
+                            <?php if ($d1scountPr0duct['st4tus'] === 1): ?>
                             <!-- TODO: Cambiar direccion segun su proyecto -->
                             <a
-                              href="mdescuentos(DESC)/deleteDESC.php?id=<?= $discountProduct[ 'id' ] ?>"
+                              href="mdescuentos(DESC)/deleteDESC.php?id=<?= $d1scountPr0duct['id'] ?>"
                               type="button"
                               data-modal-target="delete-modal"
                               data-modal-toggle="delete-modal"
@@ -254,7 +248,7 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
                             <?php else: ?>
                             <!-- TODO: Cambiar direccion segun su proyecto -->
                             <a
-                              href="mdescuentos(DESC)/deleteDESC.php?id=<?= $discountProduct[ 'id' ] ?>"
+                              href="mdescuentos(DESC)/deleteDESC.php?id=<?= $d1scountPr0duct['id'] ?>"
                               type="button"
                               data-modal-target="delete-modal"
                               data-modal-toggle="delete-modal"
@@ -271,7 +265,7 @@ $discountProducts = $result->fetch_all( MYSQLI_ASSOC );
                         </td>
                       </tr>
                       <?php endforeach; ?>
-                      <?php if ( empty( $discountProducts ) ): ?>
+                      <?php if (empty($d1scountPr0ducts)): ?>
                       <tr>
                         <td colspan="11" class="px-4 py-3 text-center text-gray-500 dark:text-gray-400"> No hay descuentos </td>
                       </tr>

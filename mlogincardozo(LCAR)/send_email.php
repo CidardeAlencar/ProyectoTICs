@@ -37,4 +37,3 @@ function sendVerificationEmail($to, $subject, $message) {
         return false;
     }
 }
-?>

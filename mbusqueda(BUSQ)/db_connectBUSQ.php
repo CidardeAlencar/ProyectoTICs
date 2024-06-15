@@ -1,15 +1,15 @@
 <?php
 // Datos del servidor local
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_tienda";
+$obf_srvnm = "localhost";
+$obf_usrnm = "root";
+$obf_pswrd = "";
+$obf_dbnm = "db_tienda";
 
 // Crear conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
+$obf_cnn = new mysqli($obf_srvnm, $obf_usrnm, $obf_pswrd, $obf_dbnm);
 
 // Verificar conexión
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($obf_cnn->connect_error) {
+    die("Connection failed: " . $obf_cnn->connect_error);
 }
 ?>

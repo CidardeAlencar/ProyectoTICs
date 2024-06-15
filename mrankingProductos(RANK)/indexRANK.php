@@ -9,41 +9,35 @@
     <h2>PRODUCTOS MAS VENDIDOS DEL SITIO WEB</h2>
     
     <?php
-    // Establecer la conexión con la base de datos
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "tics";
+    $x12_v3 = "localhost";
+    $y34_v3 = "root";
+    $z56_v3 = "";
+    $db78_v3 = "tics";
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $con_v3 = new mysqli($x12_v3, $y34_v3, $z56_v3, $db78_v3);
     
-    // Verificar la conexión
-    if ($conn->connect_error) {
-        die("Error en la conexión: " . $conn->connect_error);
+    if ($con_v3->connect_error) {
+        die("Error en la conexión: " . $con_v3->connect_error);
     }
 
-    // Consulta SQL para obtener los elementos de la tabla producto
-    $sql = "SELECT * FROM producto";
-    $result = $conn->query($sql);
+    $s23_v3 = "SELECT * FROM producto";
+    $r45_v3 = $con_v3->query($s23_v3);
 
-    if ($result->num_rows > 0) {
-        // Mostrar los datos en una tabla
+    if ($r45_v3->num_rows > 0) {
         echo "<table border='1'>";
         echo "<tr><th>ID</th><th>Nombre</th><th>Descripción</th><th>Ranking De preferencia</th></tr>";
-        while($row = $result->fetch_assoc()) {
-            echo "<tr><td>".$row["id"]."</td><td>".$row["nombre"]."</td><td>".$row["descripcion"]."</td><td>".$row["precio"]."</td></tr>";
+        while($rw67_v3 = $r45_v3->fetch_assoc()) {
+            echo "<tr><td>".$rw67_v3["id"]."</td><td>".$rw67_v3["nombre"]."</td><td>".$rw67_v3["descripcion"]."</td><td>".$rw67_v3["precio"]."</td></tr>";
         }
         echo "</table>";
     } else {
         echo "No se encontraron elementos en la tabla producto";
     }
 
-    $conn->close();
+    $con_v3->close();
     ?>
 
     <br>
 
 </body>
 </html>
-
-

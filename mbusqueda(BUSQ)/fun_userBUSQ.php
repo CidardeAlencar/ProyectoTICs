@@ -2,41 +2,41 @@
 include 'db_connectBUSQ.php';
 
 // FUNCIONALIDAD DE LA VISTA USUARIO
-$searchType = $_GET['searchType'] ?? null;
-$searchInput = $_GET['searchInput'] ?? null;
-$filter = $_GET['filter'] ?? null;
-$sql = "SELECT * FROM productos";
+$obf_st = $_GET['searchType'] ?? null;
+$obf_si = $_GET['searchInput'] ?? null;
+$obf_flt = $_GET['filter'] ?? null;
+$obf_sql = "SELECT * FROM productos";
 
-if ($searchType && $searchInput) {
-    if ($searchType == 'nombre') {
-        $sql .= " WHERE nombre LIKE '%$searchInput%'";
-    } elseif ($searchType == 'categoria') {
-        $sql .= " WHERE categoria LIKE '%$searchInput%'";
+if ($obf_st && $obf_si) {
+    if ($obf_st == 'nombre') {
+        $obf_sql .= " WHERE nombre LIKE '%$obf_si%'";
+    } elseif ($obf_st == 'categoria') {
+        $obf_sql .= " WHERE categoria LIKE '%$obf_si%'";
     }
-} elseif ($filter) {
-    if ($filter == 'offers') {
-        $sql .= " WHERE oferta = 1";
-    } elseif ($filter == 'bestSellers') {
-        $sql .= " WHERE ventas > 20";
+} elseif ($obf_flt) {
+    if ($obf_flt == 'offers') {
+        $obf_sql .= " WHERE oferta = 1";
+    } elseif ($obf_flt == 'bestSellers') {
+        $obf_sql .= " WHERE ventas > 20";
     }
 }
 
-$result = $conn->query($sql);
-$output = "";
+$obf_r = $conn->query($obf_sql);
+$obf_out = "";
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $output .= "<div class='product'>";
-        $output .= "<img src='" . $row["imagen"] . "' alt='" . $row["nombre"] . "'>";
-        $output .= "<p>" . ($row["oferta"] ? "En oferta" : "") . "</p>";
-        $output .= "<h2>" . $row["nombre"] . "</h2>";
-        $output .= "<p>Precio: Bs " . $row["precio"] . "</p>";
-        // $output .= "<p>Ventas: " . $row["ventas"] . "</p>";
-        $output .= "</div>";
+if ($obf_r->num_rows > 0) {
+    while ($obf_row = $obf_r->fetch_assoc()) {
+        $obf_out .= "<div class='product'>";
+        $obf_out .= "<img src='" . $obf_row["imagen"] . "' alt='" . $obf_row["nombre"] . "'>";
+        $obf_out .= "<p>" . ($obf_row["oferta"] ? "En oferta" : "") . "</p>";
+        $obf_out .= "<h2>" . $obf_row["nombre"] . "</h2>";
+        $obf_out .= "<p>Precio: Bs " . $obf_row["precio"] . "</p>";
+        // $obf_out .= "<p>Ventas: " . $obf_row["ventas"] . "</p>";
+        $obf_out .= "</div>";
     }
 } else {
-    $output = "No se encontraron productos.";
+    $obf_out = "No se encontraron productos.";
 }
-echo $output;
+echo $obf_out;
 $conn->close();
 ?>
