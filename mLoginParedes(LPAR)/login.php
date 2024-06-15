@@ -1,51 +1,37 @@
 <?php
 session_start();
-require 'config.php';  // Incluye tu archivo de configuración de base de datos
-require 'send_email.php'; // Incluye el archivo de envío de email
-
-$error = '';
-
+require 'config.php';
+require 'send_email.php';
+$_A = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $ci = $_POST['ci'];
-    $captcha = $_POST['captcha'];
-
-    // Verificar el captcha
-    if ($captcha !== $_SESSION['captcha']) {
-        $error = "Captcha incorrecto.";
+    $_B = $_POST['ci'];
+    $_C = $_POST['captcha'];
+    if ($_C !== $_SESSION['captcha']) {
+        $_A = "Captcha incorrecto.";
     } else {
-        // Verifica el CI del usuario
-        $stmt = $conn->prepare("SELECT id, email FROM empleados WHERE ci = ?");
-        $stmt->bind_param("s", $ci);
-        $stmt->execute();
-        $stmt->store_result();
-
-        if ($stmt->num_rows == 1) {
-            $stmt->bind_result($id, $email);
-            $stmt->fetch();
-
-            // Genera el código de verificación y su tiempo de expiración
-            $code = rand(100000, 999999);
-            $expires = date("Y-m-d H:i:s", strtotime('+10 minutes'));
-
-            // Almacena el código y la expiración en la base de datos
-            $stmt = $conn->prepare("UPDATE empleados SET 2fa_code = ?, 2fa_expires = ? WHERE id = ?");
-            $stmt->bind_param("ssi", $code, $expires, $id);
-            $stmt->execute();
-
-            // Envía el código de verificación por correo electrónico usando PHPMailer
-            $subject = "Tu código de verificación";
-            $message = "Tu código de verificación es: $code";
-
-            if (sendVerificationEmail($email, $subject, $message)) {
-                // Almacena temporalmente el ID del usuario en la sesión y redirige a la página de verificación
-                $_SESSION['user_id'] = $id;
+        $_D = $conn->prepare("SELECT id, email FROM empleados WHERE ci = ?");
+        $_D->bind_param("s", $_B);
+        $_D->execute();
+        $_D->store_result();
+        if ($_D->num_rows == 1) {
+            $_D->bind_result($_E, $_F);
+            $_D->fetch();
+            $_G = rand(100000, 999999);
+            $_H = date("Y-m-d H:i:s", strtotime('+10 minutes'));
+            $_I = $conn->prepare("UPDATE empleados SET 2fa_code = ?, 2fa_expires = ? WHERE id = ?");
+            $_I->bind_param("ssi", $_G, $_H, $_E);
+            $_I->execute();
+            $_J = "Tu código de verificación";
+            $_K = "Tu código de verificación es: $_G";
+            if (sendVerificationEmail($_F, $_J, $_K)) {
+                $_SESSION['user_id'] = $_E;
                 header("Location: verify.php");
                 exit();
             } else {
-                $error = "Error al enviar el correo electrónico.";
+                $_A = "Error al enviar el correo electrónico.";
             }
         } else {
-            $error = "CI no encontrado.";
+            $_A = "CI no encontrado.";
         }
     }
 }
@@ -60,8 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <h2>Login</h2>
-        <?php if ($error): ?>
-            <div class="error-message"><?php echo $error; ?></div>
+        <?php if ($_A): ?>
+            <div class="error-message"><?php echo $_A; ?></div>
         <?php endif; ?>
         <form method="post" action="login.php">
             <label for="ci">CI:</label>

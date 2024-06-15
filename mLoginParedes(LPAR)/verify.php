@@ -2,35 +2,32 @@
 session_start();
 require 'config.php';
 
-$error = '';
+$_A = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $code = $_POST['code'];
-    $user_id = $_SESSION['user_id'];
+    $_B = $_POST['code'];
+    $_C = $_SESSION['user_id'];
 
-    // Verifica el código y la expiración
-    $stmt = $conn->prepare("SELECT 2fa_code, 2fa_expires FROM empleados WHERE id = ?");
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $stmt->bind_result($stored_code, $expires);
-    $stmt->fetch();
-    $stmt->close();  // Cierra el statement actual para evitar el error de sincronización
+    $_D = $conn->prepare("SELECT 2fa_code, 2fa_expires FROM empleados WHERE id = ?");
+    $_D->bind_param("i", $_C);
+    $_D->execute();
+    $_D->bind_result($_E, $_F);
+    $_D->fetch();
+    $_D->close();
 
-    if ($code == $stored_code && new DateTime() < new DateTime($expires)) {
-        // Código correcto y no expirado
+    if ($_B == $_E && new DateTime() < new DateTime($_F)) {
         $_SESSION['loggedin'] = true;
-        $_SESSION['user_id'] = $user_id;
+        $_SESSION['user_id'] = $_C;
 
-        // Limpia el código de verificación
-        $stmt = $conn->prepare("UPDATE empleados SET 2fa_code = NULL, 2fa_expires = NULL WHERE id = ?");
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $stmt->close();
+        $_G = $conn->prepare("UPDATE empleados SET 2fa_code = NULL, 2fa_expires = NULL WHERE id = ?");
+        $_G->bind_param("i", $_C);
+        $_G->execute();
+        $_G->close();
 
         header("Location: welcome.php");
         exit();
     } else {
-        $error = "Código de verificación incorrecto o expirado.";
+        $_A = "Código de verificación incorrecto o expirado.";
     }
 }
 ?>
@@ -44,8 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <h2>Verificación de Dos Factores</h2>
-        <?php if ($error): ?>
-            <div class="error-message"><?php echo $error; ?></div>
+        <?php if ($_A): ?>
+            <div class="error-message"><?php echo $_A; ?></div>
         <?php endif; ?>
         <form method="post" action="verify.php">
             <label for="code">Código de Verificación:</label>

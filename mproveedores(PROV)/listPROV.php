@@ -1,23 +1,17 @@
 <?php
-// Conexión a la base de datos
-$servername = "localhost";
-$username = "root"; // Cambia esto según tu configuración
-$password = ""; // Cambia esto según tu configuración
-$dbname = "prov";
+$_A = "localhost";
+$_B = "root";
+$_C = "";
+$_D = "prov";
+$_E = new mysqli($_A, $_B, $_C, $_D);
 
-// Crear conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+if ($_E->connect_error) {
+    die("Conexión fallida: " . $_E->connect_error);
 }
 
-// Obtener lista de proveedores
-$sql = "SELECT * FROM proveedor";
-$result = $conn->query($sql);
+$_F = "SELECT * FROM proveedor";
+$_G = $_E->query($_F);
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -41,20 +35,20 @@ $result = $conn->query($sql);
                     <th class="table-cell-td">Página Web</th>
                 </tr>
                 <?php
-                if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
+                if ($_G->num_rows > 0) {
+                    while($_H = $_G->fetch_assoc()) {
                         echo "<tr class='contenedor-tr'>
-                                <td class='table-cell-td'>{$row['NITProveedor']}</td>
-                                <td class='table-cell-td'>{$row['NombreProveedor']}</td>
-                                <td class='table-cell-td'>{$row['Direccion']}</td>
-                                <td class='table-cell-td'>{$row['Telefono']}</td>
-                                <td class='table-cell-td'><a href='{$row['PaginaWeb']}' target='_blank'>{$row['PaginaWeb']}</a></td>
+                                <td class='table-cell-td'>{$_H['NITProveedor']}</td>
+                                <td class='table-cell-td'>{$_H['NombreProveedor']}</td>
+                                <td class='table-cell-td'>{$_H['Direccion']}</td>
+                                <td class='table-cell-td'>{$_H['Telefono']}</td>
+                                <td class='table-cell-td'><a href='{$_H['PaginaWeb']}' target='_blank'>{$_H['PaginaWeb']}</a></td>
                               </tr>";
                     }
                 } else {
                     echo "<tr class='contenedor-tr'><td class='table-cell-td' colspan='5'>No hay proveedores</td></tr>";
                 }
-                $conn->close();
+                $_E->close();
                 ?>
             </table>
         </div>

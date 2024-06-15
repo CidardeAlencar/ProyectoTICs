@@ -21,8 +21,7 @@
                     <i class="fa fa-map-marker" aria-hidden="true">&nbsp; Encuentranos </i>
                 </a>
             </div>
-    
-           
+        </div>
     </div>
     <br><br><br>
     <h5 class="text-center tittles-pages-logo text-footer">STORE &copy; 2021</h5>

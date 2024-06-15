@@ -1,54 +1,46 @@
 <?php
-include 'connection.php';
+@include 'connection.php';
 
-// Obtener el ID del producto a editar desde la URL
-$idProducto = $_GET['id'];
+$_A = $_GET['id'];
+$_B = "SELECT * FROM productos WHERE id_producto = $_A";
+$_C = mysqli_query($conexion, $_B);
 
-// Consulta para obtener los datos del producto a editar
-$consulta = "SELECT * FROM productos WHERE id_producto = $idProducto";
-$resultado = mysqli_query($conexion, $consulta);
-
-// Si se encontró el producto, se muestran sus datos en el formulario
-if ($resultado && mysqli_num_rows($resultado) == 1) {
-    $row = mysqli_fetch_assoc($resultado);
-
-    $nombre = $row['nombre'];
-    $descripcion = $row['descripcion'];
-    $precio = $row['precio'];
-    $categoria = $row['categoria'];
-    $estado = $row['estado'];
-    $imagenPrincipal = $row['imagen_principal'];
+if ($_C && mysqli_num_rows($_C) == 1) {
+    $_D = mysqli_fetch_assoc($_C);
+    $_E = $_D['nombre'];
+    $_F = $_D['descripcion'];
+    $_G = $_D['precio'];
+    $_H = $_D['categoria'];
+    $_I = $_D['estado'];
+    $_J = $_D['imagen_principal'];
 } else {
-    // Si no se encontró el producto, se muestra un mensaje de error
     echo '<p>Producto no encontrado.</p>';
     exit();
 }
 
-// Si se envía el formulario, se actualiza la información del producto
 if (isset($_POST['enviar'])) {
-    $nombreActualizado = $_POST['nombre'];
-    $descripcionActualizada = $_POST['descripcion'];
-    $precioActualizado = $_POST['precio'];
-    $categoriaActualizada = $_POST['categoria'];
-    $estadoActualizado = $_POST['estado'];
-    $imagenPrincipalActualizada = $_POST['imagenPrincipal'];
+    $_K = $_POST['nombre'];
+    $_L = $_POST['descripcion'];
+    $_M = $_POST['precio'];
+    $_N = $_POST['categoria'];
+    $_O = $_POST['estado'];
+    $_P = $_POST['imagenPrincipal'];
 
-    $consultaActualizacion = "UPDATE productos SET 
-                                nombre = '$nombreActualizado', 
-                                descripcion = '$descripcionActualizada', 
-                                precio = $precioActualizado, 
-                                categoria = '$categoriaActualizada', 
-                                estado = '$estadoActualizado', 
-                                imagen_principal = '$imagenPrincipalActualizada' 
-                            WHERE id_producto = $idProducto";
+    $_Q = "UPDATE productos SET 
+            nombre = '$_K', 
+            descripcion = '$_L', 
+            precio = $_M, 
+            categoria = '$_N', 
+            estado = '$_O', 
+            imagen_principal = '$_P' 
+        WHERE id_producto = $_A";
 
-    if (mysqli_query($conexion, $consultaActualizacion)) {
+    if (mysqli_query($conexion, $_Q)) {
         echo '<script>alert("Producto actualizado exitosamente"); window.location.href = "../index.php";</script>';
     } else {
         echo '<script>alert("Error al actualizar el producto");</script>';
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -58,116 +50,97 @@ if (isset($_POST['enviar'])) {
     <title>Editar producto</title>
     <link rel="stylesheet" href="style.css">
 </head>
-    <style>
-        /* Estilos CSS generales (igual que antes, pero sin header y footer) */
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fc;
-        }
-
-        main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h1, h2 {
-            color: #333;
-            text-align: center;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #e99c2e;
-            color: #fff;
-        }
-
-        a {
-            color: #e99c2e;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #e68a0d;
-        }
-
-        button {
-            background-color: #e99c2e; /* Color principal (cambiado) */
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #e68a0d;
-        }
-
-        /* Formularios */
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        input[type="file"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-
-        /* Ajustes para dispositivos móviles */
-
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-            }
-        }
-    </style>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fc;
+}
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+h1, h2 {
+    color: #333;
+    text-align: center;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #e99c2e;
+    color: #fff;
+}
+a {
+    color: #e99c2e;
+    text-decoration: none;
+}
+a:hover {
+    color: #e68a0d;
+}
+button {
+    background-color: #e99c2e;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #e68a0d;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="text"],
+input[type="number"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
+</style>
 <body>
     <main>
         <div class="container">
             <h2>Editar producto</h2>
-            <form action="editar_producto.php?id=<?php echo $idProducto; ?>" method="post">
+            <form action="editar_producto.php?id=<?php echo $_A; ?>" method="post">
                 <table border="0" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
                     <tr>
                         <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">
                             <label for="nombre">Nombre:</label>
                         </td>
                         <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">
-                            <input type="text" id="nombre" name="nombre" value="<?php echo $nombre; ?>" required>
+                            <input type="text" id="nombre" name="nombre" value="<?php echo $_E; ?>" required>
                         </td>
                     </tr>
                     <tr>
@@ -175,7 +148,7 @@ if (isset($_POST['enviar'])) {
                             <label for="descripcion">Descripción:</label>
                         </td>
                         <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">
-                            <textarea id="descripcion" name="descripcion" rows="5" required><?php echo $descripcion; ?></textarea>
+                            <textarea id="descripcion" name="descripcion" rows="5" required><?php echo $_F; ?></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -183,7 +156,7 @@ if (isset($_POST['enviar'])) {
                             <label for="precio">Precio:</label>
                         </td>
                         <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">
-                            <input type="number" id="precio" name="precio" step="0.01" value="<?php echo $precio; ?>" required>
+                            <input type="number" id="precio" name="precio" step="0.01" value="<?php echo $_G; ?>" required>
                         </td>
                     </tr>
                     <tr>
@@ -191,7 +164,7 @@ if (isset($_POST['enviar'])) {
                             <label for="categoria">Categoría:</label>
                         </td>
                         <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">
-                            <input type="text" id="categoria" name="categoria" value="<?php echo $categoria; ?>" required>
+                            <input type="text" id="categoria" name="categoria" value="<?php echo $_H; ?>" required>
                         </td>
                     </tr>
                     <tr>
@@ -199,7 +172,7 @@ if (isset($_POST['enviar'])) {
                             <label for="estado">Estado:</label>
                         </td>
                         <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">
-                            <select id="estado" name="estado" value="<?php echo $estado; ?>" required>
+                            <select id="estado" name="estado" value="<?php echo $_I; ?>" required>
                                 <option value="activo">Activo</option>
                                 <option value="inactivo">Inactivo</option>
                             </select>

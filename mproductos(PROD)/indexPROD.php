@@ -1,12 +1,9 @@
 <?php
-include 'connection.php';
+@include 'connection.php';
 
-$consulta = "SELECT * FROM productos";
-$resultado = mysqli_query($conexion, $consulta);
-
+$_A = "SELECT * FROM productos";
+$_B = mysqli_query($conexion, $_A);
 ?>
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,22 +11,18 @@ $resultado = mysqli_query($conexion, $consulta);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear producto</title>
     <style>
-        /* Estilos CSS generales (igual que antes, pero sin header y footer) */
-
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f8f9fc;
         }
-
         main {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
-
         .container {
             background-color: #fff;
             padding: 30px;
@@ -39,58 +32,46 @@ $resultado = mysqli_query($conexion, $consulta);
             max-width: 800px;
             margin: 0 auto;
         }
-
         h1, h2 {
             color: #333;
             text-align: center;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
         }
-
         th, td {
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
-
         th {
             background-color: #e99c2e;
             color: #fff;
         }
-
         a {
             color: #e99c2e;
             text-decoration: none;
         }
-
         a:hover {
             color: #e68a0d;
         }
-
         button {
-            background-color: #e99c2e; /* Color principal (cambiado) */
+            background-color: #e99c2e;
             color: #fff;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-
         button:hover {
             background-color: #e68a0d;
         }
-
-        /* Formularios */
-
         label {
             display: block;
             margin-bottom: 5px;
         }
-
         input[type="text"],
         input[type="number"],
         input[type="file"],
@@ -102,9 +83,6 @@ $resultado = mysqli_query($conexion, $consulta);
             border-radius: 5px;
             margin-bottom: 15px;
         }
-
-        /* Ajustes para dispositivos móviles */
-
         @media (max-width: 768px) {
             .container {
                 width: 95%;
@@ -116,7 +94,6 @@ $resultado = mysqli_query($conexion, $consulta);
     <main>
         <div class="container">
             <h2>Lista de productos</h2>
-
             <table>
                 <thead>
                     <tr>
@@ -131,25 +108,25 @@ $resultado = mysqli_query($conexion, $consulta);
                 </thead>
                 <tbody>
                     <?php
-                    if ($resultado) {
-                        while ($row = mysqli_fetch_assoc($resultado)) {
-                            $idProducto = $row['id_producto'];
-                            $nombre = $row['nombre'];
-                            $descripcion = $row['descripcion'];
-                            $precio = $row['precio'];
-                            $categoria = $row['categoria'];
-                            $estado = $row['estado'];
+                    if ($_B) {
+                        while ($_C = mysqli_fetch_assoc($_B)) {
+                            $_D = $_C['id_producto'];
+                            $_E = $_C['nombre'];
+                            $_F = $_C['descripcion'];
+                            $_G = $_C['precio'];
+                            $_H = $_C['categoria'];
+                            $_I = $_C['estado'];
 
                             echo "<tr>
-                                <td>$idProducto</td>
-                                <td>$nombre</td>
-                                <td>$descripcion</td>
-                                <td>$precio</td>
-                                <td>$categoria</td>
-                                <td>$estado</td>
+                                <td>$_D</td>
+                                <td>$_E</td>
+                                <td>$_F</td>
+                                <td>$_G</td>
+                                <td>$_H</td>
+                                <td>$_I</td>
                                 <td>
-                                    <a href='mproductos(PROD)/editar_producto.php?id=$idProducto'>Editar</a> | 
-                                    <a href='mproductos(PROD)/eliminar_producto.php?id=$idProducto'>Eliminar</a>
+                                    <a href='mproductos(PROD)/editar_producto.php?id=$_D'>Editar</a> | 
+                                    <a href='mproductos(PROD)/eliminar_producto.php?id=$_D'>Eliminar</a>
                                 </td>
                             </tr>";
                         }
@@ -159,7 +136,6 @@ $resultado = mysqli_query($conexion, $consulta);
                     ?>
                 </tbody>
             </table>
-
             <a href="mproductos(PROD)/crear_producto.php">Crear nuevo producto</a>
         </div>
     </main>

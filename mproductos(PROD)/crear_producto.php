@@ -1,17 +1,17 @@
 <?php
-include 'connection.php';
+@include 'connection.php';
 
 if (isset($_POST['enviar'])) {
-    $nombre = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
-    $precio = $_POST['precio'];
-    $categoria = $_POST['categoria'];
-    $estado = $_POST['estado'];
-    $imagenPrincipal = $_POST['imagenPrincipal'];
+    $_A = $_POST['nombre'];
+    $_B = $_POST['descripcion'];
+    $_C = $_POST['precio'];
+    $_D = $_POST['categoria'];
+    $_E = $_POST['estado'];
+    $_F = $_POST['imagenPrincipal'];
 
-    $consulta = "INSERT INTO productos (nombre, descripcion, precio, categoria, estado, imagen_principal) VALUES ('$nombre', '$descripcion', $precio, '$categoria', '$estado', '$imagenPrincipal')";
+    $_G = "INSERT INTO productos (nombre, descripcion, precio, categoria, estado, imagen_principal) VALUES ('$_A', '$_B', $_C, '$_D', '$_E', '$_F')";
 
-    if (mysqli_query($conexion, $consulta)) {
+    if (mysqli_query($conexion, $_G)) {
         echo '<script>alert("Producto creado exitosamente"); window.location.href = "../index.php";</script>';
     } else {
         echo '<script>alert("Error al crear el producto");</script>';
@@ -27,90 +27,74 @@ if (isset($_POST['enviar'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear producto</title>
     <link rel="stylesheet" href="assets/css/style.css">
-</head><style>
-    /* Estilos generales */
-
+</head>
+<style>
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fc; /* Color de fondo del cuerpo */
+    background-color: #f8f9fc;
 }
-
 header {
-    background-color: #fff; /* Color de fondo del encabezado */
+    background-color: #fff;
     padding: 20px;
     text-align: center;
 }
-
 main {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Altura mínima del contenido principal */
+    min-height: 100vh;
 }
-
 .container {
-    background-color: #fff; /* Color de fondo del contenedor principal */
+    background-color: #fff;
     padding: 30px;
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
-    width: 80%; /* Ancho del contenedor */
-    max-width: 800px; /* Ancho máximo */
-    margin: 0 auto; /* Centrar el contenedor */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
 }
-
 h1, h2 {
-    color: #333; /* Color de los títulos */
+    color: #333;
     text-align: center;
 }
-
 table {
     width: 100%;
-    border-collapse: collapse; /* Eliminar bordes entre celdas */
+    border-collapse: collapse;
     margin: 20px 0;
 }
-
 th, td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
-
 th {
-    background-color: #e99c2e; /* Color de fondo de los encabezados de tabla */
-    color: #fff; /* Color del texto en los encabezados de tabla */
+    background-color: #e99c2e;
+    color: #fff;
 }
-
 a {
-    color: #e99c2e; /* Color de los enlaces */
-    text-decoration: none; /* Eliminar subrayado en los enlaces */
+    color: #e99c2e;
+    text-decoration: none;
 }
-
 a:hover {
-    color: #e68a0d; /* Color de los enlaces al pasar el cursor */
+    color: #e68a0d;
 }
-
 button {
-    background-color: #e99c2e; /* Color de fondo de los botones */
-    color: #fff; /* Color del texto en los botones */
+    background-color: #e99c2e;
+    color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
-
 button:hover {
-    background-color: #e68a0d; /* Color de fondo de los botones al pasar el cursor */
+    background-color: #e68a0d;
 }
-
-/* Formularios */
-
 label {
     display: block;
     margin-bottom: 5px;
 }
-
 input[type="text"],
 input[type="number"],
 input[type="file"],
@@ -122,15 +106,11 @@ textarea {
     border-radius: 5px;
     margin-bottom: 15px;
 }
-
-/* Ajustes para dispositivos móviles */
-
 @media (max-width: 768px) {
     .container {
-        width: 95%; /* Ancho del contenedor en dispositivos móviles */
+        width: 95%;
     }
 }
-
 </style>
 <body>
     <main>

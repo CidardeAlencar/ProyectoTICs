@@ -4,48 +4,40 @@
     <title>Home</title>
     <?php include 'mproveedores(PROV)/inc/linkPROV.php'; ?>
 </head>
-
 <body id="container-page-index">
     <?php include 'mproveedores(PROV)/inc/navbarPROV.php'; ?>
     
-    <!-- Sección de proveedores -->
     <section class="providers-section">
         <div class="container">
             <?php
-            // Conexión a la base de datos
-            $servername = "localhost";
-            $username = "root"; // Cambia esto según tu configuración
-            $password = ""; // Cambia esto según tu configuración
-            $dbname = "prov";
+            $_A = "localhost";
+            $_B = "root";
+            $_C = "";
+            $_D = "prov";
+            $_E = new mysqli($_A, $_B, $_C, $_D);
 
-            // Crear conexión
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            // Verificar conexión
-            if ($conn->connect_error) {
-                die("Conexión fallida: " . $conn->connect_error);
+            if ($_E->connect_error) {
+                die("Conexión fallida: " . $_E->connect_error);
             }
 
-            // Obtener lista de proveedores
-            $sql = "SELECT * FROM proveedor";
-            $result = $conn->query($sql);
+            $_F = "SELECT * FROM proveedor";
+            $_G = $_E->query($_F);
 
-            if ($result->num_rows > 0) {
-                // Iterar sobre los resultados y mostrar cada proveedor
-                while($row = $result->fetch_assoc()) {
+            if ($_G->num_rows > 0) {
+                while($_H = $_G->fetch_assoc()) {
                     echo "<div class='provider-card'>";
-                    echo "<img src='mproveedores(PROV)/{$row['Imagen']}' alt='{$row['NombreProveedor']}'>";
+                    echo "<img src='mproveedores(PROV)/{$_H['Imagen']}' alt='{$_H['NombreProveedor']}'>";
                     echo "<div class='provider-details'>";
-                    echo "<h2>{$row['NombreProveedor']}</h2>";
-                    echo "<p>Dirección: {$row['Direccion']}</p>";
-                    echo "<p>Teléfono: {$row['Telefono']}</p>";
+                    echo "<h2>{$_H['NombreProveedor']}</h2>";
+                    echo "<p>Dirección: {$_H['Direccion']}</p>";
+                    echo "<p>Teléfono: {$_H['Telefono']}</p>";
                     echo "<a href='#' class='btn'>Ver más</a>";
                     echo "</div></div>";
                 }
             } else {
                 echo "No hay proveedores registrados";
             }
-            $conn->close();
+            $_E->close();
             ?>
         </div>
     </section>

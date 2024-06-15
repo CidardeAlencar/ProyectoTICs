@@ -1,16 +1,16 @@
 <?php
 
-function connection(){
-    $host = "localhost";
-    $user = "root";
-    $pass = "";
+function c0nn3cti0n(){
+    $_H = "localhost";
+    $_U = "root";
+    $_P = "";
 
-    $bd = "users_crud_php";
+    $_D = "users_crud_php";
 
-    $connect = mysqli_connect($host, $user, $pass);
+    $_C = mysqli_connect($_H, $_U, $_P);
 
-    mysqli_select_db($connect, $bd);
+    mysqli_select_db($_C, $_D);
 
-    return $connect;
+    return $_C;
 };
 ?>

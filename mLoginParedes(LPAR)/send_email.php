@@ -7,33 +7,28 @@ require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 
 function sendVerificationEmail($to, $subject, $message) {
-    $mail = new PHPMailer(true);
+    $_A = new PHPMailer(true);
     try {
-        // Configuración del servidor SMTP
-        $mail->isSMTP();
-        $mail->Host = 'smtp-mail.outlook.com';  // Servidor SMTP
-        $mail->SMTPAuth = true;
-        $mail->Username = 'novenoseguridad@outlook.es'; // Tu correo
-        $mail->Password = 'seguridad123';        // Tu contraseña
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587; // Puerto SMTP
+        $_A->isSMTP();
+        $_A->Host = 'smtp-mail.outlook.com';
+        $_A->SMTPAuth = true;
+        $_A->Username = 'novenoseguridad@outlook.es';
+        $_A->Password = 'seguridad123';
+        $_A->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $_A->Port = 587;
 
-        // Remitente
-        $mail->setFrom('novenoseguridad@outlook.es', 'Mailer');
+        $_A->setFrom('novenoseguridad@outlook.es', 'Mailer');
+        $_A->addAddress($to);
 
-        // Destinatario
-        $mail->addAddress($to);
+        $_A->isHTML(true);
+        $_A->Subject = $subject;
+        $_A->Body = $message;
+        $_A->AltBody = strip_tags($message);
 
-        // Contenido del correo
-        $mail->isHTML(true);
-        $mail->Subject = $subject;
-        $mail->Body    = $message;
-        $mail->AltBody = strip_tags($message);
-
-        $mail->send();
+        $_A->send();
         return true;
-    } catch (Exception $e) {
-        error_log("Mailer Error: {$mail->ErrorInfo}");
+    } catch (Exception $_B) {
+        error_log("Mailer Error: {$_A->ErrorInfo}");
         return false;
     }
 }
