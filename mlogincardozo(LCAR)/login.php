@@ -1,32 +1,34 @@
 <?php
 session_start();
-require 'mlogincardozo(LCAR)/config.php';  // Incluye tu archivo de configuración de base de datos
-require 'mlogincardozo(LCAR)/send_email.php'; // Incluye el archivo de envío de email
+require 'config.php';  // Incluye tu archivo de configuración de base de datos
+require 'send_email.php'; // Incluye el archivo de envío de email
 
 $error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
+    $ci = $_POST['ci'];
+    $captcha = $_POST['captcha'];
 
-    // Verifica las credenciales del usuario
-    $stmt = $conn->prepare("SELECT id, password FROM users WHERE username = ? AND email = ?");
-    $stmt->bind_param("ss", $username, $email);
-    $stmt->execute();
-    $stmt->store_result();
+    // Verificar el captcha
+    if ($captcha !== $_SESSION['captcha']) {
+        $error = "Captcha incorrecto.";
+    } else {
+        // Verifica el CI del usuario
+        $stmt = $conn->prepare("SELECT id, email FROM empleados WHERE ci = ?");
+        $stmt->bind_param("s", $ci);
+        $stmt->execute();
+        $stmt->store_result();
 
-    if ($stmt->num_rows == 1) {
-        $stmt->bind_result($id, $hashed_password);
-        $stmt->fetch();
+        if ($stmt->num_rows == 1) {
+            $stmt->bind_result($id, $email);
+            $stmt->fetch();
 
-        if (password_verify($password, $hashed_password)) {
             // Genera el código de verificación y su tiempo de expiración
             $code = rand(100000, 999999);
             $expires = date("Y-m-d H:i:s", strtotime('+10 minutes'));
 
             // Almacena el código y la expiración en la base de datos
-            $stmt = $conn->prepare("UPDATE users SET 2fa_code = ?, 2fa_expires = ? WHERE id = ?");
+            $stmt = $conn->prepare("UPDATE empleados SET 2fa_code = ?, 2fa_expires = ? WHERE id = ?");
             $stmt->bind_param("ssi", $code, $expires, $id);
             $stmt->execute();
 
@@ -37,16 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (sendVerificationEmail($email, $subject, $message)) {
                 // Almacena temporalmente el ID del usuario en la sesión y redirige a la página de verificación
                 $_SESSION['user_id'] = $id;
-                header("Location: mlogincardozo(LCAR)/verify.php");
+                header("Location: verify.php");
                 exit();
             } else {
                 $error = "Error al enviar el correo electrónico.";
             }
         } else {
-            $error = "Contraseña incorrecta.";
+            $error = "CI no encontrado.";
         }
-    } else {
-        $error = "Nombre de usuario o correo electrónico no encontrado.";
     }
 }
 ?>
@@ -63,15 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if ($error): ?>
             <div class="error-message"><?php echo $error; ?></div>
         <?php endif; ?>
-        <form method="post" action="mlogincardozo(LCAR)/login.php">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+        <form method="post" action="login.php">
+            <label for="ci">CI:</label>
+            <input type="text" id="ci" name="ci" required>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required>
+            <label for="captcha">Captcha:</label>
+            <input type="text" id="captcha" name="captcha" required>
+            <img src="captcha.php" alt="Captcha Image">
 
             <input type="submit" value="Login">
         </form>
