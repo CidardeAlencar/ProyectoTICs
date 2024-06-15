@@ -1,0 +1,21 @@
+.product-detail-card {
+    background-color: #A2DED0; /*Color verde agua*/
+    border-radius: 10px; 
+    padding: 20px; 
+}
+
+.product-detail-card h2 {
+    margin-bottom: 10px; 
+}
+
+.product-detail-card ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+.product-detail-card li {
+    margin-bottom: 5px; 
+}
+body {
+    background-color: #A2DED0; /* Color verde agua */
+}
