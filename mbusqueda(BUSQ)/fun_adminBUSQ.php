@@ -4,7 +4,7 @@ include 'db_connectBUSQ.php';
 // FUNCIONALIDAD VISTA ADMIN
 $searchType = $_GET['searchType'] ?? null;
 $searchInput = $_GET['searchInput'] ?? null;
-$sql = "SELECT * FROM admins";
+$sql = "SELECT * FROM admins_busq";
 
 if ($searchType) {
     if ($searchType == 'administrador' && $searchInput) {

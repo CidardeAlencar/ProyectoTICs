@@ -1,11 +1,11 @@
 -- Crear la base de datos
-CREATE DATABASE db_tienda;
+CREATE DATABASE users_crud_php;
 
 -- Usar la base de datos creada
-USE db_tienda;
+USE users_crud_php;
 
 -- Crear la tabla de productos
-CREATE TABLE productos (
+CREATE TABLE productos_busq (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     precio DECIMAL(10, 2) NOT NULL,
@@ -16,20 +16,22 @@ CREATE TABLE productos (
 );
 
 -- Insertar los valores para los productos de muebles
-INSERT INTO productos (nombre, precio, categoria, imagen, oferta, ventas) VALUES 
-('Silla Ergonómica', 59.99, 'Sillas', 'img/silla_ergonomica.jpg', 1, 25),
-('Mesa de Comedor', 199.99, 'Mesas', 'img/mesa_comedor.jpg', 0, 15),
-('Sofá de Cuero', 499.99, 'Sofás', 'img/sofa_cuero.jpg', 1, 10),
-('Cama King Size', 799.99, 'Camas', 'img/cama_king.jpg', 0, 5),
-('Estantería de Madera', 149.99, 'Estanterías', 'img/estanteria_madera.jpg', 1, 30),
-('Mesa de Centro', 89.99, 'Mesas', 'img/mesa_centro.jpg', 0, 20),
-('Silla de Oficina', 129.99, 'Sillas', 'img/silla_oficina.jpg', 1, 35),
-('Cama Individual', 299.99, 'Camas', 'img/cama_individual.jpg', 0, 40),
-('Sofá Seccional', 999.99, 'Sofás', 'img/sofa_seccional.jpg', 1, 8),
-('Mesa de Noche', 49.99, 'Mesas', 'img/mesa_noche.jpg', 0, 25);
+INSERT INTO productos_busq (nombre, precio, categoria, imagen, oferta, ventas) VALUES 
+('Silla Ergonómica', 59.99, 'Sillas', '../assets/images/collection/arrivals1.png', 0, 25),
+('Mesa de Comedor', 199.99, 'Mesas', '../assets/images/collection/arrivals6.png', 0, 15),
+('Sofá de Cuero', 499.99, 'Sofás', '../assets/images/collection/arrivals2.png', 1, 10),
+('Cama King Size', 799.99, 'Camas', '../assets/images/collection/arrivals8.png', 0, 5),
+('Estantería de Madera', 149.99, 'Estanterías', '../assets/images/collection/arrivals6.png', 1, 30),
+('Mesa de Centro', 89.99, 'Mesas', '../assets/images/collection/arrivals6.png', 0, 20),
+('Silla de Oficina', 129.99, 'Sillas', '../assets/images/collection/arrivals4.png', 1, 35),
+('Cama Individual', 299.99, 'Camas', '../assets/images/collection/arrivals8.png', 0, 40),
+('Sofá Seccional', 999.99, 'Sofás', '../assets/images/collection/arrivals7.png', 1, 8),
+('Mesa de Noche', 49.99, 'Mesas', '../assets/images/collection/arrivals6.png', 0, 25),
+('Silla mesedora', 80.50, 'Sillas', '../assets/images/collection/arrivals3.png', 0, 30),
+('Silla aesthetic', 185.50, 'Sillas', '../assets/images/collection/arrivals5.png', 1, 10);
 
 -- Crear la tabla de administradores
-CREATE TABLE admins (
+CREATE TABLE admins_busq (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     apellido_paterno VARCHAR(50) NOT NULL,
@@ -40,7 +42,7 @@ CREATE TABLE admins (
 );
 
 -- Insertar los valores para los administradores
-INSERT INTO admins (nombre, apellido_paterno, apellido_materno, ci, cargo, estado) VALUES
+INSERT INTO admins_busq (nombre, apellido_paterno, apellido_materno, ci, cargo, estado) VALUES
 ('Juan', 'Pérez', 'Gómez', '1234567890', 'Gerente General', 1),
 ('María', 'López', 'Fernández', '2345678901', 'Jefa de Ventas', 1),
 ('Carlos', 'García', 'Martínez', '3456789012', 'Administrador de Sistemas', 1),

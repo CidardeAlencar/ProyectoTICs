@@ -5,7 +5,7 @@ include 'db_connectBUSQ.php';
 $searchType = $_GET['searchType'] ?? null;
 $searchInput = $_GET['searchInput'] ?? null;
 $filter = $_GET['filter'] ?? null;
-$sql = "SELECT * FROM productos";
+$sql = "SELECT * FROM productos_busq";
 
 if ($searchType && $searchInput) {
     if ($searchType == 'nombre') {
