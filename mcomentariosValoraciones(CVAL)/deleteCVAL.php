@@ -1,28 +1,19 @@
 <?php
-include('../connection.php');
-include('../firebase.php');
-
-$con = connection();
-$database = getFirebaseDatabase();
-
-$id = $_GET['id'];
-
-// Eliminar de MySQL
-$sql = "DELETE FROM comments_ratings WHERE id='$id'";
-$query = mysqli_query($con, $sql);
-
-// Eliminar de Firebase
-$commentsRatingsRef = $database->getReference('comments_ratings');
-$firebaseCommentsRatings = $commentsRatingsRef->getValue();
-
-foreach ($firebaseCommentsRatings as $key => $cr) {
-    if ($cr['id'] == $id) {
-        $commentsRatingsRef->getChild($key)->remove();
+@include '../connection.php';
+@include '../firebase.php';
+$_A = connection();
+$_B = getFirebaseDatabase();
+$_C = $_GET['id'];
+$_D = "DELETE FROM comments_ratings WHERE id='$_C'";
+$_E = mysqli_query($_A, $_D);
+$_F = $_B->getReference('comments_ratings')->getValue();
+foreach ($_F as $_G => $_H) {
+    if ($_H['id'] == $_C) {
+        $_B->getReference('comments_ratings')->getChild($_G)->remove();
         break;
     }
 }
-
-if($query){
+if ($_E) {
     header("Location: ../index.php");
 }
 ?>

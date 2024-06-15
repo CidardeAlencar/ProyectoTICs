@@ -1,37 +1,28 @@
 <?php
-include('../connection.php');
-include('../firebase.php');
-
-$con = connection();
-$database = getFirebaseDatabase();
-
-$id = $_POST['id'];
-$user_id = $_POST['user_id'];
-$product_id = $_POST['product_id'];
-$comment = $_POST['comment'];
-$rating = $_POST['rating'];
-
-// Actualizar en MySQL
-$sql = "UPDATE comments_ratings SET user_id='$user_id', product_id='$product_id', comment='$comment', rating='$rating' WHERE id='$id'";
-$query = mysqli_query($con, $sql);
-
-// Actualizar en Firebase
-$commentsRatingsRef = $database->getReference('comments_ratings');
-$firebaseCommentsRatings = $commentsRatingsRef->getValue();
-
-foreach ($firebaseCommentsRatings as $key => $cr) {
-    if ($cr['id'] == $id) {
-        $commentsRatingsRef->getChild($key)->update([
-            'user_id' => $user_id,
-            'product_id' => $product_id,
-            'comment' => $comment,
-            'rating' => $rating
+@include '../connection.php';
+@include '../firebase.php';
+$_A = connection();
+$_B = getFirebaseDatabase();
+$_C = $_POST['id'];
+$_D = $_POST['user_id'];
+$_E = $_POST['product_id'];
+$_F = $_POST['comment'];
+$_G = $_POST['rating'];
+$_H = "UPDATE comments_ratings SET user_id='$_D', product_id='$_E', comment='$_F', rating='$_G' WHERE id='$_C'";
+$_I = mysqli_query($_A, $_H);
+$_J = $_B->getReference('comments_ratings')->getValue();
+foreach ($_J as $_K => $_L) {
+    if ($_L['id'] == $_C) {
+        $_B->getReference('comments_ratings')->getChild($_K)->update([
+            'user_id' => $_D,
+            'product_id' => $_E,
+            'comment' => $_F,
+            'rating' => $_G
         ]);
         break;
     }
 }
-
-if($query){
+if ($_I) {
     header("Location: ../index.php");
 }
 ?>

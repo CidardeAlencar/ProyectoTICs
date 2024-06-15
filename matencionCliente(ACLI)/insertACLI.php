@@ -1,21 +1,12 @@
 <?php
-include('connection.php');
-
-$con = connection();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['tipoUsuario']) && isset($_POST['mensaje'])) {
-    $tipoUsuario = $_POST['tipoUsuario'];
-    $mensaje = $_POST['mensaje'];
-
-    $sql = "INSERT INTO mensajes_cliente (tipoUsuario, mensaje) VALUES ('$tipoUsuario', '$mensaje')";
-    $query = mysqli_query($con, $sql);
-
-    if ($query) {
-        echo 'Mensaje guardado correctamente.';
-    } else {
-        echo 'Error al guardar el mensaje: ' . mysqli_error($con);
-    }
-} else {
-    echo 'No se recibieron datos válidos.';
+@include 'connection.php';
+$_A = connection();
+$_B = $_POST['cliente'];
+$_C = $_POST['pregunta'];
+$_D = date("Y-m-d H:i:s");
+$_E = "INSERT INTO users_preguntas (cliente, pregunta, fecha) VALUES ('$_B', '$_C', '$_D')";
+$_F = mysqli_query($_A, $_E);
+if ($_F) {
+    Header("Location: indexACLI.php");
 }
 ?>

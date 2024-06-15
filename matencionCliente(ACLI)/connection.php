@@ -1,32 +1,11 @@
 <?php
-
-/* function connection(){
-    $host = "localhost";
-    $user = "root";
-    $pass = "";
-
-    $bd = "chat_de_cliente";
-
-    $connect = mysqli_connect($host, $user, $pass);
-
-    mysqli_select_db($connect, $bd);
-
-    return $connect;
-}; */
-
-
-function connection(){
-    $host = "localhost";
-    $user = "root";
-    $pass = "";
-
-    $bd = "users_crud_php";
-
-    $connect = mysqli_connect($host, $user, $pass);
-
-    mysqli_select_db($connect, $bd);
-
-    return $connect;
-};
-
+function connection() {
+    $_A = "localhost";
+    $_B = "root";
+    $_C = "";
+    $_D = "users_crud_php";
+    $_E = mysqli_connect($_A, $_B, $_C);
+    mysqli_select_db($_E, $_D);
+    return $_E;
+}
 ?>

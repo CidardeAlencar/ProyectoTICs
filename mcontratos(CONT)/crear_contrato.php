@@ -1,33 +1,21 @@
 <?php
-include 'connection.php';
-
-if (isset($_POST['enviar'])) {
-    $clienteId = $_POST['cliente_id'];
-    $proveedorId = $_POST['proveedor_id'];
-    $empleadoId = $_POST['empleado_id'];
-    $productoServicioId = $_POST['producto_servicio_id'];
-    $fechaInicio = $_POST['fecha_inicio'];
-    $fechaFin = $_POST['fecha_fin'];
-    $monto = $_POST['monto'];
-    $condiciones = $_POST['condiciones'];
-    $estado = "Activo";
-
-    $consulta = "INSERT INTO Contratos (clienteId, proveedorId, empleadoId, productoServicioId, fechaInicio, fechaFin, monto, condiciones, estado) VALUES ('$clienteId', '$proveedorId', '$empleadoId', '$productoServicioId', '$fechaInicio', '$fechaFin', $monto, '$condiciones', '$estado')";
-
-    if (mysqli_query($conexion, $consulta)) {
-        echo '<script>alert("Contrato creado exitosamente"); window.location.href = "index.php";</script>';
-    } else {
-        echo '<script>alert("Error al crear el contrato");</script>';
-    }
+@include 'connection.php';
+$_A = connection();
+$_B = $_POST['cliente_id'];
+$_C = $_POST['proveedor_id'];
+$_D = $_POST['empleado_id'];
+$_E = $_POST['producto_servicio_id'];
+$_F = $_POST['fecha_inicio'];
+$_G = $_POST['fecha_fin'];
+$_H = $_POST['monto'];
+$_I = $_POST['condiciones'];
+$_J = "INSERT INTO contracts (cliente_id, proveedor_id, empleado_id, producto_servicio_id, fecha_inicio, fecha_fin, monto, condiciones, status) VALUES ('$_B', '$_C', '$_D', '$_E', '$_F', '$_G', '$_H', '$_I', 'Activo')";
+$_K = mysqli_query($_A, $_J);
+if ($_K) {
+    header("Location: listar_contrato.php");
 }
-
-// Consultas para obtener los datos de las tablas relacionadas
-$clientes = mysqli_query($conexion, "SELECT * FROM clientes");
-$proveedores = mysqli_query($conexion, "SELECT * FROM proveedores");
-$empleados = mysqli_query($conexion, "SELECT * FROM empleados");
-$productosServicios = mysqli_query($conexion, "SELECT * FROM productosservicios");
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

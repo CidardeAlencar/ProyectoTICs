@@ -1,31 +1,24 @@
 <?php
-include('../connection.php');//ojo
-include('../firebase.php');//ojo
-
-$con = connection();
-$database = getFirebaseDatabase();
-
-$id = null;
-$name = $_POST['name'];
-$lastname = $_POST['lastname'];
-$username = $_POST['username'];
-$password = $_POST['password'];
-$email = $_POST['email'];
-
-// Guardar en MySQL
-$sql = "INSERT INTO users VALUES('$id','$name','$lastname','$username','$password','$email')";
-$query = mysqli_query($con, $sql);
-
-// Guardar en Firebase
-$newUser = $database->getReference('users')->push([
-    'name' => $name,
-    'lastname' => $lastname,
-    'username' => $username,
-    'password' => $password,
-    'email' => $email
+@include '../connection.php';
+@include '../firebase.php';
+$_A = connection();
+$_B = getFirebaseDatabase();
+$_C = null;
+$_D = $_POST['name'];
+$_E = $_POST['lastname'];
+$_F = $_POST['username'];
+$_G = $_POST['password'];
+$_H = $_POST['email'];
+$_I = "INSERT INTO users VALUES('$_C', '$_D', '$_E', '$_F', '$_G', '$_H')";
+$_J = mysqli_query($_A, $_I);
+$_B->getReference('users')->push([
+    'name' => $_D,
+    'lastname' => $_E,
+    'username' => $_F,
+    'password' => $_G,
+    'email' => $_H
 ]);
-
-if($query){
-    Header("Location: ../index.php");//ojo
+if ($_J) {
+    Header("Location: ../index.php");
 }
 ?>

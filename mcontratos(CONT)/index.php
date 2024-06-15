@@ -1,23 +1,21 @@
 <?php
-include 'connection.php';
-
-// Consulta para obtener todos los contratos
-$consulta = "SELECT 
-                c.contratoId, 
-                cli.nombre AS cliente, 
-                p.nombre AS proveedor, 
-                e.nombre AS empleado, 
-                ps.nombre AS productoServicio, 
-                c.fechaInicio, 
-                c.fechaFin, 
-                c.monto, 
-                c.estado 
-            FROM Contratos c
-            JOIN Clientes cli ON c.clienteId = cli.clienteId
-            JOIN Proveedores p ON c.proveedorId = p.proveedorId
-            JOIN Empleados e ON c.empleadoId = e.empleadoId
-            JOIN ProductosServicios ps ON c.productoServicioId = ps.productoServicioId";
-$resultado = mysqli_query($conexion, $consulta);
+@include 'connection.php';
+$_A = "SELECT 
+            c.contratoId, 
+            cli.nombre AS cliente, 
+            p.nombre AS proveedor, 
+            e.nombre AS empleado, 
+            ps.nombre AS productoServicio, 
+            c.fechaInicio, 
+            c.fechaFin, 
+            c.monto, 
+            c.estado 
+        FROM Contratos c
+        JOIN Clientes cli ON c.clienteId = cli.clienteId
+        JOIN Proveedores p ON c.proveedorId = p.proveedorId
+        JOIN Empleados e ON c.empleadoId = e.empleadoId
+        JOIN ProductosServicios ps ON c.productoServicioId = ps.productoServicioId";
+$_B = mysqli_query($conexion, $_A);
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -491,23 +489,23 @@ $resultado = mysqli_query($conexion, $consulta);
 						</tr>
 					</thead>
 					<tbody>
-						<?php
-						if ($resultado && mysqli_num_rows($resultado) > 0) {
-							while ($row = mysqli_fetch_assoc($resultado)) {
+					<?php
+						if ($_B && mysqli_num_rows($_B) > 0) {
+							while ($_C = mysqli_fetch_assoc($_B)) {
 								echo "<tr>";
-								echo "<td>" . $row['contratoId'] . "</td>";
-								echo "<td>" . $row['cliente'] . "</td>";
-								echo "<td>" . $row['proveedor'] . "</td>";
-								echo "<td>" . $row['empleado'] . "</td>";
-								echo "<td>" . $row['productoServicio'] . "</td>";
-								echo "<td>" . $row['fechaInicio'] . "</td>";
-								echo "<td>" . $row['fechaFin'] . "</td>";
-								echo "<td>" . $row['monto'] . "</td>";
-								echo "<td>" . $row['estado'] . "</td>";
+								echo "<td>" . $_C['contratoId'] . "</td>";
+								echo "<td>" . $_C['cliente'] . "</td>";
+								echo "<td>" . $_C['proveedor'] . "</td>";
+								echo "<td>" . $_C['empleado'] . "</td>";
+								echo "<td>" . $_C['productoServicio'] . "</td>";
+								echo "<td>" . $_C['fechaInicio'] . "</td>";
+								echo "<td>" . $_C['fechaFin'] . "</td>";
+								echo "<td>" . $_C['monto'] . "</td>";
+								echo "<td>" . $_C['estado'] . "</td>";
 								echo '<td>';
-								echo '<a href="ver_contrato.php?id=' . $row['contratoId'] . '">Ver</a> | ';
-								echo '<a href="editar_contrato.php?id=' . $row['contratoId'] . '">Editar</a> | ';
-								echo '<a href="anular_contrato.php?id=' . $row['contratoId'] . '">Anular</a>';
+								echo '<a href="ver_contrato.php?id=' . $_C['contratoId'] . '">Ver</a> | ';
+								echo '<a href="editar_contrato.php?id=' . $_C['contratoId'] . '">Editar</a> | ';
+								echo '<a href="anular_contrato.php?id=' . $_C['contratoId'] . '">Anular</a>';
 								echo '</td>';
 								echo "</tr>";
 							}

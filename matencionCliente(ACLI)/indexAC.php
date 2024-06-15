@@ -1,106 +1,64 @@
 <!doctype html>
 <html class="no-js" lang="en">
-
-    <head>
-        <!-- meta data -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!--font-family-->
-		<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-        
-        <!-- title of site -->
-        <title>Ventas</title>
-
-        <!-- For favicon png -->
-		<link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
-       
-        <!--font-awesome.min.css-->
-        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/font-awesome.min.css">
-
-        <!--linear icon css-->
-		<link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/linearicons.css">
-
-		<!--animate.css-->
-        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/animate.css">
-
-        <!--owl.carousel.css-->
-        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/owl.carousel.min.css">
-		<link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/owl.theme.default.min.css">
-		
-        <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/bootstrap.min.css">
-		
-		<!-- bootsnav -->
-		<link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/bootsnav.css" >	
-        
-        <!--style.css-->
-        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/styleAC.css">
-        
-        <!--responsive.css-->
-        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/responsive.css">
-
-    </head>
-
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <title>Ventas</title>
+    <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
+    <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/linearicons.css">
+    <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/animate.css">
+    <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/bootsnav.css">
+    <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/style.css">
+</head>
 <body>
-    <!--populer-products start -->
-		<section id="populer-products" class="populer-products">
-			<div class="container">
-				<div class="populer-products-content">
-					<div class="row">
-						
-						<div class="col-md-6">
-							<div class="single-populer-products">
-								<div class="single-inner-populer-products">
-									<div class="row">
-										<div class="col-md-4 col-sm-12">
-											<div class="single-inner-populer-product-img">
-												<img src="matencionCliente(ACLI)/assets/images/images.jpg" alt="populer-products images">
-											</div>
-										</div>
-										<div class="col-md-8 col-sm-12">
-											<div class="single-inner-populer-product-txt">
-												<h2>
-													Atención al Cliente
-												</h2>
-												<p>
-                                                    No dude en hacer cualquier pregunta que tenga.
-                                                    Estamos aquí para ayudarlo a comprender nuestros productos.
-												</p>
-                                                <form action="matencionCliente(ACLI)/insertAC.php" method = "POST">
-                                                    <div class="populer-products-price">
-                                                        <input type="text" id="mensaje-usuario" name = "pregunta" placeholder="Escribe tu mensaje...">
-                                                    </div>
-                                                    </div>
-                                                        <div id="ventana-emergente" style="display: none;">
-                                                        <div id="ventana-emergente-contenido">¡Su mensaje ha sido enviado!</div>
-                                                    </div>
-                                                    <button type="submit" class="btn-cart welcome-add-cart populer-products-btn" onclick="mostrarVentanaEmergente();">
-                                                        Enviar
-                                                    </button>
-                                                </form>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-			</div><!--/.container-->
-
-		</section><!--/.populer-products-->
-		<!--populer-products end-->
-
-        <script>
-    function mostrarVentanaEmergente() {
-      // Mostrar la ventana emergente y evitar que se cierre automáticamente
-      document.getElementById('ventana-emergente').style.display = 'block';
-    }
-  </script>
-
+    <header>
+        <div class="top-area">
+            <div class="header-area">
+                <nav class="navbar navbar-default bootsnav navbar-fixed dark no-background">
+                    <div class="container">
+                        <div class="attr-nav">
+                            <ul>
+                                <li><a href="#"><span class="lnr lnr-phone-handset"></span> +18009001234</a></li>
+                                <li><a href="#"><span class="lnr lnr-envelope"></span> support@ventas.com</a></li>
+                            </ul>
+                        </div>
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <a class="navbar-brand" href="index.php"><img src="assets/logo/logo.png" class="logo" alt=""></a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar-menu">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="index.php">Inicio</a></li>
+                                <li><a href="about.php">Nosotros</a></li>
+                                <li><a href="services.php">Servicios</a></li>
+                                <li><a href="contact.php">Contacto</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section class="home-banner-area">
+        <div class="container">
+            <div class="row justify-content-center fullscreen align-items-center">
+                <div class="col-lg-5 col-md-8 home-banner-left">
+                    <h1 class="text-white">Bienvenido a Ventas</h1>
+                    <p class="text-white">Gestión de ventas y atención al cliente</p>
+                </div>
+                <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
+                    <img class="img-fluid" src="assets/images/home.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
-
 </html>

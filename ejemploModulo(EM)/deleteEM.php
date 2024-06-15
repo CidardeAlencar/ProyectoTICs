@@ -1,28 +1,19 @@
 <?php
-include('../connection.php'); //OJO
-include('../firebase.php'); //OJO
-
-$con = connection();
-$database = getFirebaseDatabase();
-
-$id = $_GET['id'];
-
-// Eliminar de MySQL
-$sql = "DELETE FROM users WHERE id='$id'";
-$query = mysqli_query($con, $sql);
-
-// Eliminar de Firebase
-$usersRef = $database->getReference('users');
-$firebaseUsers = $usersRef->getValue();
-
-foreach ($firebaseUsers as $key => $user) {
-    if ($user['id'] == $id) {
-        $usersRef->getChild($key)->remove();
+@include '../connection.php';
+@include '../firebase.php';
+$_A = connection();
+$_B = getFirebaseDatabase();
+$_C = $_GET['id'];
+$_D = "DELETE FROM users WHERE id='$_C'";
+$_E = mysqli_query($_A, $_D);
+$_F = $_B->getReference('users')->getValue();
+foreach ($_F as $_G => $_H) {
+    if ($_H['id'] == $_C) {
+        $_B->getReference('users')->getChild($_G)->remove();
         break;
     }
 }
-
-if($query){
+if ($_E) {
     Header("Location: ../index.php");
 }
 ?>

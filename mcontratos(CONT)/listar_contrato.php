@@ -1,24 +1,23 @@
 <?php
-include 'connection.php';
-
-// Consulta para obtener todos los contratos
-$consulta = "SELECT 
-                c.contratoId, 
-                cli.nombre AS cliente, 
-                p.nombre AS proveedor, 
-                e.nombre AS empleado, 
-                ps.nombre AS productoServicio, 
-                c.fechaInicio, 
-                c.fechaFin, 
-                c.monto, 
-                c.estado 
-            FROM Contratos c
-            JOIN Clientes cli ON c.clienteId = cli.clienteId
-            JOIN Proveedores p ON c.proveedorId = p.proveedorId
-            JOIN Empleados e ON c.empleadoId = e.empleadoId
-            JOIN ProductosServicios ps ON c.productoServicioId = ps.productoServicioId";
-$resultado = mysqli_query($conexion, $consulta);
+@include 'connection.php';
+$_A = "SELECT 
+            c.contratoId, 
+            cli.nombre AS cliente, 
+            p.nombre AS proveedor, 
+            e.nombre AS empleado, 
+            ps.nombre AS productoServicio, 
+            c.fechaInicio, 
+            c.fechaFin, 
+            c.monto, 
+            c.estado 
+        FROM Contratos c
+        JOIN Clientes cli ON c.clienteId = cli.clienteId
+        JOIN Proveedores p ON c.proveedorId = p.proveedorId
+        JOIN Empleados e ON c.empleadoId = e.empleadoId
+        JOIN ProductosServicios ps ON c.productoServicioId = ps.productoServicioId";
+$_B = mysqli_query($conexion, $_A);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -154,30 +153,31 @@ $resultado = mysqli_query($conexion, $consulta);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    if ($resultado && mysqli_num_rows($resultado) > 0) {
-                        while ($row = mysqli_fetch_assoc($resultado)) {
-                            echo "<tr>";
-                            echo "<td>" . $row['contratoId'] . "</td>";
-                            echo "<td>" . $row['cliente'] . "</td>";
-                            echo "<td>" . $row['proveedor'] . "</td>";
-                            echo "<td>" . $row['empleado'] . "</td>";
-                            echo "<td>" . $row['productoServicio'] . "</td>";
-                            echo "<td>" . $row['fechaInicio'] . "</td>";
-                            echo "<td>" . $row['fechaFin'] . "</td>";
-                            echo "<td>" . $row['monto'] . "</td>";
-                            echo "<td>" . $row['estado'] . "</td>";
-                            echo '<td>';
-                            echo '<a href="verContrato.php?id=' . $row['contratoId'] . '">Ver</a> | ';
-                            echo '<a href="editar_contrato.php?id=' . $row['contratoId'] . '">Editar</a> | ';
-                            echo '<a href="anular_contrato.php?id=' . $row['contratoId'] . '">Eliminar</a>';
-                            echo '</td>';
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='10'>No se encontraron contratos.</td></tr>";
-                    }
-                    ?>
+                <?php
+if ($_A && mysqli_num_rows($_A) > 0) {
+    while ($_B = mysqli_fetch_assoc($_A)) {
+        echo "<tr>";
+        echo "<td>" . $_B['contratoId'] . "</td>";
+        echo "<td>" . $_B['cliente'] . "</td>";
+        echo "<td>" . $_B['proveedor'] . "</td>";
+        echo "<td>" . $_B['empleado'] . "</td>";
+        echo "<td>" . $_B['productoServicio'] . "</td>";
+        echo "<td>" . $_B['fechaInicio'] . "</td>";
+        echo "<td>" . $_B['fechaFin'] . "</td>";
+        echo "<td>" . $_B['monto'] . "</td>";
+        echo "<td>" . $_B['estado'] . "</td>";
+        echo '<td>';
+        echo '<a href="verContrato.php?id=' . $_B['contratoId'] . '">Ver</a> | ';
+        echo '<a href="editar_contrato.php?id=' . $_B['contratoId'] . '">Editar</a> | ';
+        echo '<a href="anular_contrato.php?id=' . $_B['contratoId'] . '">Eliminar</a>';
+        echo '</td>';
+        echo "</tr>";
+    }
+} else {
+    echo "<tr><td colspan='10'>No se encontraron contratos.</td></tr>";
+}
+?>
+
                 </tbody>
             </table>
             <div class="button-container">

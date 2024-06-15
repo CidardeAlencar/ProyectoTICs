@@ -1,39 +1,30 @@
 <?php
-include('../connection.php');
-include('../firebase.php');
-
-$con = connection();
-$database = getFirebaseDatabase();
-
-$id = $_POST['id'];
-$name = $_POST['name'];
-$lastname = $_POST['lastname'];
-$username = $_POST['username'];
-$password = $_POST['password'];
-$email = $_POST['email'];
-
-// Actualizar en MySQL
-$sql = "UPDATE users SET name='$name', lastname='$lastname', username='$username', password='$password', email='$email' WHERE id='$id'";
-$query = mysqli_query($con, $sql);
-
-// Actualizar en Firebase
-$usersRef = $database->getReference('users');
-$firebaseUsers = $usersRef->getValue();
-
-foreach ($firebaseUsers as $key => $user) {
-    if ($user['id'] == $id) {
-        $usersRef->getChild($key)->update([
-            'name' => $name,
-            'lastname' => $lastname,
-            'username' => $username,
-            'password' => $password,
-            'email' => $email
+@include '../connection.php';
+@include '../firebase.php';
+$_A = connection();
+$_B = getFirebaseDatabase();
+$_C = $_POST['id'];
+$_D = $_POST['name'];
+$_E = $_POST['lastname'];
+$_F = $_POST['username'];
+$_G = $_POST['password'];
+$_H = $_POST['email'];
+$_I = "UPDATE users SET name='$_D', lastname='$_E', username='$_F', password='$_G', email='$_H' WHERE id='$_C'";
+$_J = mysqli_query($_A, $_I);
+$_K = $_B->getReference('users')->getValue();
+foreach ($_K as $_L => $_M) {
+    if ($_M['id'] == $_C) {
+        $_B->getReference('users')->getChild($_L)->update([
+            'name' => $_D,
+            'lastname' => $_E,
+            'username' => $_F,
+            'password' => $_G,
+            'email' => $_H
         ]);
         break;
     }
 }
-
-if($query){
+if ($_J) {
     Header("Location: ../index.php");
 }
 ?>

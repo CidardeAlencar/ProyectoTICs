@@ -1,28 +1,12 @@
 <?php
-include('connection.php');
-include('firebase.php');
-
-$con = connection();
-$database = getFirebaseDatabase();
-
-$id = null;
-$user = null;
-$pregunta = $_POST['pregunta'];
-$respuesta = null;
-
-
-// Guardar en MySQL
-$sql = "INSERT INTO users_preguntas VALUES('$id_preg','$user','$pregunta','$respuesta')";
-$query = mysqli_query($con, $sql);
-
-// Guardar en Firebase
-$newUser = $database->getReference('users_preguntas')->push([
-    'user' => $user,
-    'pregunta' => $pregunta,
-    'respuesta' => $respuesta
-]);
-
-if($query){
-    Header("Location: ../index.php");
+@include 'connection.php';
+$_A = connection();
+$_B = $_POST['cliente'];
+$_C = $_POST['pregunta'];
+$_D = date("Y-m-d H:i:s");
+$_E = "INSERT INTO users_preguntas (cliente, pregunta, fecha) VALUES ('$_B', '$_C', '$_D')";
+$_F = mysqli_query($_A, $_E);
+if ($_F) {
+    Header("Location: indexAC.php");
 }
 ?>

@@ -1,74 +1,58 @@
 <?php
-include 'connection.php';
-
-// Obtener el ID del contrato a editar desde la URL
-$idContrato = $_GET['id'];
-
-// Consulta para obtener los datos del contrato a editar
-$consulta = "SELECT * FROM Contratos WHERE contratoId = $idContrato";
-$resultado = mysqli_query($conexion, $consulta);
-
-$consultaClientes = "SELECT * FROM Clientes";
-$resultadoClientes = mysqli_query($conexion, $consultaClientes);
-
-$consultaProveedores = "SELECT * FROM Proveedores";
-$resultadoProveedores = mysqli_query($conexion, $consultaProveedores);
-
-$consultaEmpleados = "SELECT * FROM Empleados";
-$resultadoEmpleados = mysqli_query($conexion, $consultaEmpleados);
-
-$consultaProductosServicios = "SELECT * FROM ProductosServicios";
-$resultadoProductosServicios = mysqli_query($conexion, $consultaProductosServicios);
-// Si se encontró el contrato, se muestran sus datos en el formulario
-if ($resultado && mysqli_num_rows($resultado) == 1) {
-    $row = mysqli_fetch_assoc($resultado);
-
-    $clienteId = $row['clienteId'];
-    $proveedorId = $row['proveedorId'];
-    $empleadoId = $row['empleadoId'];
-    $productoServicioId = $row['productoServicioId'];
-    $fechaInicio = $row['fechaInicio'];
-    $fechaFin = $row['fechaFin'];
-    $monto = $row['monto'];
-    $condiciones = $row['condiciones'];
-    $estado = $row['estado'];
+@include 'connection.php';
+$_A = $_GET['id'];
+$_B = "SELECT * FROM Contratos WHERE contratoId = $_A";
+$_C = mysqli_query($conexion, $_B);
+$_D = "SELECT * FROM Clientes";
+$_E = mysqli_query($conexion, $_D);
+$_F = "SELECT * FROM Proveedores";
+$_G = mysqli_query($conexion, $_F);
+$_H = "SELECT * FROM Empleados";
+$_I = mysqli_query($conexion, $_H);
+$_J = "SELECT * FROM ProductosServicios";
+$_K = mysqli_query($conexion, $_J);
+if ($_C && mysqli_num_rows($_C) == 1) {
+    $_L = mysqli_fetch_assoc($_C);
+    $_M = $_L['clienteId'];
+    $_N = $_L['proveedorId'];
+    $_O = $_L['empleadoId'];
+    $_P = $_L['productoServicioId'];
+    $_Q = $_L['fechaInicio'];
+    $_R = $_L['fechaFin'];
+    $_S = $_L['monto'];
+    $_T = $_L['condiciones'];
+    $_U = $_L['estado'];
 } else {
-    // Si no se encontró el contrato, se muestra un mensaje de error
     echo '<p>Contrato no encontrado.</p>';
     exit();
 }
-
-// Si se envía el formulario, se actualiza la información del contrato
 if (isset($_POST['enviar'])) {
-    $clienteIdActualizado = $_POST['cliente_id'];
-    $proveedorIdActualizado = $_POST['proveedor_id'];
-    $empleadoIdActualizado = $_POST['empleado_id'];
-    $productoServicioIdActualizado = $_POST['producto_servicio_id'];
-    $fechaInicioActualizada = $_POST['fecha_inicio'];
-    $fechaFinActualizada = $_POST['fecha_fin'];
-    $montoActualizado = $_POST['monto'];
-    $condicionesActualizadas = $_POST['condiciones'];
-    $estadoActualizado = $_POST['estado'];
-
-    $consultaActualizacion = "UPDATE Contratos SET 
-                                clienteId = $clienteIdActualizado, 
-                                proveedorId = $proveedorIdActualizado, 
-                                empleadoId = $empleadoIdActualizado, 
-                                productoServicioId = $productoServicioIdActualizado, 
-                                fechaInicio = '$fechaInicioActualizada', 
-                                fechaFin = '$fechaFinActualizada', 
-                                monto = $montoActualizado, 
-                                condiciones = '$condicionesActualizadas', 
-                                estado = '$estadoActualizado' 
-                            WHERE contratoId = $idContrato";
-
-    if (mysqli_query($conexion, $consultaActualizacion)) {
+    $_V = $_POST['cliente_id'];
+    $_W = $_POST['proveedor_id'];
+    $_X = $_POST['empleado_id'];
+    $_Y = $_POST['producto_servicio_id'];
+    $_Z = $_POST['fecha_inicio'];
+    $_AA = $_POST['fecha_fin'];
+    $_AB = $_POST['monto'];
+    $_AC = $_POST['condiciones'];
+    $_AD = $_POST['estado'];
+    $_AE = "UPDATE Contratos SET 
+                clienteId = $_V, 
+                proveedorId = $_W, 
+                empleadoId = $_X, 
+                productoServicioId = $_Y, 
+                fechaInicio = '$_Z', 
+                fechaFin = '$_AA', 
+                monto = $_AB, 
+                condiciones = '$_AC', 
+                estado = '$_AD' 
+            WHERE contratoId = $_A";
+    if (mysqli_query($conexion, $_AE)) {
         echo '<script>alert("Contrato actualizado exitosamente"); window.location.href = "index.php";</script>';
     } else {
         echo '<script>alert("Error al actualizar el contrato");</script>';
     }
 }
-
 ?>
 
 <!DOCTYPE html>
