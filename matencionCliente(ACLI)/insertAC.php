@@ -23,6 +23,6 @@ $newUser = $database->getReference('users_preguntas')->push([
 ]);
 
 if($query){
-    Header("Location: indexAC.php");
+    Header("Location: ../index.php");
 }
 ?>

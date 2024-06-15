@@ -10,9 +10,9 @@
             <div class="col-xs-8">
               <div class="contenedor-tabla pull-right">
                 <div class="contenedor-tr">
-                  <a href="indexPROV.php" class="table-cell-td">Inicio</a>
-                  <a href="listPROV.php" class="table-cell-td">Proveedores</a>
-                  <a href="form_proveedorPROV.php" class="table-cell-td">Registrar Proveedores</a>
+                  <a href="#" class="table-cell-td">Inicio</a>
+                  <a href="mproveedores(PROV)/listPROV.php" class="table-cell-td">Proveedores</a>
+                  <a href="mproveedores(PROV)/form_proveedorPROV.php" class="table-cell-td">Registrar Proveedores</a>
                   <?php
                       if(!$_SESSION['nombreAdmin']==""){
                           echo ' 

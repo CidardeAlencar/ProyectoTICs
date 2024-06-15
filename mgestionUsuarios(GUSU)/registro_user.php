@@ -8,7 +8,7 @@ if (isset($_POST['registrar'])) {
                      VALUES ('$nombre', '$apPAt', '$apMAt', '$correo', '$telefono', '$rol')";
     mysqli_query($conexion, $consulta);
     mysqli_close($conexion);
-    echo '<script>window.location.href = "./user.php";</script>';
+    echo '<script>window.location.href = "../index.php";</script>';
     exit();
 }
 ?>
