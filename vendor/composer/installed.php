@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '6622fa49c91594f9d04a6785bb6a37c26c2ddbbd',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '6622fa49c91594f9d04a6785bb6a37c26c2ddbbd',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -47,9 +47,9 @@
             'dev_requirement' => false,
         ),
         'google/auth' => array(
-            'pretty_version' => 'v1.39.0',
-            'version' => '1.39.0.0',
-            'reference' => '23e8e696d87f8d7dfefbd347ca1c99ce17ecb368',
+            'pretty_version' => 'v1.40.0',
+            'version' => '1.40.0.0',
+            'reference' => 'bff9f2d01677e71a98394b5ac981b99523df5178',
             'type' => 'library',
             'install_path' => __DIR__ . '/../google/auth',
             'aliases' => array(),
@@ -101,9 +101,9 @@
             'dev_requirement' => false,
         ),
         'google/longrunning' => array(
-            'pretty_version' => '0.4.2',
-            'version' => '0.4.2.0',
-            'reference' => 'dd38c97ee348ad73bfb581aa276a536161f4b181',
+            'pretty_version' => '0.4.3',
+            'version' => '0.4.3.0',
+            'reference' => 'ed718a735e407826c3332b7197a44602eb03e608',
             'type' => 'library',
             'install_path' => __DIR__ . '/../google/longrunning',
             'aliases' => array(),
