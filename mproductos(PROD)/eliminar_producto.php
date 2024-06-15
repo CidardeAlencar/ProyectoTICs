@@ -18,7 +18,7 @@ if ($resultado && mysqli_num_rows($resultado) == 1) {
     echo '<form action="eliminar_producto.php?id=' . $idProducto . '" method="post">';
     echo '<div class="button-container">';
         echo '<button type="submit" name="eliminar">Eliminar</button>';
-        echo '<button type="button" onclick="window.location.href=\'./productos.php\'">Cancelar</button>';
+        echo '<button type="button" onclick="window.location.href=\'../index.php\'">Cancelar</button>';
         echo'</div>';
     echo '</form>';
 } else {
@@ -32,9 +32,9 @@ if (isset($_POST['eliminar'])) {
     $consultaEliminar = "DELETE FROM productos WHERE id_producto = $idProducto";
 
     if (mysqli_query($conexion, $consultaEliminar)) {
-        echo '<script>alert("Producto eliminado exitosamente"); window.location.href = "./productos.php";</script>';
+        echo '<script>alert("Producto eliminado exitosamente"); window.location.href = "../index.php";</script>';
     } else {
-        echo '<script>alert("Error al eliminar el producto"); window.location.href = "./productos.php";</script>';
+        echo '<script>alert("Error al eliminar el producto"); window.location.href = "../index.php";</script>';
     }
 }
 

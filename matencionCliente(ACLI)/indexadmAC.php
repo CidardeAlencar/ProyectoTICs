@@ -23,32 +23,32 @@ $query = mysqli_query($con, $sql);
         <title>Atencion al Cliente Administrador</title>
 
         <!-- For favicon png -->
-		<link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
+		<link rel="shortcut icon" type="image/icon" href="matencionCliente(ACLI)/assets/logo/favicon.png"/>
        
         <!--font-awesome.min.css-->
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/font-awesome.min.css">
 
         <!--linear icon css-->
-		<link rel="stylesheet" href="assets/css/linearicons.css">
+		<link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/linearicons.css">
 
 		<!--animate.css-->
-        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/animate.css">
 
         <!--owl.carousel.css-->
-        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-		<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/owl.theme.default.min.css">
 		
         <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/bootstrap.min.css">
 		
 		<!-- bootsnav -->
-		<link rel="stylesheet" href="assets/css/bootsnav.css" >	
+		<link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/bootsnav.css" >	
         
         <!--style.css-->
-        <link rel="stylesheet" href="assets/css/styleadmAC.css">
+        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/styleadmAC.css">
         
         <!--responsive.css-->
-        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="matencionCliente(ACLI)/assets/css/responsive.css">
 
     </head>
 
@@ -71,7 +71,7 @@ $query = mysqli_query($con, $sql);
                 <th class="id-columna"> <?= $row['id_preg']?> </th>
                 <th> <?= $row['pregunta']?> </th>
                 <th> <?= $row['respuesta']?> </th>
-                <th class="accion-columna"><a href="updateadmAC.php?id_preg=<?= $row['id_preg'] ?>" class="users-table--edit">Responder</a></th>
+                <th class="accion-columna"><a href="matencionCliente(ACLI)/updateadmAC.php?id_preg=<?= $row['id_preg'] ?>" class="users-table--edit">Responder</a></th>
                 </tr>
             <?php endwhile; ?>
             </tbody>

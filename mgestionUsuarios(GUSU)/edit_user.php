@@ -6,7 +6,7 @@ if (isset($_POST['editar'])) {
     $consulta = "UPDATE user SET nombre = '$nombre', apPAt = '$apPAt', apMAt = '$apMAt', correo = '$correo', telefono = '$telefono' WHERE id = '$id'";
     mysqli_query($conexion, $consulta);
     mysqli_close($conexion);
-    echo '<script>window.location.href = "./user.php";</script>';
+    echo '<script>window.location.href = "../index.php";</script>';
     exit();
 }
 if (isset($_POST['cambiar'])) {
@@ -16,7 +16,7 @@ if (isset($_POST['cambiar'])) {
     $consulta = "UPDATE user SET password_hash = '$password', cambio_pass = '0' WHERE id = '$id'";
     mysqli_query($conexion, $consulta);
     mysqli_close($conexion);
-    echo '<script>window.location.href = "./user.php";</script>';
+    echo '<script>window.location.href = "../index.php";</script>';
     exit();
 }
 ?>
