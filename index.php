@@ -15,23 +15,24 @@
 <body>
     <div class="navbar">
         <?php
-        $mods = [
+        $_M0D5 = [
             1 => "EM", 2 => "ATEN", 3 => "ACLI", 4 => "ACLIADM", 5 => "BUSQ",
             6 => "CARR", 7 => "CATE", 8 => "COMP", 9 => "CONT", 10 => "DESC",
             11 => "EPRO", 12 => "FIDE", 13 => "GUSU", 14 => "PERS", 15 => "PROD",
             16 => "PROM", 17 => "PROV", 18 => "RANK", 19 => "RECL", 20 => "REPO",
             21 => "RESE", 22 => "VENT", 23 => "CVAL", 24 => "LCAR", 25 => "LPAR"
         ];
-        foreach ($mods as $key => $value) {
-            echo "<a href=\"index.php?mod=$key\">$value</a>";
+        foreach ($_M0D5 as $_K3Y => $_V4L) {
+            echo "<a href=\"index.php?mod=$_K3Y\">$_V4L</a>";
         }
         ?>
+        
     </div>
     <div class="content">
         <?php
         if (isset($_GET['mod'])) {
-            $mod = $_GET['mod'];
-            $map = [
+            $_M0D = $_GET['mod'];
+            $_M4P = [
                 '1' => 'indexEM.php', '2' => 'indexATEN.php', '3' => 'indexACLI.php',
                 '4' => 'indexACLIADM.php', '5' => 'indexBUSQ.php', '6' => 'indexCARR.php',
                 '7' => 'indexCATE.php', '8' => 'indexCOMP.php', '9' => 'index.php',
@@ -40,7 +41,7 @@
                 '18' => 'indexRANK.php', '22' => 'indexVENT.php', '23' => 'indexCVAL.php',
                 '24' => 'index.php', '25' => 'index.php'
             ];
-            $dir = [
+            $_D1R = [
                 '1' => 'mempresas(EM)', '2' => 'matenciones(ATEN)', '3' => 'mclientes(ACLI)',
                 '4' => 'mclientesAdmon(ACLIADM)', '5' => 'mbusquedas(BUSQ)', '6' => 'mcarreras(CARR)',
                 '7' => 'mcategorias(CATE)', '8' => 'mcompras(COMP)', '9' => 'mcontratos(CONT)',
@@ -49,8 +50,8 @@
                 '18' => 'mrankingProductos(RANK)', '22' => 'mventas(VENT)/Ventas', '23' => 'mcomentariosValoraciones(CVAL)',
                 '24' => 'mlogincardozo(LCAR)', '25' => 'mLoginParedes(LPAR)'
             ];
-            if (array_key_exists($mod, $map)) {
-                include "{$dir[$mod]}/{$map[$mod]}";
+            if (array_key_exists($_M0D, $_M4P)) {
+                include "{$_D1R[$_M0D]}/{$_M4P[$_M0D]}";
             } else {
                 echo "<h2>NO SE REALIZO EL MODULO</h2>";
             }
