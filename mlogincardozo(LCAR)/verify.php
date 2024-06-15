@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_SESSION['user_id'];
 
     // Verifica el código y la expiración
-    $stmt = $conn->prepare("SELECT 2fa_code, 2fa_expires FROM users WHERE id = ?");
+    $stmt = $conn->prepare("SELECT 2fa_code, 2fa_expires FROM empleados WHERE id = ?");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $stmt->bind_result($stored_code, $expires);
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user_id'] = $user_id;
 
         // Limpia el código de verificación
-        $stmt = $conn->prepare("UPDATE users SET 2fa_code = NULL, 2fa_expires = NULL WHERE id = ?");
+        $stmt = $conn->prepare("UPDATE empleados SET 2fa_code = NULL, 2fa_expires = NULL WHERE id = ?");
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
         $stmt->close();

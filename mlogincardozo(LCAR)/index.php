@@ -2,20 +2,18 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="mLogincardozo(LCAR)/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <div class="container">
         <h2>Login</h2>
-        <form method="post" action="mlogincardozo(LCAR)/login.php">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+        <form method="post" action="login.php">
+            <label for="ci">CI:</label>
+            <input type="text" id="ci" name="ci" required>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required>
+            <label for="captcha">Captcha:</label>
+            <input type="text" id="captcha" name="captcha" required>
+            <img src="captcha.php" alt="Captcha Image">
 
             <input type="submit" value="Login">
         </form>
