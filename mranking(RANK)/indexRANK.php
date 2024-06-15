@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search_user'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="mranking(RANK)/assets/styles/styleRANK.css">
+    <link rel="stylesheet" href="./mranking(RANK)/assets/styles/stylesRANK.css">
     <title>Preference CRUD</title>
 </head>
 <body>
