@@ -114,10 +114,18 @@ button{
                     <option value="user">Usuario</option>
                 </select>
             </div>
-            <input type="hidden" name="registrar" value="registrar">
+            <input type="hidden" name="registrar" value="registrar"> 
+            
 
+            
+            
+    <script>
+        function volver() {
+            window.history.back();
+        }
+    </script>
             <center><div class="form-group">
-                <button type="submit" class="button">Registrar</button>
+                <button type="submit" class="button">Registrar</button><center><button onclick="volver()">Volver</button></center>
             </div></center>
         </form>
     </div>

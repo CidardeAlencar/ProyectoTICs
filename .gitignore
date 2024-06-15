@@ -1,3 +1,7 @@
 /vendor/
 /composer.lock
 /composer.json
+/mysql
+/.env
+/docker-compose.yml
+/Dockerfile

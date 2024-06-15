@@ -1,0 +1,171 @@
+:root {
+    --main-color: #e99c2e;
+    --text-color: #616060;
+    --background-color: #f9f9f9;
+    --box-shadow: rgba(0, 0, 0, 0.2);
+    --box-shadow-hover: rgba(0, 0, 0, 0.5);
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background: white;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+  
+  .login-container, .chat-container, .admin-container  {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: var(--background-color);
+    box-shadow: 0 4px 8px var(--box-shadow);
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .login-title, .chat-title, .admin-title  {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--main-color);
+    margin-bottom: 20px;
+  }
+  
+  .login-description, .chat-description {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .login-options, .chat-form, .admin-reply-form {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .login-button {
+    padding: 10px 20px;
+    background-color: var(--main-color);
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: var(--text-color);
+  }
+  
+  .chat-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--main-color);
+    margin-bottom: 20px;
+  }
+  
+  .chat-box, .messages-container {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background: white;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  
+  .chat-message {
+    margin: 10px 0;
+  }
+  
+  .chat-message.user {
+    text-align: right;
+    color: var(--main-color);
+  }
+  
+  .chat-message.agent {
+    text-align: left;
+    color: var(--text-color);
+  }
+  
+  .chat-form {
+    display: flex;
+    gap: 10px;
+  }
+  
+  #chat-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  #reply-input{
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .send-button, .send-reply-button {
+    padding: 10px 20px;
+    background-color: var(--main-color);
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .send-button:hover {
+    background-color: var(--text-color);
+  }
+
+  .send-reply-button:hover {
+    background-color: var(--text-color);
+  }
+  
+  .container img {
+    width: 40%; /* Porcentaje del ancho del contenedor */
+    height: auto; /* La altura se ajustará automáticamente para mantener la proporción */
+    padding: 30px 20px;
+  }
+
+  .user {
+    text-align: right;
+    color: blue;
+    background-color: #e1f0ff;
+    border: 1px solid #007BFF;
+}
+
+.agent, .admin-reply {
+    text-align: left;
+    color: green;
+    background-color: #e1ffe1;
+    border: 1px solid #28a745;
+}
+
+/* Estilos específicos para mensajes de administrador */
+.admin-message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px; /* Añadido para espacio entre los elementos */
+}
+
+.admin-reply-input {
+  flex-grow: 1;
+  padding: 5px;
+}
+
+.admin-message.highlight {
+  background-color: #e0f7fa; /* Cambia este color según tus preferencias */
+}
