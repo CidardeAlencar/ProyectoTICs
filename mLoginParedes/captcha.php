@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Generar código CAPTCHA de 5 caracteres
 $captcha_code = '';
 $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 $length = 5;
@@ -15,7 +14,7 @@ header('Content-Type: image/png');
 
 $image = imagecreatetruecolor(150, 50);
 $background_color = imagecolorallocate($image, 255, 255, 255);
-$text_color = imagecolorallocate($image, 0, 0, 0);
+$text_color = imagecolorallocate($image, 255, 255, 0); // Color amarillo
 $line_color = imagecolorallocate($image, 64, 64, 64);
 $pixel_color = imagecolorallocate($image, 0, 0, 255);
 
@@ -32,7 +31,10 @@ for ($i = 0; $i < 1000; $i++) {
 }
 
 // Añadir el texto del CAPTCHA usando una fuente interna de PHP
-imagestring($image, 5, 35, 15, $captcha_code, $text_color);
+$font_size = 5;
+$x = 10; // posición x del texto
+$y = 15; // posición y del texto
+imagestring($image, $font_size, $x, $y, $captcha_code, $text_color);
 
 imagepng($image);
 imagedestroy($image);
