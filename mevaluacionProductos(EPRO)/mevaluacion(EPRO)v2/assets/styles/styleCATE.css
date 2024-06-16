@@ -1,0 +1,203 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: white;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .title-compras {
+    font-size: 30px;
+    font-weight: bold;
+    color: #e99c2e;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  .App {
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .taskcompra, .task, .payment-container {
+    background: white;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.5s ease;
+  }
+  
+  .taskcompra:hover, .task:hover, .payment-container:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .taskcompra h2, .task h2, .payment-container h2 {
+    color: #e99c2e;
+  }
+  
+  .task ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .task li {
+    background: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    display: inline-table;
+    width: 50%;
+  }
+  
+  .task form div,
+  .payment-form div {
+    margin-bottom: 10px;
+  }
+  
+  .task input[type="text"],
+  .task input[type="email"],
+  .payment-container input[type="text"],
+  .payment-container input[type="email"],
+  .payment-container input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .payment-container {
+    padding: 10px;
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .payment-container:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .payment-container input[type="date"] {
+    width: calc(100% - 20px);
+  }
+  
+  .card-payment h3,
+  .qr-code h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #e99c2e;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    color: #616060;
+    text-decoration: none;
+  }
+  
+  .card-payment {
+    padding: 15px;
+  }
+  
+  .qr-code {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-payment {
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+  }
+  
+  .card-payment label,
+  .qr-code label,
+  .payment-container label {
+    font-weight: bold;
+  }
+  
+  .expiry-date {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .confirm-button {
+    width: 70%;
+    margin-top: 10px;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #e99c2e;
+    border: 1px solid #e99c2e;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+  
+  .confirm-button:hover {
+    background-color: white;
+    color: #616060;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .taskcompra, .task, .payment-container {
+      
+      max-width: 400px;
+    }
+  
+    .payment-container input[type="date"] {
+      width: calc(100% - 20px);
+    }
+  
+    .confirm-button {
+      width: 90%;
+    }
+  
+    .qr-code {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .title-compras {
+      font-size: 24px;
+    }
+  
+    .taskcompra, .task, .payment-container {
+    
+      max-width: 300px;
+    }
+  
+    .confirm-button {
+      width: 100%;
+    }
+  
+    .qr-code img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+    }
+  
+    .taskcompra img,
+    .task img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+    }
+  }
+  

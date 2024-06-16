@@ -93,6 +93,9 @@
                 case '10':
                     include 'mdescuentos(DESC)/indexDESC.php';
                     break;
+                case '11':
+                    include 'mevaluacionProductos(EPRO)/indexEPRO.php';
+                    break;
                 case '13':
                     include 'mgestionUsuarios(GUSU)/user.php';
                     break;
