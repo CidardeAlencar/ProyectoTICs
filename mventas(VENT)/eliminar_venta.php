@@ -33,7 +33,7 @@ if ($resultado && mysqli_num_rows($resultado) == 1) {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f8f9fc;
+        background-color: #e99c2e;
     }
 
     main {
@@ -55,7 +55,7 @@ if ($resultado && mysqli_num_rows($resultado) == 1) {
 
     h1,
     h2 {
-        color: #333;
+        color: #fff;
         text-align: center;
     }
 
@@ -83,13 +83,13 @@ if ($resultado && mysqli_num_rows($resultado) == 1) {
     }
 
     a:hover {
-        color: #e68a0d;
+        color: #e99c2e;
     }
 
     button {
         background-color: #e99c2e;
         /* Color principal (cambiado) */
-        color: #fff;
+        
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
@@ -99,7 +99,7 @@ if ($resultado && mysqli_num_rows($resultado) == 1) {
     }
 
     button:hover {
-        background-color: #e68a0d;
+        background-color: #e99c2e;
     }
 
     /* Formularios */
@@ -196,12 +196,12 @@ if ($resultado && mysqli_num_rows($resultado) == 1) {
     }
 
     button[name="atras"] {
-        background-color: blue;
+        background-color: #e99c2e;
         color: white;
     }
 
     button[name="atras"]:hover {
-        background-color: darkblue;
+        background-color: #e99c2e;
     }
 </style>
 

@@ -9,15 +9,18 @@ if (isset($_POST['enviar'])) {
     $fechaAgregado = date('Y-m-d');
     $estado = 'activo';
 
-    $consulta = "INSERT INTO ventas (Nombre, Descripcion, Precio, Cantidad, FechaAgregado,Estado) VALUES ('$nombre', '$descripcion', $precio, $cantidad, '$fechaAgregado','$estado')";
+    // Consulta SQL para insertar la venta
+    $consulta = "INSERT INTO ventas (Nombre, Descripcion, Precio, Cantidad, FechaAgregado, Estado) 
+                 VALUES ('$nombre', '$descripcion', $precio, $cantidad, '$fechaAgregado', '$estado')";
 
     if (mysqli_query($conexion, $consulta)) {
-        echo '<script>alert("venta creada exitosamente"); window.location.href = "indexVENT.php";</script>';
+        echo '<script>alert("Venta creada exitosamente"); window.location.href = "indexVENT.php";</script>';
     } else {
-        echo '<script>alert("Error al crear el venta");</script>';
+        echo '<script>alert("Error al crear la venta");</script>';
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -34,8 +37,24 @@ if (isset($_POST['enviar'])) {
         <div class="container">
             <h2>Formulario de creación de venta</h2>
             <form method="POST">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+            <label for="nombre">Nombre:</label>
+<select id="nombre" name="nombre" required>
+    <option value="">Selecciona un producto</option>
+    <?php
+    // Incluir el archivo de conexión si aún no está incluido
+    include 'connection.php';
+
+    // Consulta para obtener los nombres de los productos
+    $consulta_productos = "SELECT nombre FROM productos";
+    $resultado_productos = mysqli_query($conexion, $consulta_productos);
+
+    // Iterar sobre los resultados y generar las opciones del select
+    while ($fila = mysqli_fetch_assoc($resultado_productos)) {
+        echo '<option value="' . $fila['nombre'] . '">' . $fila['nombre'] . '</option>';
+    }
+    ?>
+</select>
+
 
                 <label for="descripcion">Descripción:</label>
                 <textarea id="descripcion" name="descripcion" rows="5" required></textarea>

@@ -5,22 +5,32 @@ include 'connection.php';
 $idventa = $_GET['id'];
 
 // Consulta para obtener los datos del venta a editar
-$consulta = "SELECT * FROM ventas WHERE VentaID = $idventa";
-$resultado = mysqli_query($conexion, $consulta);
+$consultaVenta = "SELECT * FROM ventas WHERE VentaID = $idventa";
+$resultadoVenta = mysqli_query($conexion, $consultaVenta);
 
 // Si se encontró el venta, se muestran sus datos en el formulario
-if ($resultado && mysqli_num_rows($resultado) == 1) {
-    $row = mysqli_fetch_assoc($resultado);
+if ($resultadoVenta && mysqli_num_rows($resultadoVenta) == 1) {
+    $rowVenta = mysqli_fetch_assoc($resultadoVenta);
 
-    $nombre = $row['Nombre'];
-    $descripcion = $row['Descripcion'];
-    $precio = $row['Precio'];
-    $cantidad = $row['Cantidad'];
-    $fechaAgregado = $row['FechaAgregado'];
-    $estado = $row['Estado']; // Asegúrate de que tu tabla tiene una columna 'Estado'
+    $nombre = isset($rowVenta['nombre']) ? $rowVenta['nombre'] : '';
+    $descripcion = isset($rowVenta['descripcion']) ? $rowVenta['descripcion'] : '';
+    $precio = isset($rowVenta['precio']) ? $rowVenta['precio'] : '';
+    $cantidad = isset($rowVenta['cantidad']) ? $rowVenta['cantidad'] : '';
+    $fechaAgregado = isset($rowVenta['fechaAgregado']) ? $rowVenta['fechaAgregado'] : '';
+    $estado = isset($rowVenta['estado']) ? $rowVenta['estado'] : '';
+
+    // Consulta para obtener los nombres de los productos de la tabla 'productos'
+    $consultaProductos = "SELECT nombre FROM productos";
+    $resultadoProductos = mysqli_query($conexion, $consultaProductos);
+
+    // Crear array para almacenar los nombres de los productos
+    $productos = array();
+    while ($rowProducto = mysqli_fetch_assoc($resultadoProductos)) {
+        $productos[] = $rowProducto['nombre'];
+    }
 } else {
     // Si no se encontró el venta, se muestra un mensaje de error
-    echo '<p>venta no encontrado.</p>';
+    echo '<p>Venta no encontrada.</p>';
     exit();
 }
 
@@ -40,12 +50,12 @@ if (isset($_POST['enviar'])) {
                                 cantidad = $cantidadActualizada, 
                                 fechaAgregado = '$fechaAgregadoActualizada',
                                 estado = '$estadoActualizado' 
-                            WHERE VentaId = $idventa";
+                            WHERE VentaID = $idventa";
 
     if (mysqli_query($conexion, $consultaActualizacion)) {
-        echo '<script>alert("venta actualizado exitosamente"); window.location.href = "indexVENT.php";</script>';
+        echo '<script>alert("Venta actualizada exitosamente"); window.location.href = "indexVENT.php";</script>';
     } else {
-        echo '<script>alert("Error al actualizar el venta");</script>';
+        echo '<script>alert("Error al actualizar la venta");</script>';
     }
 }
 ?>
@@ -55,19 +65,19 @@ if (isset($_POST['enviar'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar contrato</title>
+    <title>Editar Venta</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <style>
     /* Estilos CSS generales (igual que antes, pero sin header y footer) */
     button[name="atras"] {
-        background-color: blue;
+        background-color: #e99c2e;
         color: white;
     }
 
     button[name="atras"]:hover {
-        background-color: darkblue;
+        background-color: ##e99c2e;
     }
 
     body {
@@ -158,8 +168,14 @@ if (isset($_POST['enviar'])) {
             <form action="editar_venta.php?id=<?php echo $idventa; ?>" method="post">
                 <table>
                     <tr>
-                        <td><label for="nombre"><i class="fa fa-tag"></i> Nombre:</label></td>
-                        <td><input type="text" id="nombre" name="nombre" value="<?php echo $nombre; ?>" required></td>
+                        <td><label for="nombre"><i class="fa fa-tag"></i> Producto:</label></td>
+                        <td>
+                            <select id="nombre" name="nombre" required>
+                                <?php foreach ($productos as $producto) : ?>
+                                    <option value="<?php echo $producto; ?>" <?php echo ($nombre == $producto) ? 'selected' : ''; ?>><?php echo $producto; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="descripcion"><i class="fa fa-info-circle"></i> Descripción:</label></td>
