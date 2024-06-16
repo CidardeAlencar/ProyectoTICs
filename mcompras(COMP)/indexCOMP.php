@@ -4,8 +4,8 @@ $con = connection();
 
 //!DESCOMENTAR CUANDO SE HAYAN CREADO LAS COLECCIONES EN FIREBASE
 //?Funcionamiento con Firebase
-// include('firebase.php');
-// $database = getFirebaseDatabase();
+include('firebase.php');
+$database = getFirebaseDatabase();
 
 
 // Procesar la información del cliente
@@ -18,10 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cliente-form'])) {
 
     //!DESCOMENTAR CUANDO SE HAYAN CREADO LAS COLECCIONES EN FIREBASE
     //?Funcionamiento con Firebase
-    // $newClient = $database->getReference('clientes')->push([
-    //     'name' => $nombreCliente,
-    //     'email' => $emailCliente
-    // ]);
+    $newClient = $database->getReference('clientes')->push([
+        'name' => $nombreCliente,
+        'email' => $emailCliente
+    ]);
 
     if ($queryCliente) {
         echo '<script>document.addEventListener("DOMContentLoaded", function() { showModal("Cliente guardado correctamente ✅"); });</script>';
@@ -45,13 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pago-form'])) {
 
     //!DESCOMENTAR CUANDO SE HAYAN CREADO LAS COLECCIONES EN FIREBASE
     //?Funcionamiento con Firebase
-    // $newUser = $database->getReference('compra')->push([
-    //     'cardNumber' => $numeroTarjeta,
-    //     'cardHolderName' => $nombreTitular,
-    //     'expiryMonth' => $fechaVencimiento,
-    //     'pago' => true,
-    //     'metodo_pago' => $metodoPago
-    // ]);
+    $newUser = $database->getReference('compra')->push([
+        'cardNumber' => $numeroTarjeta,
+        'cardHolderName' => $nombreTitular,
+        'expiryMonth' => $fechaVencimiento,
+        'pago' => true,
+        'metodo_pago' => $metodoPago
+    ]);
 
     if ($queryPago) {
         echo '<script>document.addEventListener("DOMContentLoaded", function() { showModal("Pago realizado correctamente ✅"); });</script>';
