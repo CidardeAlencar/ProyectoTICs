@@ -88,7 +88,7 @@
                     include 'mcompras(COMP)/indexCOMP.php';
                     break;
                 case '9':
-                    include 'mcontratos(CONT)/index.php';
+                    include 'mcontratos(CONT)/indexCONT.php';
                     break;
                 case '10':
                     include 'mdescuentos(DESC)/indexDESC.php';
@@ -115,7 +115,7 @@
                     include 'mrankingProductos(RANK)/indexRANK.php';
                     break;
                 case '22':
-                    include 'mventas(VENT)/Ventas/indexVENT.php';
+                    include 'mventas(VENT)/indexVENT.php';
                         break;
                 case '23':
                     include 'mcomentariosValoraciones(CVAL)/indexCVAL.php';
