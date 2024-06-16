@@ -63,7 +63,7 @@ if (isset($_POST['enviar'])) {
                             WHERE contratoId = $idContrato";
 
     if (mysqli_query($conexion, $consultaActualizacion)) {
-        echo '<script>alert("Contrato actualizado exitosamente"); window.location.href = "index.php";</script>';
+        echo '<script>alert("Contrato actualizado exitosamente"); window.location.href = "indexCONT.php";</script>';
     } else {
         echo '<script>alert("Error al actualizar el contrato");</script>';
     }
@@ -174,7 +174,7 @@ if (isset($_POST['enviar'])) {
     <main>
         <div class="container">
             <h2>Editar contrato</h2>
-            <form action="editar_contrato.php?id=<?php echo $idContrato; ?>" method="post">
+            <form action="editarCONT.php?id=<?php echo $idContrato; ?>" method="post">
                 <table>
                     <!-- Cliente ID -->
                     <tr>

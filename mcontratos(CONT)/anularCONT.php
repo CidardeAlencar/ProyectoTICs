@@ -9,9 +9,9 @@ if (isset($_POST['anular'])) {
     $consultaAnular = "UPDATE Contratos SET estado = 'inactivo' WHERE contratoId = $idContrato";
 
     if (mysqli_query($conexion, $consultaAnular)) {
-        echo '<script>alert("Contrato anulado exitosamente"); window.location.href = "./index.php";</script>';
+        echo '<script>alert("Contrato anulado exitosamente"); window.location.href = "./indexCONT.php";</script>';
     } else {
-        echo '<script>alert("Error al anular el contrato"); window.location.href = "./index.php";</script>';
+        echo '<script>alert("Error al anular el contrato"); window.location.href = "./indexCONT.php";</script>';
     }
 }
 
@@ -220,7 +220,7 @@ if ($resultado && mysqli_num_rows($resultado) == 1) {
         <div class="container">
             <h2>Anular contrato</h2>
             <p>¿Seguro que desea anular el contrato?</p>
-            <form action="anular_contrato.php?id=<?php echo $idContrato; ?>" method="post">
+            <form action="anularCONT.php?id=<?php echo $idContrato; ?>" method="post">
                 <div class="button-container">
                     <button type="submit" name="anular">Anular</button>
                     <button type="button" name="atras" onclick="window.history.back();">Atrás</button>

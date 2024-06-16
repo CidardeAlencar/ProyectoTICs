@@ -15,7 +15,7 @@ if (isset($_POST['enviar'])) {
     $consulta = "INSERT INTO Contratos (clienteId, proveedorId, empleadoId, productoServicioId, fechaInicio, fechaFin, monto, condiciones, estado) VALUES ('$clienteId', '$proveedorId', '$empleadoId', '$productoServicioId', '$fechaInicio', '$fechaFin', $monto, '$condiciones', '$estado')";
 
     if (mysqli_query($conexion, $consulta)) {
-        echo '<script>alert("Contrato creado exitosamente"); window.location.href = "index.php";</script>';
+        echo '<script>alert("Contrato creado exitosamente"); window.location.href = "indexCONT.php";</script>';
     } else {
         echo '<script>alert("Error al crear el contrato");</script>';
     }
