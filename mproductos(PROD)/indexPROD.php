@@ -265,7 +265,6 @@ $resultado = mysqli_query($conexion, $consulta);
                                 <h3>$nombre</h3>
                                 <p>$descripcion</p>
                                 <p class='price'>$$precio</p>
-                                <button class='edit-btn' data-id='$idProducto' data-nombre='$nombre' data-descripcion='$descripcion' data-precio='$precio' data-categoria='{$row['categoria']}' data-estado='{$row['estado']}' data-imagen='$imagen'>Editar</button>
                             </div>";
                     }
                 } else {
