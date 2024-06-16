@@ -1,5 +1,4 @@
 <?php
-
 /* function connection(){
     $host = "localhost";
     $user = "root";
@@ -12,9 +11,8 @@
     mysqli_select_db($connect, $bd);
 
     return $connect;
-}; */
-
-
+};
+ */
 function connection(){
     $host = "localhost";
     $user = "root";

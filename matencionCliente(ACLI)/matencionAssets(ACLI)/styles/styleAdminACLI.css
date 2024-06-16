@@ -1,0 +1,212 @@
+:root {
+  --main-color: #e99c2e;
+  --text-color: #616060;
+  --background-color: #f9f9f9;
+  --box-shadow: rgba(0, 0, 0, 0.2);
+  --box-shadow-hover: rgba(0, 0, 0, 0.5);
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: white;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.login-container, .admin-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: var(--background-color);
+  box-shadow: 0 4px 8px var(--box-shadow);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.login-title, .admin-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--main-color);
+  margin-bottom: 20px;
+}
+
+.login-description, .chat-description {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.login-options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.container img {
+  width: 40%; /* Porcentaje del ancho del contenedor */
+  height: auto; /* La altura se ajustará automáticamente para mantener la proporción */
+  padding: 30px 20px;
+}
+
+.login-button, .send-reply-button {
+  padding: 10px 20px;
+  background-color: var(--main-color);
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover, .send-reply-button:hover {
+  background-color: var(--text-color);
+}
+
+.admin-container {
+  display: none; /* Ocultar el contenedor admin por defecto */
+}
+
+.chat-header {
+  margin-bottom: 20px;
+}
+
+.messages-container {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background: white;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.chat-message p {
+  margin: 5px 0;
+}
+
+
+/* styleAdminACLI.css */
+
+.admin-reply-input {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el input y el botón */
+}
+
+#reply-input {
+  flex: 1; /* El input ocupa todo el espacio disponible */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.send-reply-button {
+  padding: 10px 20px;
+  background-color: var(--main-color);
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.send-reply-button:hover {
+  background-color: var(--text-color);
+}
+
+.admin-reply-input input:disabled,
+.admin-reply-input button:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}
+
+
+.chat-message {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+}
+
+.chat-message:hover {
+  background-color: #f0f0f0; /* Color de fondo al pasar por encima */
+}
+
+.selected-message {
+  background-color: #e0e0e0; /* Color de fondo cuando está seleccionado */
+  border-color: #999; /* Color del borde cuando está seleccionado */
+}
+
+
+.message-details {
+  flex-grow: 1;
+  padding-right: 20px; /* Espacio entre los detalles y el botón */
+  text-align: left;
+}
+
+.message-action {
+  margin-left: 20px;
+  text-align: right;
+}
+
+.reply-button {
+  padding: 5px 10px;
+  background-color: #e99c2e;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.reply-button:hover {
+  background-color: #0056b3;
+}
+
+.dialog-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  z-index: 1000; /* Z-index alto para que esté encima de todo */
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.dialog-content p {
+  font-size: 18px;
+}
+
+.active-button {
+  background-color: #4CAF50; /* Color verde (puedes ajustarlo según tus preferencias) */
+  color: white; /* Color de texto blanco para contraste */
+}

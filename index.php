@@ -73,10 +73,10 @@
                     include 'ejemploModulo(EM)/indexEM.php';
                     break;
                 case '3':
-                    include 'matencionCliente(ACLI)/indexACLI.php';
+                    include 'matencionCliente(ACLI)/matencionClient(ACLI)/indexClientACLI.php';
                     break;
                 case '4':
-                    include 'matencionCliente(ACLI)/indexadmAC.php';
+                    include 'matencionCliente(ACLI)/matencionAdmin(ACLI)/indexAdminACLI.php';
                     break;
                 case '5':
                     include 'mbusqueda(BUSQ)/indexBUSQ.php';

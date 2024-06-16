@@ -23,7 +23,7 @@
     background-position: center;
 }
   
-  .login-container, .chat-container, .admin-container  {
+  .login-container, .chat-container, .answers-container  {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -33,7 +33,7 @@
     text-align: center;
   }
   
-  .login-title, .chat-title, .admin-title  {
+  .login-title, .chat-title, .answers-title  {
     font-size: 24px;
     font-weight: bold;
     color: var(--main-color);
@@ -168,4 +168,38 @@
 
 .admin-message.highlight {
   background-color: #e0f7fa; /* Cambia este color según tus preferencias */
+}
+
+.messages-container .client-message p {
+    margin: 5px 0;
+}
+
+.messages-container .client-message .client-reply {
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+.container img {
+    width: 40%;
+    height: auto;
+    padding: 30px 20px;
+}
+
+/**/
+
+.messages-container .client-message {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.messages-container .client-message p {
+  margin: 5px 0;
+}
+
+.messages-container .client-message .client-reply {
+  color: var(--main-color);
+  font-weight: bold;
 }
