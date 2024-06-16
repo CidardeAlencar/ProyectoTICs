@@ -156,7 +156,7 @@ body {
     }
   
     .taskcompra, .task, .payment-container {
-      width: 100%;
+      
       max-width: 400px;
     }
   
@@ -179,7 +179,7 @@ body {
     }
   
     .taskcompra, .task, .payment-container {
-      width: 100%;
+    
       max-width: 300px;
     }
   

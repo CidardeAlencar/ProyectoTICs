@@ -2,6 +2,8 @@
 // Conexión a la base de datos
 $conexion = mysqli_connect("localhost", "root", "", "users_crud_php");
 
+
+
 // Verificar la conexión
 if (!$conexion) {
     die("Error al conectar con la base de datos: " . mysqli_connect_error());
@@ -20,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre'])) {
     $nombreSeleccionado = $_POST['nombre'];
 
     // Consulta preparada para obtener datos del trabajador seleccionado
-    $query = mysqli_prepare($conexion, "SELECT fecha, correo FROM user WHERE id = ?");
+    $query = mysqli_prepare($conexion, "SELECT fecha, correo FROM user WHERE nombre = ?");
     mysqli_stmt_bind_param($query, "s", $nombreSeleccionado);
     mysqli_stmt_execute($query);
     mysqli_stmt_store_result($query);
@@ -96,10 +98,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar']) && $_POST['e
     $mitad = isset($_POST['total-suma-id-2']) ? $_POST['total-suma-id-2'] : '';
     $frecuente = isset($_POST['total-suma-id-3']) ? $_POST['total-suma-id-3'] : '';
     $siempre = isset($_POST['total-suma-id-4']) ? $_POST['total-suma-id-4'] : '';
+    $estado = 1;
 
 
     // Construir la consulta SQL para insertar los datos en la tabla correspondiente
-    
+
     $sql = "INSERT INTO evaluaciondesempeno (
         nombreTrabajador, 
         fechaContratacion, 
@@ -157,7 +160,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar']) && $_POST['e
         ocasional,
         mitad,
         frecuente,
-        siempre
+        siempre, 
+        estado
     ) VALUES (
         '$nombreTrabajador', 
         '$fechaContratacion', 
@@ -215,7 +219,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar']) && $_POST['e
         '$ocasional',
         '$mitad',
         '$frecuente',
-        '$siempre'
+        '$siempre',
+        '$estado'
     )";
 
     // Ejecutar la consulta SQL
@@ -251,18 +256,20 @@ mysqli_close($conexion);
                 <div class="task">
                     <h2>Datos del Trabajador a Evaluar</h2>
                     <div>
-                        <label style="font-size: 100%;" for="nombre">Nombre Completo </label>
+                        <label style="font-size: 100%; " for="nombre">Nombre Completo </label>
                     </div>
                     <div>
-                        <select name="nombre" id="nombre" onchange="this.form.submit()">
+                        <select style="width: 100%;height: 40px;" name="nombre" id="nombre" onchange="this.form.submit()">
                             <option value="">Seleccione un nombre</option>
                             <?php
                             // Imprimir la lista de nombres obtenidos previamente
                             $con = mysqli_connect("localhost", "root", "", "users_crud_php");
-                            $result = mysqli_query($con, "SELECT id, nombre FROM user");
+                            $result = mysqli_query($con, "SELECT nombre FROM user");
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $selected = ($nombreSeleccionado == $row['id']) ? "selected" : "";
-                                echo "<option value='" . $row['id'] . "' $selected>" . $row['nombre'] . "</option>";
+                                // Verificar si el nombre está seleccionado
+                                $selected = (isset($nombreSeleccionado) && $nombreSeleccionado == $row['nombre']) ? "selected" : "";
+                                // Crear la opción con el nombre como valor
+                                echo "<option value='" . htmlspecialchars($row['nombre'], ENT_QUOTES, 'UTF-8') . "' $selected>" . htmlspecialchars($row['nombre'], ENT_QUOTES, 'UTF-8') . "</option>";
                             }
                             mysqli_close($con);
                             ?>
@@ -314,49 +321,49 @@ mysqli_close($conexion);
                                 <table border="1">
 
                                     <tr>
-                                        <td style="text-align: center;" class="center-content; " colspan="5">Conocimiento Asociado al Cargo: habilidades y destrezas</td>
+                                        <td style="text-align: center;padding-left: 0%; background-color: #e99c2e; color: white;" class="center-content; " colspan="5">Conocimiento Asociado al Cargo: habilidades y destrezas</td>
 
                                     </tr>
                                     <tr>
-                                        <td>El trabajador entiende las funciones y responsabilidades</td>
-                                        <td><input id="1" name="A1" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="2" name="A2" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="3" name="A3" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="4" name="A4" type="number" min="1" max="100" placeholder="0"></td>
+                                        <td style="padding-left: 0%; background-color: #6666;">El trabajador entiende las funciones y responsabilidades</td>
+                                        <td><input id="1" name="A1" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="2" name="A2" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="3" name="A3" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="4" name="A4" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
                                     </tr>
                                     <tr>
-                                        <td>El trabjador posee los conocimientos y habilidades necesarias</td>
-                                        <td><input id="1" name="B1" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="2" name="B2" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="3" name="B3" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="4" name="B4" type="number" min="1" max="100" placeholder="0"></td </tr>
+                                        <td style="padding-left: 0%; background-color: #6666;">El trabjador posee los conocimientos y habilidades necesarias</td>
+                                        <td><input id="1" name="B1" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="2" name="B2" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="3" name="B3" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="4" name="B4" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td </tr>
                                 </table>
                             </div>
 
                             <div>
                                 <table border="1">
                                     <tr>
-                                        <td style="text-align: center;" class="center-content; " colspan="5">Planificacion y Organización</td>
+                                        <td style="text-align: center; padding-left: 0%; background-color: #e99c2e; color: white;" class="center-content; " colspan="5">Planificacion y Organización</td>
 
                                     </tr>
                                     <tr>
-                                        <td>El trabajador requiere una supervisión mínima</td>
-                                        <td><input id="1" name="C1" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="2" name="C2" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="3" name="C3" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="4" name="C4" type="number" min="1" max="100" placeholder="0"></td </tr>
+                                        <td style="padding-left: 0%; background-color: #6666;">El trabajador requiere una supervisión mínima</td>
+                                        <td><input id="1" name="C1" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="2" name="C2" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="3" name="C3" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="4" name="C4" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td </tr>
                                     <tr>
-                                        <td>El trabajador se desempeña de forma organizada</td>
-                                        <td><input id="1" name="D1" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="2" name="D2" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="3" name="D3" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="4" name="D4" type="number" min="1" max="100" placeholder="0"></td </tr>
+                                        <td style="padding-left: 0%; background-color: #6666;">El trabajador se desempeña de forma organizada</td>
+                                        <td><input id="1" name="D1" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="2" name="D2" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="3" name="D3" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="4" name="D4" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td </tr>
                                     <tr>
-                                        <td>El trabjador reacciona rápidamente ante las dificultades</td>
-                                        <td><input id="1" name="E1" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="2" name="E2" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="3" name="E3" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="4" name="E4" type="number" min="1" max="100" placeholder="0"></td </tr>
+                                        <td style="padding-left: 0%; background-color: #6666;">El trabajador reacciona rápidamente ante las dificultades</td>
+                                        <td><input id="1" name="E1" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="2" name="E2" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="3" name="E3" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="4" name="E4" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td </tr>
                                 </table>
                             </div>
                         </div>
@@ -377,67 +384,67 @@ mysqli_close($conexion);
                                         <th>Frecuente 75%</th>
                                         <th>Siempre 100%</th>
                                     </tr>
-                                    
+
                                 </table>
                             </div>
                             <div>
                                 <table border="1">
 
                                     <tr>
-                                        <td style="text-align: center;" class="center-content; " colspan="5">Productividad</td>
+                                        <td style="text-align: center; padding-left: 0%; background-color: #e99c2e; color: white;" class="center-content; " colspan="5">Productividad</td>
 
                                     </tr>
                                     <tr>
-                                        <td>El trabajador consigue los objetivos</td>
-                                        <td><input id="1" name="F1" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="2" name="F2" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="3" name="F3" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="4" name="F4" type="number" min="1" max="100" placeholder="0"></td </tr>
+                                        <td style="padding-left: 0%; background-color: #6666;">El trabajador consigue los objetivos</td>
+                                        <td><input id="1" name="F1" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="2" name="F2" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="3" name="F3" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="4" name="F4" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td </tr>
                                     <tr>
-                                        <td>El trabajador puede manejar varias actividades a la vez</td>
-                                        <td><input id="1" name="G1" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="2" name="G2" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="3" name="G3" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="4" name="G4" type="number" min="1" max="100" placeholder="0"></td </tr>
+                                        <td style="padding-left: 0%; background-color: #6666;">El trabajador puede manejar varias actividades a la vez</td>
+                                        <td><input id="1" name="G1" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="2" name="G2" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="3" name="G3" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="4" name="G4" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td </tr>
                                     <tr>
-                                        <td>El trabajador consigue los estándares de productividad</td>
-                                        <td><input id="1" name="H1" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="2" name="H2" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="3" name="H3" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="4" name="H4" type="number" min="1" max="100" placeholder="0"></td </tr>
+                                        <td style="padding-left: 0%; background-color: #6666;">El trabajador consigue los estándares de productividad</td>
+                                        <td><input id="1" name="H1" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="2" name="H2" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="3" name="H3" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="4" name="H4" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td </tr>
                                 </table>
                             </div>
 
                             <div>
                                 <table border="1">
                                     <tr>
-                                        <td style="text-align: center;" class="center-content; " colspan="5">Trabajo en Equipo</td>
+                                        <td style="text-align: center; padding-left: 0%; background-color: #e99c2e; color: white;" class="center-content; " colspan="5">Trabajo en Equipo</td>
 
                                     </tr>
                                     <tr>
-                                        <td>El trabajador sabe trabajar en equipo</td>
-                                        <td><input id="1" name="I1" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="2" name="I2" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="3" name="I3" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="4" name="I4" type="number" min="1" max="100" placeholder="0"></td </tr>
+                                        <td style="padding-left: 0%; background-color: #6666;">El trabajador sabe trabajar en equipo</td>
+                                        <td><input id="1" name="I1" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="2" name="I2" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="3" name="I3" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="4" name="I4" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td </tr>
                                     <tr>
-                                        <td>El trabajador ayuda a su equipo</td>
-                                        <td><input id="1" name="J1" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="2" name="J2" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="3" name="J3" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="4" name="J4" type="number" min="1" max="100" placeholder="0"></td </tr>
+                                        <td style="padding-left: 0%; background-color: #6666;">El trabajador ayuda a su equipo</td>
+                                        <td><input id="1" name="J1" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="2" name="J2" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="3" name="J3" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="4" name="J4" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td </tr>
                                     <tr>
-                                        <td>El trabajador se desempeña bien con diferentes tipos de persona</td>
-                                        <td><input id="1" name="K1" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="2" name="K2" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="3" name="K3" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="4" name="K4" type="number" min="1" max="100" placeholder="0"></td </tr>
+                                        <td style="padding-left: 0%; background-color: #6666;">El trabajador se desempeña bien con diferentes tipos de persona</td>
+                                        <td><input id="1" name="K1" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="2" name="K2" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="3" name="K3" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="4" name="K4" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td </tr>
                                     <tr>
-                                        <td>El trabajador participa activamente en las reuniones de trabajo</td>
-                                        <td><input id="1" name="L1" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="2" name="L2" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="3" name="L3" type="number" min="1" max="100" placeholder="0"></td>
-                                        <td><input id="4" name="L4" type="number" min="1" max="100" placeholder="0"></td </tr>
+                                        <td style="padding-left: 0%; background-color: #6666;">El trabajador participa activamente en las reuniones de trabajo</td>
+                                        <td><input id="1" name="L1" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="2" name="L2" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="3" name="L3" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td>
+                                        <td><input id="4" name="L4" type="number" min="1" max="100" placeholder="0" oninput="disableOthers(this)"></td </tr>
                                 </table>
                             </div>
                         </div>
@@ -480,8 +487,13 @@ mysqli_close($conexion);
                             <p class="signature-label">Firma del Evaluador</p>
                         </div>
                     </div>
+                    <div class="action-buttons">
+                        <button type="submit" name="enviar" value="evaluacion" class="btn">Guardar</button>
+                        <button type="button" class="btn back-btn" onclick="window.location.href='indexCATE.php'">Atrás</button>
+                        <button style="background-color: #e99c2e; height: 30px;" id="scrollToTopBtn" class="scroll-to-top-btn" title="Ir arriba">↑</button>
+                    </div>
                 </div>
-                <button type="submit" name="enviar" value="evaluacion">Enviar</button>
+
         </form>
 
     </div>
@@ -591,44 +603,7 @@ mysqli_close($conexion);
         margin-top: 30px;
     }
 
-    nav {
-        background-color: #e99c2e;
-        color: #fff;
-        padding: 10px 0;
-        text-align: center;
-        width: 75%;
-        margin: auto;
-    }
 
-    nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    nav ul li {
-        display: inline-block;
-        margin-right: 20px;
-    }
-
-    nav ul li a {
-        color: #fff;
-        text-decoration: none;
-        padding: 10px 15px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
-
-    nav ul li a:hover {
-        background-color: #555;
-    }
-
-    @media screen and (max-width: 600px) {
-        nav ul li {
-            display: block;
-            margin: 10px 0;
-        }
-    }
 
     table {
         width: 100%;
@@ -663,23 +638,26 @@ mysqli_close($conexion);
 
         td {
             border: none;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #e99c2e;
             position: relative;
-            padding-left: 50%;
+            padding-left: 60%;
+
+        }
+
+        td uno {
+            padding-left: 98%;
         }
 
         td:before {
             position: absolute;
-            top: 6px;
+            top: 30%;
             left: 6px;
             width: 45%;
             padding-right: 10px;
             white-space: nowrap;
         }
 
-        td:nth-of-type(1):before {
-            content: "Porcentajes %";
-        }
+
 
         td:nth-of-type(2):before {
             content: "Ocasional 25%";
@@ -697,7 +675,82 @@ mysqli_close($conexion);
             content: "Siempre 100%";
         }
     }
+
+
+    /* Action buttons styling */
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        /* Espacio entre los botones */
+        margin-top: 20px;
+    }
+
+    button.btn {
+        background-color: #e99c2e;
+        color: #fff;
+        font-size: 1.2em;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    button.btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(233, 156, 46, 0.5);
+    }
+
+    button.btn:hover {
+        background-color: #d68b28;
+        transform: translateY(-2px);
+    }
+
+    button.btn:active {
+        background-color: #b37324;
+        transform: translateY(1px);
+    }
+
+    /* Arrow animation on click */
+    button.btn::after {
+        content: "↑";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity 0.2s ease, top 0.2s ease;
+    }
+
+    button.btn:active::after {
+        top: -10px;
+        opacity: 1;
+    }
+
+    /* Back button specific styles */
+    button.back-btn {
+        background-color: #666666;
+    }
+
+    button.back-btn:hover {
+        background-color: #2a2f35;
+    }
+
+    button.btn::after {
+        content: "↑";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity 0.2s ease, top 0.2s ease;
+        background-color: #e99c2e;
+    }
 </style>
+
 <script>
     // Función para sumar los valores de los inputs con el mismo ID
     function sumarInputs() {
@@ -725,9 +778,7 @@ mysqli_close($conexion);
 
     // Llama a la función una vez para asegurarte de que el valor inicial se muestra correctamente
     sumarInputs();
-</script>
-<script>
-    // Función para sumar los valores de los inputs con el mismo ID
+
     function sumarInputsId2() {
         const inputs = document.querySelectorAll('input[id="2"]');
         let total = 0;
@@ -753,8 +804,7 @@ mysqli_close($conexion);
 
     // Llama a la función una vez para asegurarte de que el valor inicial se muestra correctamente
     sumarInputsId2();
-</script>
-<script>
+
     function sumarInputsId3() {
         const inputs = document.querySelectorAll('input[id="3"]');
         let total = 0;
@@ -780,8 +830,7 @@ mysqli_close($conexion);
 
     // Llama a la función una vez para asegurarte de que el valor inicial se muestra correctamente
     sumarInputsId3();
-</script>
-<script>
+
     function sumarInputsId4() {
         const inputs = document.querySelectorAll('input[id="4"]');
         let total = 0;
@@ -807,4 +856,52 @@ mysqli_close($conexion);
 
     // Llama a la función una vez para asegurarte de que el valor inicial se muestra correctamente
     sumarInputsId4();
+</script>
+<script>
+    // Mostrar/Ocultar el botón al hacer scroll
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    }
+
+    // Desplazamiento suave hacia la parte superior
+    document.getElementById("scrollToTopBtn").onclick = function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    // Función para deshabilitar otros inputs de la misma fila pero en diferentes columnas
+    function disableOthers(currentInput) {
+        // Obtener el nombre del input actual (ej. A1, B2, C4)
+        var currentName = currentInput.name;
+
+        // Obtener la fila del input actual (ej. A, B, C)
+        var currentRow = currentName.substring(0, 1);
+
+        // Iterar sobre todos los inputs de la misma fila
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs.forEach(input => {
+            var inputName = input.name;
+            if (inputName.substring(0, 1) === currentRow && inputName !== currentName) {
+                input.disabled = currentInput.value !== '';
+            }
+        });
+
+        // Rehabilitar los campos si el actual se vacía
+        if (currentInput.value === '') {
+            inputs.forEach(input => {
+                input.disabled = false;
+            });
+        }
+    }
 </script>

@@ -1,6 +1,5 @@
 CREATE TABLE `evaluaciondesempeno` (
-  `id` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombreTrabajador` varchar(255) DEFAULT NULL,
   `cargoDesempeno` varchar(255) DEFAULT NULL,
   `fechaContratacion` date DEFAULT NULL,
@@ -58,6 +57,12 @@ CREATE TABLE `evaluaciondesempeno` (
   `mitad` varchar(255) DEFAULT NULL,
   `frecuente` varchar(255) DEFAULT NULL,
   `siempre` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`usuario_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `evaluaciondesempeno` (`id`, `estado`, `nombreTrabajador`, `cargoDesempeno`, `fechaContratacion`, `antiguedad`, `correo`, `funcionesA1`, `funcionesA2`, `funcionesA3`, `funcionesA4`, `conocimientosB1`, `conocimientosB2`, `conocimientosB3`, `conocimientosB4`, `supervisionC1`, `supervisionC2`, `supervisionC3`, `supervisionC4`, `desempenaD1`, `desempenaD2`, `desempenaD3`, `desempenaD4`, `reaccionaE1`, `reaccionaE2`, `reaccionaE3`, `reaccionaE4`, `consigueF1`, `consigueF2`, `consigueF3`, `consigueF4`, `manejarG1`, `manejarG2`, `manejarG3`, `manejarG4`, `estandaresH1`, `estandaresH2`, `estandaresH3`, `estandaresH4`, `equipoI1`, `equipoI2`, `equipoI3`, `equipoI4`, `ayudaJ1`, `ayudaJ2`, `ayudaJ3`, `ayudaJ4`, `personalK1`, `personalK2`, `personalK3`, `personalK4`, `reunionL1`, `reunionL2`, `reunionL3`, `reunionL4`, `ocasional`, `mitad`, `frecuente`, `siempre`) VALUES
+(1, 1, 'Alejandra', 'Gerente', '2024-06-04', 10, 'mariadelcarmencallemontalvo@gmail.com', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0.00', '0.00', '0.00', '0.00'),
+(2, 1, 'Ruddy Gerardo', 'Administrador', '2024-06-04', 0, 'cjdnjc@gmail.com', 50, 0, 0, 0, 0, 60, 0, 0, 0, 65, 0, 0, 0, 60, 0, 0, 0, 60, 0, 0, 0, 0, 60, 0, 0, 0, 55, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 50, 0, 0, 0, 5, 0, 0, 0, 5, 0, '1.04', '10.21', '11.56', '0.00');
+
+--
+-- solo copiar y pegar a la base de datos no tiene relacion es una tabla independiente

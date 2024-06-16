@@ -1,39 +1,3 @@
-<?php
-// Inicializamos la conexión a la base de datos
-$conexion = mysqli_connect("localhost", "root", "", "users_crud_php");
-
-// Verificamos la conexión
-if (!$conexion) {
-    die("Error al conectar con la base de datos: " . mysqli_connect_error());
-}
-
-// Consulta SQL inicial para obtener todos los registros
-$sql = "SELECT id, nombreTrabajador, cargoDesempeno, ocasional, mitad, frecuente, siempre FROM evaluaciondesempeno";
-$resultado = $conexion->query($sql);
-
-// Inicializamos la variable para almacenar los resultados de la búsqueda
-$resultados = [];
-
-// Verificamos si se envió el formulario de búsqueda
-if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
-    $busqueda = $_GET['buscar'];
-
-    // Consulta SQL modificada para buscar por nombre del trabajador
-    $sql_busqueda = "SELECT id, nombreTrabajador, cargoDesempeno, ocasional, mitad, frecuente, siempre 
-                     FROM evaluaciondesempeno 
-                     WHERE nombreTrabajador LIKE '%$busqueda%'";
-
-    $resultado = $conexion->query($sql_busqueda);
-
-    // Almacenamos los resultados de la búsqueda en el array $resultados
-    if ($resultado->num_rows > 0) {
-        while ($row = $resultado->fetch_assoc()) {
-            $resultados[] = $row;
-        }
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -62,7 +26,6 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
         }
 
         .table-container {
-            overflow-x: auto;
             background: white;
             padding: 20px;
             display: inline-block;
@@ -78,10 +41,10 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
         th,
         td {
             padding: 12px 15px;
-            text-align: left;
             border-bottom: 1px solid #66666666;
             color: black;
             background-color: #fff0db;
+            text-align: left;
         }
 
         th {
@@ -162,6 +125,51 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
             border-radius: 3px;
             cursor: pointer;
         }
+
+        /* Botón de edición */
+        .edit-btn {
+            background-color: #666666;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            text-decoration: none;
+            /* Quitamos la subrayado por defecto de los enlaces */
+            display: inline-block;
+            /* Hacemos que se muestre como un bloque */
+        }
+
+        .edit-btn:hover {
+            background-color: #e99c2e;
+        }
+
+        /* Action buttons styling */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            /* Espacio entre los botones */
+            margin-top: 20px;
+        }
+
+        button.btn {
+            background-color: #e99c2e;
+            color: #fff;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Back button specific styles */
+        button.back-btn {
+            background-color: #666666;
+        }
     </style>
 </head>
 
@@ -171,7 +179,7 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
         <h1 class="title-compras">DE DESEMPEÑO</h1>
 
         <div class="table-container">
-            <h2 style="color:#e99c2e;">Buscar Trabajadores</h2>
+            <h2 style="color:#e99c2e;">Editar datos de los trabajadores</h2>
 
             <!-- Formulario de búsqueda -->
             <div class="taks">
@@ -192,25 +200,60 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
                         <th style="text-align: center;">Mitad 50%</th>
                         <th style="text-align: center;">Frecuente 75%</th>
                         <th style="text-align: center;">Siempre 100%</th>
+                        <th style="text-align: center;">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    // Mostrar los registros en la tabla
-                    if (!empty($resultados)) {
-                        foreach ($resultados as $row) {
-                            echo "<tr>";
-                            echo "<td data-label='ID'>" . $row["id"] . "</td>";
-                            echo "<td data-label='Nombre del Trabajador'>" . $row["nombreTrabajador"] . "</td>";
-                            echo "<td data-label='Cargo'>" . $row["cargoDesempeno"] . "</td>";
-                            echo "<td data-label='Ocasional 25%'>" . $row["ocasional"] . "</td>";
-                            echo "<td data-label='Mitad 50%'>" . $row["mitad"] . "</td>";
-                            echo "<td data-label='Frecuente 75%'>" . $row["frecuente"] . "</td>";
-                            echo "<td data-label='Siempre 100%'>" . $row["siempre"] . "</td>";
-                            echo "</tr>";
+                    // Inicializamos la conexión a la base de datos
+                    $conexion = mysqli_connect("localhost", "root", "", "users_crud_php");
+
+                    // Verificamos la conexión
+                    if (!$conexion) {
+                        die("Error al conectar con la base de datos: " . mysqli_connect_error());
+                    }
+
+                    // Consulta SQL inicial para obtener todos los registros
+                    $sql = "SELECT id, nombreTrabajador, cargoDesempeno, ocasional, mitad, frecuente, siempre FROM evaluaciondesempeno";
+
+                    // Verificamos si se envió el formulario de búsqueda
+                    if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
+                        $busqueda = $_GET['buscar'];
+
+                        // Consulta SQL modificada para buscar por nombre del trabajador
+                        $sql_busqueda = "SELECT id, nombreTrabajador, cargoDesempeno, ocasional, mitad, frecuente, siempre 
+                                         FROM evaluaciondesempeno 
+                                         WHERE nombreTrabajador LIKE '%$busqueda%'";
+
+                        $sql = $sql_busqueda;
+                    }
+
+                    $resultado = $conexion->query($sql);
+
+                    // Inicializamos la variable para almacenar los resultados de la búsqueda
+                    $resultados = [];
+
+                    // Almacenamos los resultados de la búsqueda en el array $resultados
+                    if ($resultado->num_rows > 0) {
+                        while ($row = $resultado->fetch_assoc()) {
+                            $resultados[] = $row;
                         }
                     } else {
-                        echo "<tr><td colspan='7' style='text-align: center;' class='no-results-container'><div class='no-results'>No se encontraron resultados</div></td></tr>";
+                        echo "<tr><td colspan='8' style='text-align: center;' class='no-results-container'><div class='no-results'>No se encontraron resultados</div></td></tr>";
+                    }
+
+                    // Mostrar los registros en la tabla
+                    foreach ($resultados as $row) {
+                        echo "<tr>";
+                        echo "<td data-label='ID'>" . $row["id"] . "</td>";
+                        echo "<td data-label='Nombre del Trabajador'>" . $row["nombreTrabajador"] . "</td>";
+                        echo "<td data-label='Cargo'>" . $row["cargoDesempeno"] . "</td>";
+                        echo "<td data-label='Ocasional 25%'>" . $row["ocasional"] . "</td>";
+                        echo "<td data-label='Mitad 50%'>" . $row["mitad"] . "</td>";
+                        echo "<td data-label='Frecuente 75%'>" . $row["frecuente"] . "</td>";
+                        echo "<td data-label='Siempre 100%'>" . $row["siempre"] . "</td>";
+                        echo "<td data-label='Acción'><a href='editardosCATE.php?id=" . htmlspecialchars($row["id"]) . "' class='edit-btn'>Editar</a></td>";
+                        echo "</tr>";
                     }
                     ?>
                 </tbody>
@@ -228,32 +271,3 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
 // Cerramos la conexión a la base de datos al final del archivo
 $conexion->close();
 ?>
-
-<style>
-    /* Action buttons styling */
-    .action-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        /* Espacio entre los botones */
-        margin-top: 20px;
-    }
-
-    button.btn {
-        background-color: #e99c2e;
-        color: #fff;
-        font-size: 1.2em;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        position: relative;
-    }
-
-    /* Back button specific styles */
-    button.back-btn {
-        background-color: #666666;
-    }
-</style>
