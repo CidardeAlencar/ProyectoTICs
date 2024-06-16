@@ -73,10 +73,10 @@
                     include 'ejemploModulo(EM)/indexEM.php';
                     break;
                 case '3':
-                    include 'matencionCliente(ACLI)/matencionClient(ACLI)/indexClientACLI.php';
+                    include 'matencionCliente(ACLI)/indexACLI.php';
                     break;
                 case '4':
-                    include 'matencionCliente(ACLI)/matencionAdmin(ACLI)/indexAdminACLI.php';
+                    include 'matencionCliente(ACLI)/indexadmAC.php';
                     break;
                 case '5':
                     include 'mbusqueda(BUSQ)/indexBUSQ.php';
@@ -92,9 +92,6 @@
                     break;
                 case '10':
                     include 'mdescuentos(DESC)/indexDESC.php';
-                    break;
-                case '11':
-                    include 'mevaluacionProductos(EPRO)/indexEPRO.php';
                     break;
                 case '13':
                     include 'mgestionUsuarios(GUSU)/user.php';
@@ -113,6 +110,9 @@
                     break;
                 case '18':
                     include 'mrankingProductos(RANK)/indexRANK.php';
+                    break;
+                case '21':
+                    include 'mreservas(RESE)/indexRESE.php';
                     break;
                 case '22':
                     include 'mventas(VENT)/Ventas/indexVENT.php';

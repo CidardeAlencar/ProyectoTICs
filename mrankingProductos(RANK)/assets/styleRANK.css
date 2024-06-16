@@ -1,130 +1,21 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.product-detail-card {
+    background-color: #A2DED0; /*Color verde agua*/
+    border-radius: 10px; 
+    padding: 20px; 
 }
 
-.ventas {
-    color: #bc6c25;
+.product-detail-card h2 {
+    margin-bottom: 10px; 
 }
 
+.product-detail-card ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+.product-detail-card li {
+    margin-bottom: 5px; 
+}
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    margin: 0;
-}
-
-.smooth-header {
-    background-color: #606c38;
-    color: #fff;
-    padding: 80px 10px;
-    text-align: left;
-    position: relative;
-    z-index: 1000;
-    transition: background-color 0.9s ease;
-}
-
-.smooth-header .container {
-    max-width: 960px;
-    margin: 0 auto;
-}
-
-.smooth-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-.smooth-header p {
-    font-size: 1.2rem;
-    margin-top: 10px;
-}
-
-/* Body - gallery */
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-}
-
-.product {
-    margin: 10px;
-    text-align: center;
-    cursor: pointer;
-    position: relative;
-}
-
-.product img {
-    max-width: 200px;
-    max-height: 200px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: transform 0.2s ease;
-}
-
-.product img:hover {
-    transform: scale(1.1);
-}
-
-.product p {
-    margin-top: 5px;
-    font-size: 14px;
-}
-
-/* Popup */
-.popup {
-    display: none; /* Initially hidden */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    overflow: auto;
-    justify-content: center;
-    align-items: center;
-}
-
-.popup-content {
-    background-color: #fefefe;
-    padding: 20px;
-    border: 1px solid #888;
-    max-width: 80%;
-    text-align: center;
-    position: relative;
-    border-radius: 5px;
-    z-index: 1001; /* Ensure it's above the semi-transparent background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
-    pointer-events: auto; /* Enable interaction within the popup */
-}
-
-.popup-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.close {
-    color: #aaa;
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Main content section */
-main {
-    padding-top: 20px;
+    background-color: #A2DED0; /* Color verde agua */
 }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-06-2024 a las 17:40:53
+-- Tiempo de generación: 12-06-2024 a las 05:02:12
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `users_crud_php (1)`
+-- Base de datos: `users_crud_php`
 --
 
 -- --------------------------------------------------------
@@ -198,22 +198,17 @@ CREATE TABLE `productos` (
   `precio` decimal(10,2) NOT NULL,
   `categoria` varchar(255) NOT NULL,
   `estado` enum('activo','inactivo') NOT NULL DEFAULT 'activo',
-  `imagen_principal` varchar(255) DEFAULT NULL,
-  `fVencimiento` date DEFAULT NULL
+  `imagen_principal` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id_producto`, `nombre`, `descripcion`, `precio`, `categoria`, `estado`, `imagen_principal`, `fVencimiento`) VALUES
-(1, 'Sal', 'Sal yodada', 35.00, 'sal', 'activo', '', NULL),
-(6, 'Peluche Cidar', 'grande', 100.00, 'juguetes', 'activo', '', NULL),
-(7, 'Refresco Ruddy', 'Bebida gaseosa', 10.00, 'Bebidas', 'activo', '', NULL),
-(9, '', NULL, 0.00, '', 'activo', NULL, NULL),
-(10, '', NULL, 0.00, '', 'activo', NULL, NULL),
-(11, '', NULL, 0.00, '', 'activo', NULL, NULL),
-(12, '', NULL, 0.00, '', 'activo', NULL, NULL);
+INSERT INTO `productos` (`id_producto`, `nombre`, `descripcion`, `precio`, `categoria`, `estado`, `imagen_principal`) VALUES
+(1, 'Sal', 'Sal yodada', 35.00, 'sal', 'activo', ''),
+(6, 'Peluche Cidar', 'grande', 100.00, 'juguetes', 'activo', ''),
+(7, 'Refresco Ruddy', 'Bebida gaseosa', 10.00, 'Bebidas', 'activo', '');
 
 -- --------------------------------------------------------
 
@@ -404,7 +399,7 @@ ALTER TABLE `evaluaciondesempeno`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `promociones`
