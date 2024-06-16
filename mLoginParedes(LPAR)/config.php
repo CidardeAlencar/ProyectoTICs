@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "gestion_personal";  // Cambia a la nueva base de datos
+$dbname = "login_demo";
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);

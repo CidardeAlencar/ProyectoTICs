@@ -33,34 +33,6 @@ if (isset($_POST['cambiar'])) {
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Editar Usuario</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .navbar {
-            overflow: hidden;
-            background-color: #333;
-        }
-
-        .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .content {
-            padding: 20px;
-        }
-    </style>
-    <style>
         .container {
             width: 35%;
             margin: auto;
@@ -174,14 +146,10 @@ button{
             <input type="hidden" name="editar" value="editar">
             <center>
                 <div class="form-group">
-                    <button type="submit" class="buttong">Guardar Cambios</button><center><button onclick="volver()">Volver</button></center>
+                    <button type="submit" class="buttong">Guardar Cambios</button>
                 </div>
             </center>
-            <script>
-        function volver() {
-            window.history.back();
-        }
-    </script>
+
         </form>
     </div>
 

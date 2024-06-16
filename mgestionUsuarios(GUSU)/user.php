@@ -1,14 +1,5 @@
 <?php
-include './connection.php';
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "users_crud_php";
-$conexion = mysqli_connect($host, $user, $password, $database);
-if (!$conexion) {
-    echo "No se realizo la conexion a la base de datos, el error fue:" .
-        mysqli_connect_error();
-}
+include 'connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +10,7 @@ if (!$conexion) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Usuarios</title>
@@ -37,6 +26,7 @@ if (!$conexion) {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         color: black;
         border-radius: 10px;
+        margin-top: 3rem;
     }
 
     table {
@@ -81,759 +71,400 @@ if (!$conexion) {
     }
 
     #searchInput {
-        padding: 10px;
-        border: none;
-        border-bottom: 1px solid white;
-        /* Agrega solo una línea debajo */
-        width: 200px;
-        font-size: 1.2rem;
-        font-family: 'Oswald', sans-serif;
-        color: black;
-        border-radius: 3px;
-        background-color: #f8f9fc;
-        /* Quita el fondo */
-        outline: none;
-        /* Elimina el contorno al hacer clic */
+    padding: 10px;
+    border: none; 
+    border-bottom: 1px solid white; /* Agrega solo una línea debajo */
+    width: 200px;
+    font-size: 1.2rem;
+    font-family: 'Oswald', sans-serif;
+    color: black;
+    border-radius: 3px;
+    background-color:#f8f9fc; /* Quita el fondo */
+    outline: none; /* Elimina el contorno al hacer clic */
     }
 
 
-    /* Variation of work by @mrhyddenn for Radios */
+/* Variation of work by @mrhyddenn for Radios */
 
 
-    .check {
-        cursor: pointer;
-        position: relative;
-        margin: auto;
-        width: 18px;
-        height: 18px;
-        -webkit-tap-highlight-color: transparent;
-        transform: translate3d(0, 0, 0);
-    }
+.check {
+  cursor: pointer;
+  position: relative;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+}
 
-    .check:before {
-        content: "";
-        position: absolute;
-        top: -15px;
-        left: -15px;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: rgba(34, 50, 84, 0.03);
-        opacity: 0;
-        transition: opacity 0.2s ease;
-    }
+.check:before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(34, 50, 84, 0.03);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
 
-    .check svg {
-        position: relative;
-        z-index: 1;
-        fill: none;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke: #c8ccd4;
-        stroke-width: 1.5;
-        transform: translate3d(0, 0, 0);
-        transition: all 0.2s ease;
-    }
+.check svg {
+  position: relative;
+  z-index: 1;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #c8ccd4;
+  stroke-width: 1.5;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease;
+}
 
-    .check svg path {
-        stroke-dasharray: 60;
-        stroke-dashoffset: 0;
-    }
+.check svg path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 0;
+}
 
-    .check svg polyline {
-        stroke-dasharray: 22;
-        stroke-dashoffset: 66;
-    }
+.check svg polyline {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 66;
+}
 
-    .check:hover:before {
-        opacity: 1;
-    }
+.check:hover:before {
+  opacity: 1;
+}
 
-    .check:hover svg {
-        stroke: var(--accent-color, #a3e583);
-    }
+.check:hover svg {
+  stroke: var(--accent-color, #a3e583);
+}
 
-    #cbx2:checked+.check svg {
-        stroke: var(--accent-color, #a3e583);
-    }
+#cbx2:checked + .check svg {
+  stroke: var(--accent-color, #a3e583);
+}
 
-    #cbx2:checked+.check svg path {
-        stroke-dashoffset: 60;
-        transition: all 0.3s linear;
-    }
+#cbx2:checked + .check svg path {
+  stroke-dashoffset: 60;
+  transition: all 0.3s linear;
+}
 
-    #cbx2:checked+.check svg polyline {
-        stroke-dashoffset: 42;
-        transition: all 0.2s linear;
-        transition-delay: 0.15s;
-    }
+#cbx2:checked + .check svg polyline {
+  stroke-dashoffset: 42;
+  transition: all 0.2s linear;
+  transition-delay: 0.15s;
+}
 
-    .editBtn {
-        width: 3rem;
-        height: 3rem;
-        border-radius: 20%;
-        border: none;
-        background-color: darkgoldenrod;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.123);
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s;
-        transform: skew(0deg);
-    }
+.editBtn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 20%;
+  border: none;
+  background-color: darkgoldenrod;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.123);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+    transform: skew(0deg);
+}
+.editBtn::before {
+  content: "";
+  width: 200%;
+  height: 200%;
+  background-color: rgb(175, 147, 35);
+  position: absolute;
+  z-index: 1;
+  transform: scale(0);
+  transition: all 0.3s;
+  border-radius: 50%;
+  filter: blur(10px);
+}
+.editBtn:hover::before {
+  transform: scale(1);
+}
+.editBtn:hover {
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+}
 
-    .editBtn::before {
-        content: "";
-        width: 200%;
-        height: 200%;
-        background-color: rgb(175, 147, 35);
-        position: absolute;
-        z-index: 1;
-        transform: scale(0);
-        transition: all 0.3s;
-        border-radius: 50%;
-        filter: blur(10px);
-    }
-
-    .editBtn:hover::before {
-        transform: scale(1);
-    }
-
-    .editBtn:hover {
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
-    }
-
-    .editBtn svg {
-        height: 17px;
-        fill: white;
-        z-index: 3;
-        transition: all 0.2s;
-        transform-origin: bottom;
-    }
+.editBtn svg {
+  height: 17px;
+  fill: white;
+  z-index: 3;
+  transition: all 0.2s;
+  transform-origin: bottom;
+}
 
 
-    .button-container {
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        gap: 10px;
-    }
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px; 
+}
 
-    h1 {
-        margin: 0;
-        color: #5f5b57;
-        font-size: 2.5rem;
-        font-weight: 500;
-    }
+h1{
+    margin: 0;
+    color: #5f5b57;
+    font-size: 2.5rem;
+    font-weight: 500;
+}
 
-    button {
-        width: 170px;
-        height: 60px;
-        line-height: 60px;
-        border-radius: 1px;
-        font-weight: 500;
-        display: inline-block;
-        margin-top: 34px;
-        justify-content: center;
-        align-items: flex-end;
-        background: #e99c2e;
-        border: 1px solid #e99c2e;
-        white-space: nowrap;
-        color: #fff;
-        font-size: 1rem;
-        font-weight: 500;
-        text-transform: capitalize;
-        border-radius: 3px;
-    }
+button{
+    width: 170px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 1px;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 34px;
+    justify-content: center;
+    align-items: flex-end;
+    background: #e99c2e;
+    border: 1px solid #e99c2e;
+    white-space: nowrap;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    border-radius: 3px;
+}.bin-button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 20%;
+  border: none;
+  background-color: #e91e63; /* Adjust to your specific red color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.123);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
 
-    .bin-button {
-        width: 3rem;
-        height: 3rem;
-        border-radius: 20%;
-        border: none;
-        background-color: #e91e63;
-        /* Adjust to your specific red color */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.123);
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-    }
+.bin-button::before {
+  content: "";
+  width: 200%;
+  height: 200%;
+  background-color: red; /* Adjust to a slightly darker red */
+  position: absolute;
+  z-index: 1;
+  transform: scale(0);
+  transition: all 0.3s;
+  border-radius: 50%;
+  filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .bin-button::before {
-        content: "";
-        width: 200%;
-        height: 200%;
-        background-color: red;
-        /* Adjust to a slightly darker red */
-        position: absolute;
-        z-index: 1;
-        transform: scale(0);
-        transition: all 0.3s;
-        border-radius: 50%;
-        filter: blur(10px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.bin-button:hover::before {
+  transform: scale(1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .bin-button:hover::before {
-        transform: scale(1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.bin-button:hover {
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .bin-button:hover {
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.bin-button i.fas.fa-trash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 17px;
+  fill: white; /* Maintain white for visibility against red */
+  z-index: 3;
+}
 
-    .bin-button i.fas.fa-trash {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 17px;
-        fill: white;
-        /* Maintain white for visibility against red */
-        z-index: 3;
-    }
 </style>
 
 <body>
-    <style>
-    </style>
-    <style>
-        .navbar2 {
-            background-color: #e99c2e;
-            /* Color de fondo del navbar */
-            overflow: hidden;
-            width: 100%;
-            /* Ocupar todo el ancho disponible */
-            position: fixed;
-            /* Fijar el navbar en la parte superior */
-            top: 5.8rem;
-            /* Alinear el navbar al borde superior */
-            left: 0;
-        }
-
-        .navbar2 a {
-            float: left;
-            display: block;
-            color: white;
-            /* Color del texto */
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-        }
-
-        .navbar2 a:hover {
-            background-color: #d18822;
-            /* Color de fondo al pasar el mouse */
-        }
-
-        .content {
-            padding-top: 60px;
-            /* Ajuste para dejar espacio debajo del navbar fijo */
-        }
-
-        .module {
-            display: none;
-            /* Ocultar todos los módulos por defecto */
-        }
-
-        .module.active {
-            display: block;
-            /* Mostrar el módulo activo */
-        }
-
-        /* Añade estilos adicionales según sea necesario */
-    </style>
-    </head>
-
-    <body>
-
-        <div class="navbar2">
-            <a href="#listar-usuarios" onclick="mostrarModulo('listar-usuarios')">Listar Usuarios</a>
-            <a href="#registrar" onclick="window.location.href= 'mgestionUsuarios(GUSU)/registro_user.php'">Registrar Usuario</a>
-            <a href="#activar-desactivar" onclick="mostrarModulo('activar-desactivar')">Activar/Desactivar Usuario</a>
-            <a href="#editar-usuario" onclick="mostrarModulo('editar-usuario')">Editar Usuario</a>
-            <a href="#buscar-usuario" onclick="mostrarModulo('buscar-usuario')">Buscar Usuario</a>
+    <div class="container">
+        <h1>Bienvenido Administrador</h1><br>
+        <h1>Lista de usuarios</h1>
+        <br>
+        <div class="btn-container">
+            <div>
+                <button type="button" onclick="window.location.href= 'mgestionUsuarios(GUSU)/registro_user.php' " >Nuevo usuario <i class="fa fa-plus"></i></button>
+            </div>
+            <div>
+                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Buscar...">
+            </div>
         </div>
-        <div class="content">
-            <div id="listar-usuarios" class="module active">
+        <br><br>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $SQL = "SELECT * FROM user";
+                $dato = mysqli_query($conexion, $SQL);
 
-                <div class="container">
-                    <h1>Listar Usuarios</h1>
-                    <br>
-
-                    <br><br>
-                    <table id="userTable">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Correo</th>
-                                <th>Telefono</th>
-                                <th>Rol</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $SQL = "SELECT * FROM user";
-                            $dato = mysqli_query($conexion, $SQL);
-
-                            if ($dato->num_rows > 0) {
-                                while ($fila = mysqli_fetch_array($dato)) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $fila['nombre']; ?></td>
-                                        <td><?php echo $fila['apPAt'], " ", $fila['apMAt']; ?></td>
-                                        <td><?php echo $fila['correo']; ?></td>
-                                        <td><?php echo $fila['telefono']; ?></td>
-                                        <td><?php echo $fila['rol']; ?></td>
-                                    </tr>
-                                    <?php
-                                }
-                            } else {
-                                ?>
-                                <tr class="text-center">
-                                    <td colspan="5">No existen registros</td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-
-
-            <div id="activar-desactivar" class="module">
-                <div class="container">
-                    <h1>Activar/Desactivar Usuarios</h1>
-                    <br>
-                    <table class="user-table">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Correo</th>
-                                <th>Telefono</th>
-                                <th>Rol</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $SQL = "SELECT * FROM user";
-                            $result = mysqli_query($conexion, $SQL);
-
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($fila = mysqli_fetch_array($result)) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $fila['nombre']; ?></td>
-                                        <td><?php echo $fila['apPAt'], " ", $fila['apMAt']; ?></td>
-                                        <td><?php echo $fila['correo']; ?></td>
-                                        <td><?php echo $fila['telefono']; ?></td>
-                                        <td><?php echo $fila['rol']; ?></td>
-                                        <td>
-                                            <?php if ($fila['rol'] != 'admin') { ?>
-                                                <input type="checkbox" class="estado-checkbox" id="cbx_<?php echo $fila['id']; ?>"
-                                                    data-userid="<?php echo $fila['id']; ?>" <?php echo ($fila['estado'] == 1) ? 'checked' : ''; ?> onchange="cambiarEstado(this)">
-                                            <?php } else { ?>
-                                                <span>No modificable</span>
-                                            <?php } ?>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                }
-                            } else {
-                                ?>
-                                <tr class="text-center">
-                                    <td colspan="6">No existen usuarios registrados</td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-
-                <script>
-                    function cambiarEstado(checkbox) {
-                        var userId = checkbox.getAttribute('data-userid');
-                        var estado = checkbox.checked ? 1 : 0;
-
-                        // Realizar la petición AJAX
-                        $.ajax({
-                            url: 'mgestionUsuarios(GUSU)/actualizar_estado.php', // Archivo PHP que maneja la actualización
-                            method: 'POST', // Método HTTP utilizado
-                            data: { userId: userId, estado: estado }, // Datos a enviar al servidor
-                            dataType: 'json', // Tipo de datos esperados en la respuesta
-                            success: function (response) {
-                                // Manejar la respuesta del servidor
-                                if (response.success) {
-                                    console.log('Estado actualizado correctamente.');
-
-                                    // Redireccionar después de la actualización
-                                    window.location.href = 'mgestionUsuarios(GUSU)/nueva_pagina.php';
-                                } else {
-                                    console.error('Error al actualizar el estado: ' + response.message);
-                                    // Revertir el estado del checkbox si hay un error
-                                    checkbox.checked = !checkbox.checked;
-                                }
-                            },
-                            error: function (xhr, status, error) {
-                                console.error('Error en la petición AJAX: ' + error);
-                                // Revertir el estado del checkbox si hay un error
-                                checkbox.checked = !checkbox.checked;
-                            }
-                        });
-                    }
-                </script>
-
-
-            </div>
-
-
-
-
-            <div id="activnnnar-desactivar" class="module">
-                <div class="container">
-                    <h1>Bienvenido Administrador</h1><br>
-                    <h1>Lista de usuarios</h1>
-                    <br>
-                    <div class="btn-container">
-                        <div>
-                            <button type="button"
-                                onclick="window.location.href= 'mgestionUsuarios(GUSU)/registro_user.php' ">Nuevo
-                                usuario <i class="fa fa-plus"></i></button>
-                        </div>
-                        <div>
-                            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Buscar...">
-                        </div>
-                    </div>
-                    <br><br>
-                    <table id="userTable">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Correo</th>
-                                <th>Telefono</th>
-                                <th>Rol</th>
-                                <th>Acciones</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $SQL = "SELECT * FROM user";
-                            $dato = mysqli_query($conexion, $SQL);
-
-                            if ($dato->num_rows > 0) {
-                                while ($fila = mysqli_fetch_array($dato)) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $fila['nombre']; ?></td>
-                                        <td><?php echo $fila['apPAt'], " ", $fila['apMAt']; ?></td>
-                                        <td><?php echo $fila['correo']; ?></td>
-                                        <td><?php echo $fila['telefono']; ?></td>
-                                        <td><?php echo $fila['rol']; ?></td>
-                                        <?php if ($fila['rol'] == 'admin') { ?>
-                                            <td>
-                                                <center>
-                                                    <button class="editBtn"
-                                                        onclick="window.location.href = 'mgestionUsuarios(GUSU)/edit_user.php?id=<?php echo $fila['id']; ?>'">
-                                                        <svg height="1em" viewBox="0 0 512 512">
-                                                            <path
-                                                                d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
-                                                            </path>
-                                                        </svg>
-                                                    </button>
-                                                </center>
-                                            </td>
-                                            <td>
-                                                <center><a><i class="fa fa-check" style="color:black;"></i></a></center>
-                                            </td>
-                                        <?php } else if ($fila['rol'] == 'user') { ?>
-                                                <td>
-                                                    <center>
-                                                        <div class="button-container">
-                                                            <button class="editBtn"
-                                                                onclick="window.location.href = 'mgestionUsuarios(GUSU)/edit_user.php?id=<?php echo $fila['id']; ?>'">
-                                                                <svg height="1em" viewBox="0 0 512 512">
-                                                                    <path
-                                                                        d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
-                                                                    </path>
-                                                                </svg>
-                                                            </button>
-                                                            <a href="mgestionUsuarios(GUSU)/eliminar_user.php?id=<?php echo $fila['id']; ?>"
-                                                                class="bin-button">
-                                                                <i class="fas fa-trash"></i>
-                                                            </a>
-                                                        </div>
-                                                    </center>
-                                                </td>
-
-                                                <td>
-                                                    <center>
-                                                        <input type="checkbox" class="estado-checkbox" id="cbx2" style="display: none;"
-                                                            data-userid="<?php echo $fila['id']; ?>" <?php echo ($fila['estado'] == 1) ? 'checked' : ''; ?>>
-                                                        <label for="cbx2" class="check">
-                                                            <svg width="18px" height="18px" viewBox="0 0 18 18">
-                                                                <path
-                                                                    d="M 1 9 L 1 9 c 0 -5 3 -8 8 -8 L 9 1 C 14 1 17 5 17 9 L 17 9 c 0 4 -4 8 -8 8 L 9 17 C 5 17 1 14 1 9 L 1 9 Z">
-                                                                </path>
-                                                                <polyline points="1 9 7 14 15 4"></polyline>
-                                                            </svg>
-                                                        </label>
-                                                    </center>
-                                                </td>
-                                        <?php } ?>
-                                    </tr>
-                                    <?php
-                                }
-                            } else {
-                                ?>
-                                <tr class="text-center">
-                                    <td colspan="7">No existen registros</td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-
-
-
-                </div>
-            </div>
-
-            <div id="buscar-usuario" class="module">
-                <div class="container">
-                    <h1>Buscar Usuarios</h1>
-                    <br>
-                    <div class="btn-container">
-                        <div></div>
-                        <div>
-                            <input type="text" class="search-input" onkeyup="filterTable(this)" placeholder="Buscar...">
-                        </div>
-                    </div>
-                    <br><br>
-                    <table class="user-table">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Correo</th>
-                                <th>Telefono</th>
-                                <th>Rol</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $SQL = "SELECT * FROM user";
-                            $dato = mysqli_query($conexion, $SQL);
-
-                            if ($dato->num_rows > 0) {
-                                while ($fila = mysqli_fetch_array($dato)) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $fila['nombre']; ?></td>
-                                        <td><?php echo $fila['apPAt'], " ", $fila['apMAt']; ?></td>
-                                        <td><?php echo $fila['correo']; ?></td>
-                                        <td><?php echo $fila['telefono']; ?></td>
-                                        <td><?php echo $fila['rol']; ?></td>
-                                    </tr>
-                                    <?php
-                                }
-                            } else {
-                                ?>
-                                <tr class="text-center">
-                                    <td colspan="5">No existen registros</td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <script>
-                function filterTable(input) {
-                    var filter = input.value.toUpperCase();
-                    var table = input.closest('.container').querySelector('.user-table');
-                    var rows = table.getElementsByTagName('tr');
-
-                    for (var i = 0; i < rows.length; i++) {
-                        var cells = rows[i].getElementsByTagName('td');
-                        var found = false;
-
-                        for (var j = 0; j < cells.length; j++) {
-                            var cellText = cells[j].textContent || cells[j].innerText;
-
-                            if (cellText.toUpperCase().indexOf(filter) > -1) {
-                                found = true;
-                                break;
-                            }
-                        }
-
-                        rows[i].style.display = found ? '' : 'none';
-                    }
-                }
-            </script>
-
-
-
-        </div>
-        <div id="editar-usuario" class="module">
-            <div class="container">
-                <h1>Editar Usuarios</h1>
-                <br>
-
-                <table id="userTable">
-                    <thead>
+                if ($dato->num_rows > 0) {
+                    while ($fila = mysqli_fetch_array($dato)) {
+                        ?>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Correo</th>
-                            <th>Telefono</th>
-                            <th>Rol</th>
-                            <th>Editar</th>
+                            <td><?php echo $fila['nombre']; ?></td>
+                            <td><?php echo $fila['apPAt'], " ", $fila['apMAt']; ?></td>
+                            <td><?php echo $fila['correo']; ?></td>
+                            <td><?php echo $fila['telefono']; ?></td>
+                            <td><?php echo $fila['rol']; ?></td>
+                            <?php if ($fila['rol'] == 'admin') { ?>
+                                <td>
+                                    <center>
+                                        <button class="editBtn" onclick="window.location.href = 'mgestionUsuarios(GUSU)/edit_user.php?id=<?php echo $fila['id']; ?>'">
+                                            <svg height="1em" viewBox="0 0 512 512">
+                                                <path
+                                                d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"
+                                                ></path>
+                                            </svg>
+                                        </button>
+                                    </center>
+                                </td>
+                                <td><center><a><i class="fa fa-check" style="color:black;"></i></a></center>
+                                </td>
+                            <?php } else if ($fila['rol'] == 'user') { ?>
+                                <td>
+                                    <center>
+                                        <div class="button-container">
+                                            <button class="editBtn" onclick="window.location.href = 'mgestionUsuarios(GUSU)/edit_user.php?id=<?php echo $fila['id']; ?>'">
+                                                <svg height="1em" viewBox="0 0 512 512">
+                                                    <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                                                </svg>
+                                            </button>
+                                            <a href="mgestionUsuarios(GUSU)/eliminar_user.php?id=<?php echo $fila['id']; ?>" class="bin-button">
+    <i class="fas fa-trash"></i>
+</a>
+                                        </div>
+                                    </center>
+                                </td>
+
+                                <td>
+                                    <center>
+                                        <input type="checkbox" class="estado-checkbox" id="cbx2" style="display: none;" data-userid="<?php echo $fila['id']; ?>" <?php echo ($fila['estado'] == 1) ? 'checked' : ''; ?>>
+                                        <label for="cbx2" class="check">
+                                            <svg width="18px" height="18px" viewBox="0 0 18 18">
+                                                <path d="M 1 9 L 1 9 c 0 -5 3 -8 8 -8 L 9 1 C 14 1 17 5 17 9 L 17 9 c 0 4 -4 8 -8 8 L 9 17 C 5 17 1 14 1 9 L 1 9 Z"></path>
+                                                <polyline points="1 9 7 14 15 4"></polyline>
+                                            </svg>
+                                        </label>
+                                    </center>
+                                </td>
+                            <?php } ?>
                         </tr>
-                    </thead>
-                    <tbody>
                         <?php
-                        $SQL = "SELECT * FROM user";
-                        $dato = mysqli_query($conexion, $SQL);
-
-                        if ($dato->num_rows > 0) {
-                            while ($fila = mysqli_fetch_array($dato)) {
-                                ?>
-                                <tr>
-                                    <td><?php echo $fila['nombre']; ?></td>
-                                    <td><?php echo $fila['apPAt'], " ", $fila['apMAt']; ?></td>
-                                    <td><?php echo $fila['correo']; ?></td>
-                                    <td><?php echo $fila['telefono']; ?></td>
-                                    <td><?php echo $fila['rol']; ?></td>
-                                    <?php if ($fila['rol'] == 'admin') { ?>
-                                        <td>
-                                            <center>
-                                                <button class="editBtn"
-                                                    onclick="window.location.href = 'mgestionUsuarios(GUSU)/edit_user.php?id=<?php echo $fila['id']; ?>'">
-                                                    <svg height="1em" viewBox="0 0 512 512">
-                                                        <path
-                                                            d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                            </center>
-                                        </td>
-                                    <?php } else if ($fila['rol'] == 'user') { ?>
-                                            <td>
-                                                <center>
-                                                    <div class="button-container">
-                                                        <button class="editBtn"
-                                                            onclick="window.location.href = 'mgestionUsuarios(GUSU)/edit_user.php?id=<?php echo $fila['id']; ?>'">
-                                                            <svg height="1em" viewBox="0 0 512 512">
-                                                                <path
-                                                                    d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
-                                                                </path>
-                                                            </svg>
-
-                                                    </div>
-                                                </center>
-                                            </td>
-
-
-                                    <?php } ?>
-                                </tr>
-                                <?php
-                            }
-                        } else {
-                            ?>
-                            <tr class="text-center">
-                                <td colspan="7">No existen registros</td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                    }
+                } else {
+                    ?>
+                    <tr class="text-center">
+                        <td colspan="7">No existen registros</td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
 
 
 
-            </div>
-        </div>
-
-        <script>
-            function mostrarModulo(id) {
-                // Ocultar todos los módulos
-                var modulos = document.getElementsByClassName('module');
-                for (var i = 0; i < modulos.length; i++) {
-                    modulos[i].classList.remove('active');
-                }
-
-                // Mostrar el módulo seleccionado
-                var modulo = document.getElementById(id);
-                modulo.classList.add('active');
-            }
-        </script>
-
-    </body>
 
 
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['userId'], $_POST['newState'])) {
-        include '../includes/_db.php';
+        
+    </div>
+</body>
 
-        $userId = mysqli_real_escape_string($conexion, $_POST['userId']);
-        $newState = mysqli_real_escape_string($conexion, $_POST['newState']);
 
-        $sql = "UPDATE user SET estado = '$newState' WHERE id = '$userId'";
-        if (mysqli_query($conexion, $sql)) {
-            echo 'Éxito';
-        } else {
-            echo 'Error';
-        }
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['userId'], $_POST['newState'])) {
+    include '../includes/_db.php';
 
-        mysqli_close($conexion);
+    $userId = mysqli_real_escape_string($conexion, $_POST['userId']);
+    $newState = mysqli_real_escape_string($conexion, $_POST['newState']);
+
+    $sql = "UPDATE user SET estado = '$newState' WHERE id = '$userId'";
+    if (mysqli_query($conexion, $sql)) {
+        echo 'Éxito'; 
+    } else {
+        echo 'Error'; 
     }
-    ?>
+
+    mysqli_close($conexion);
+}
+?>
 
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var checkboxes = document.querySelectorAll('.estado-checkbox');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var checkboxes = document.querySelectorAll('.estado-checkbox');
 
-            checkboxes.forEach(function (checkbox) {
-                checkbox.addEventListener('change', function () {
-                    var userId = this.getAttribute('data-userid');
-                    var newState = this.checked ? 1 : 0;
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                var userId = this.getAttribute('data-userid');
+                var newState = this.checked ? 1 : 0;
 
-                    var xhr = new XMLHttpRequest();
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState === XMLHttpRequest.DONE) {
-                            if (xhr.status === 200) {
-                                // La solicitud fue exitosa
-                                console.log('Estado actualizado correctamente.');
-                            } else {
-                                // Error al actualizar el estado
-                                console.error('Error al actualizar el estado.');
-                            }
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            // La solicitud fue exitosa
+                            console.log('Estado actualizado correctamente.');
+                        } else {
+                            // Error al actualizar el estado
+                            console.error('Error al actualizar el estado.');
                         }
-                    };
-                    xhr.open('POST', '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>', true);
-                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                    xhr.send('userId=' + userId + '&newState=' + newState);
-                });
+                    }
+                };
+                xhr.open('POST', '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send('userId=' + userId + '&newState=' + newState);
             });
         });
-    </script>
+    });
+</script>
+
+
+<script>
 
 
 
+    function filterTable() {
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("userTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            if (tr[i].parentNode.nodeName === 'THEAD') {
+                continue; // Ignorar las filas de la cabecera
+            }
+            txtValue = "";
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                txtValue += td[j].textContent || td[j].innerText;
+            }
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+</script>
 
 </html>

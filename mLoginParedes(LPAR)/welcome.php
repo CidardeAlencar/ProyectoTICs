@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: login.php");
-    exit();
+if (!isset($_SESSION['login_user'])) {
+    header("location: index.php");
+    die();
 }
 ?>
 
@@ -15,9 +15,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 </head>
 <body>
     <div class="container">
-        <h2>Bienvenido</h2>
-        <p>Has iniciado sesión correctamente.</p>
-        <a href="logout.php" class="logout-btn">Cerrar Sesión</a>
+        <h2>Bienvenido, <?php echo $_SESSION['login_user']; ?>!</h2>
+        <a href="mLoginParedes(LPAR)/logout.php" class="logout-btn">Cerrar sesión</a>
     </div>
 </body>
 </html>
