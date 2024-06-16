@@ -1,166 +1,55 @@
 <?php
 include 'connection.php';
 
-if (isset($_POST['enviar'])) {
-    $nombre = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
-    $precio = $_POST['precio'];
-    $categoria = $_POST['categoria'];
-    $estado = $_POST['estado'];
-    $imagenPrincipal = $_POST['imagenPrincipal'];
-
-    $consulta = "INSERT INTO productos (nombre, descripcion, precio, categoria, estado, imagen_principal) VALUES ('$nombre', '$descripcion', $precio, '$categoria', '$estado', '$imagenPrincipal')";
-
-    if (mysqli_query($conexion, $consulta)) {
-        echo '<script>alert("Producto creado exitosamente"); window.location.href = "../index.php";</script>';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
+    $descripcion = mysqli_real_escape_string($conexion, $_POST['descripcion']);
+    $precio = mysqli_real_escape_string($conexion, $_POST['precio']);
+    $categoria = mysqli_real_escape_string($conexion, $_POST['categoria']);
+    $estado = mysqli_real_escape_string($conexion, $_POST['estado']);
+    $imagen = $_FILES['imagen']['name'];
+    
+    $target_dir = "assets/images/";
+    $target_file = $target_dir . basename($imagen);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    
+    $check = getimagesize($_FILES['imagen']['tmp_name']);
+    if($check !== false) {
+        $uploadOk = 1;
     } else {
-        echo '<script>alert("Error al crear el producto");</script>';
+        echo "<script>alert('El archivo no es una imagen.'); window.location.href='../index.php?mod=15#';</script>";
+        $uploadOk = 0;
+    }
+    
+    if (file_exists($target_file)) {
+        echo "<script>alert('Lo siento, el archivo ya existe.'); window.location.href='../index.php?mod=15#';</script>";
+        $uploadOk = 0;
+    }
+    
+    if ($_FILES['imagen']['size'] > 500000) {
+        echo "<script>alert('Lo siento, tu archivo es demasiado grande.'); window.location.href='../index.php?mod=15#';</script>";
+        $uploadOk = 0;
+    }
+    
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        echo "<script>alert('Lo siento, solo se permiten archivos JPG, JPEG, PNG y GIF.'); window.location.href='../index.php?mod=15#';</script>";
+        $uploadOk = 0;
+    }
+    
+    if ($uploadOk == 0) {
+        echo "<script>alert('Lo siento, tu archivo no fue subido.'); window.location.href='../index.php?mod=15#';</script>";
+    } else {
+        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $target_file)) {
+            $consulta = "INSERT INTO productos (nombre, descripcion, precio, categoria, estado, imagen_principal) VALUES ('$nombre', '$descripcion', '$precio', '$categoria', '$estado', '$imagen')";
+            if (mysqli_query($conexion, $consulta)) {
+                echo "<script>alert('Producto creado exitosamente'); window.location.href='../index.php?mod=15#';</script>";
+            } else {
+                echo "<script>alert('Error al crear el producto: ".mysqli_error($conexion)."'); window.location.href='../index.php?mod=15#';</script>";
+            }
+        } else {
+            echo "<script>alert('Lo siento, hubo un error al subir tu archivo.'); window.location.href='../index.php?mod=15#';</script>";
+        }
     }
 }
-
-?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear producto</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head><style>
-    /* Estilos generales */
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fc; /* Color de fondo del cuerpo */
-}
-
-header {
-    background-color: #fff; /* Color de fondo del encabezado */
-    padding: 20px;
-    text-align: center;
-}
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Altura mínima del contenido principal */
-}
-
-.container {
-    background-color: #fff; /* Color de fondo del contenedor principal */
-    padding: 30px;
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
-    width: 80%; /* Ancho del contenedor */
-    max-width: 800px; /* Ancho máximo */
-    margin: 0 auto; /* Centrar el contenedor */
-}
-
-h1, h2 {
-    color: #333; /* Color de los títulos */
-    text-align: center;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse; /* Eliminar bordes entre celdas */
-    margin: 20px 0;
-}
-
-th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #e99c2e; /* Color de fondo de los encabezados de tabla */
-    color: #fff; /* Color del texto en los encabezados de tabla */
-}
-
-a {
-    color: #e99c2e; /* Color de los enlaces */
-    text-decoration: none; /* Eliminar subrayado en los enlaces */
-}
-
-a:hover {
-    color: #e68a0d; /* Color de los enlaces al pasar el cursor */
-}
-
-button {
-    background-color: #e99c2e; /* Color de fondo de los botones */
-    color: #fff; /* Color del texto en los botones */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #e68a0d; /* Color de fondo de los botones al pasar el cursor */
-}
-
-/* Formularios */
-
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="number"],
-input[type="file"],
-select,
-textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
-/* Ajustes para dispositivos móviles */
-
-@media (max-width: 768px) {
-    .container {
-        width: 95%; /* Ancho del contenedor en dispositivos móviles */
-    }
-}
-
-</style>
-<body>
-    <main>
-        <div class="container">
-            <h2>Formulario de creación de producto</h2>
-            <form method="POST">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-
-                <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
-
-                <label for="precio">Precio:</label>
-                <input type="number" id="precio" name="precio" step="0.01" required>
-
-                <label for="categoria">Categoría:</label>
-                <input type="text" id="categoria" name="categoria" required>
-
-                <label for="estado">Estado:</label>
-                <select id="estado" name="estado" required>
-                    <option value="activo">Activo</option>
-                    <option value="inactivo">Inactivo</option>
-                </select>
-
-                <label for="imagenPrincipal">Imagen principal:</label>
-                <input type="file" id="imagenPrincipal" name="imagenPrincipal">
-
-                <button type="submit" name="enviar">Crear producto</button>
-            </form>
-        </div>
-    </main>
-</body>
-</html>
