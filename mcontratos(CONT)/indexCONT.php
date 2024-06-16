@@ -260,6 +260,7 @@ $resultado = mysqli_query($conexion, $consulta);
 												<button class="btn-cart welcome-add-cart" onclick="window.location.href='#'">
 													<span class="lnr lnr-plus-circle"></span>
 													CONTRATOS <span></span> 
+													
 												</button>
 												<!-- <button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='#'">
 													more info
@@ -363,7 +364,8 @@ $resultado = mysqli_query($conexion, $consulta);
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
 								<i class="fa fa-bars"></i>
 							</button>
-							<a class="navbar-brand" href="index.html">REALIZAR<span>CONTRATOS</span>.</a>
+							<a class="navbar-brand" href="index.html" style="font-size: 24px;">REALIZAR<span>CONTRATOS</span>.</a>
+
 
 						</div><!--/.navbar-header-->
 						<!-- End Header Navigation -->
@@ -372,10 +374,10 @@ $resultado = mysqli_query($conexion, $consulta);
 						<div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 							<ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
 								<!-- <li class=" scroll active"><a href="#home">home</a></li> -->
-								<li class="scroll"><a href="#new-arrivals">contratos</a></li>
+								<li class="scroll"><a href="#new-arrivals" style="font-size: 22px;">Administrar Contratos </a></li>
 								<li class="scroll"><a href="#feature"></a></li>
 								<li class="scroll"><a href="#blog"></a></li>
-								<li class="scroll"><a href="#newsletter">contact</a></li>
+								<li class="scroll"><a href="#newsletter" style="font-size: 22px;">Contáctanos</a></li>
 							</ul><!--/.nav -->
 						</div><!-- /.navbar-collapse -->
 					</div><!--/.container-->
