@@ -1,0 +1,122 @@
+
+body {
+    font-family: 'Courier New', Courier, monospace, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0056b3;
+}
+
+.users-table, .users-form, .Crear-Nueva-Preferencia {
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+/* Estilos para formularios */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input[type="text"], input[type="number"] {
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para mensajes de información */
+.user-info, .insert-message {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+/* Estilos para contenedores */
+.users-table, .preferences-table, .Crear-Nueva-Preferencia {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para encabezados */
+h1 {
+    margin-top: 0;
+}
+
+/* Estilos para el botón de buscar */
+.users-form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+}
+
+.users-form input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Estilos específicos para el formulario de búsqueda */
+.users-form {
+    text-align: center;
+}
+
+.users-form input[type="text"] {
+    width: 200px;
+    margin-right: 10px;
+}
+
+/* Estilos para el botón de registrar preferencias */
+.Crear-Nueva-Preferencia input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.Crear-Nueva-Preferencia input[type="submit"]:hover {
+    background-color: #0056b3;
+}
